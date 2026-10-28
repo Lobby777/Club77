@@ -389,7 +389,11 @@ const T5=[0,0,0,0,0];
 function bestOmaha(h,b){let best=-1;const n=h.length,m=b.length;if(m<3)return -1;
   for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)for(let x=0;x<m;x++)for(let y=x+1;y<m;y++)for(let z=y+1;z<m;z++){T5[0]=h[i];T5[1]=h[j];T5[2]=b[x];T5[3]=b[y];T5[4]=b[z];const s=evalHand(T5,5);if(s>best)best=s;}
   return best;}
-function handScore(v,hole,board){if(v==='omaha')return bestOmaha(hole,board);if(v==='draw')return evalHand(hole,5);const a=hole.concat(board);return evalHand(a,a.length);}
+const isHE=v=>v==='holdem'||v==='pine'||v==='crazy';
+const isPine=v=>v==='pine'||v==='crazy';
+const H3=[0,0,0,0,0,0,0];
+function pine3(hole,board){let best=-1;const n=board.length;for(let x=0;x<3;x++){let k=0;for(let y=0;y<3;y++)if(y!==x)H3[k++]=hole[y];for(let j=0;j<n;j++)H3[k++]=board[j];const sc=evalHand(H3,k);if(sc>best)best=sc;}return best;}
+function handScore(v,hole,board){if(v==='omaha')return bestOmaha(hole,board);if(isPine(v)&&hole.length===3)return pine3(hole,board);if(v==='draw')return evalHand(hole,5);const a=hole.concat(board);return evalHand(a,a.length);}
 const CATS=['קלף גבוה','זוג','שני זוגות','שלישייה','רצף','צבע','פול האוס','רביעייה','רצף צבע'];
 const catOf=v=>Math.floor(v/B5);
 const kick=(v,i)=>Math.floor(v/Math.pow(15,4-i))%15;
@@ -400,7 +404,7 @@ function handName(v){if(v<0)return '—';const c=catOf(v),a=RCH(kick(v,0)),b=RCH
 function mcEquity(v,hole,board,nOpp,iters,ranges){
   const used=new Uint8Array(52);hole.forEach(c=>used[c]=1);board.forEach(c=>used[c]=1);
   const d=[];for(let c=0;c<52;c++)if(!used[c])d.push(c);
-  const hn=v==='omaha'?4:2,need=5-board.length,L=d.length;const fb=board.slice();const oh=new Array(hn);
+  const hn=v==='omaha'?4:(isPine(v)&&hole.length===3)?3:2,need=5-board.length,L=d.length;const fb=board.slice();const oh=new Array(hn);
   let win=0,tie=0,eq=0;const cats=new Float64Array(9);
   for(let it=0;it<iters;it++){
     let k=0;
@@ -540,6 +544,7 @@ function rHome0(V){
     <button class="tile" data-a="setup" data-g="rl"><span class="glyph">0·<span class="r">32</span>·15</span><b>רולטה</b><small>אירופאית / אמריקאית · תוחלת לכל הימור</small></button>
     <button class="tile" data-a="setup" data-g="poker" data-var="holdem"><span class="glyph">A♠<span class="r">K♥</span></span><b>טקסס הולדם</b><small>נו-לימיט · אקוויטי וסיכויי קופה</small></button>
     <button class="tile" data-a="setup" data-g="poker" data-var="omaha"><span class="glyph" style="font-size:22px">A♠<span class="r">A♦</span>K♣<span class="r">Q♥</span></span><b>אומהה</b><small>4 קלפים · פוט-לימיט</small></button>
+    <button class="tile" data-a="setup" data-g="poker" data-var="pine"><span class="glyph">A♠<span class="r">K♥</span>7♣</span><b>פיינאפל</b><small>3 קלפים · זורקים אחד · כולל קרייזי</small></button>
     <button class="tile" data-a="setup" data-g="poker" data-var="draw"><span class="glyph">K♣<span class="r">K♦</span>7♠</span><b>פוקר 5 קלפים</b><small>דרו · סולבר החלפות</small></button>
     <button class="tile" data-a="setup" data-g="vp"><span class="glyph">J+</span><b>וידאו פוקר</b><small>Jacks or Better 9/6 · החזקה אופטימלית</small></button>
     <button class="tile" data-a="setup" data-g="tcp"><span class="glyph">Q♠<span class="r">6♦</span>4♣</span><b>פוקר 3 קלפים</b><small>מול הבית · אנטה ופייר פלוס</small></button>
@@ -566,7 +571,8 @@ function openSetup(g,variant,kind){
 function seg(k,opts,cur){return `<div class="seg">${opts.map(([v,l,L])=>{const lk=locked(L);return `<button class="${String(cur)===String(v)?'on':''}" data-a="set" data-k="${k}" data-v="${v}" ${lk?'disabled':''}>${l}${lk?' · רמה '+L:''}</button>`;}).join('')}</div>`;}
 function rSetup(V){const c=SETUP;const title={bj:'בלאק ג׳ק',rl:'רולטה',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',poker:(c.kind==='tour'?'טורניר ':'')+VAR_NAME[c.variant]}[c.g];
   let h=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>${title}</h2></div><div class="stack" style="margin-top:12px">`;
-  if(c.g==='poker')h+=`<div class="panel stack"><label class="lbl">סוג המשחק</label>${seg('variant',[['holdem','הולדם'],['omaha','אומהה'],['draw','5 קלפים']],c.variant)}
+  if(c.g==='poker')h+=`<div class="panel stack"><label class="lbl">סוג המשחק</label>${seg('variant',[['holdem','הולדם'],['omaha','אומהה'],['draw','5 קלפים'],['pine','פיינאפל'],['crazy','קרייזי פיינאפל']],c.variant)}
+    ${isPine(c.variant)?`<p class="hint">כמו טקסס הולדם, אבל מקבלים 3 קלפים ${c.variant==='crazy'?'וזורקים אחד <b>אחרי סבב ההימורים של הפלופ</b>':'וזורקים אחד <b>לפני הפלופ</b>, אחרי סבב ההימורים הראשון'}. הסולבר מראה איזה קלף הכי כדאי לזרוק.</p>`:''}
     <label class="lbl">פורמט</label>${seg('kind',[['cash','משחק כסף'],['tour','טורניר Sit & Go'],['mtt','טורניר גדול (MTT)']],c.kind)}
     ${c.kind==='mtt'?`<label class="lbl">כמה שחקנים</label>${seg('mttN',[[18,'18 · 2 שולחנות'],[27,'27 · 3 שולחנות'],[45,'45 · 5 שולחנות']],c.mttN)}<label class="lbl">דמי כניסה</label>${seg('buy',[500,2000,10000].map(n=>[n,fmt(n),{500:0,2000:3,10000:6}[n]]),c.buy)}
       <p class="hint">טקסס הולדם, 9 שחקנים בשולחן. השולחנות האחרים משחקים ברקע, נשברים ומתמזגים עד שולחן הגמר. פרסים ל-${({18:5,27:7,45:9})[c.mttN]} המקומות הראשונים (הראשון לוקח ${pct(MTT_PAY[c.mttN][0],0)}). כשנשארים עם מעט בליינדים — הסולבר עובר לטבלת Push/Fold.</p>`:''}
@@ -629,9 +635,9 @@ function startGame(){const c=SETUP;sessStart(c.g==='poker'?(c.kind==='cash'?c.va
 
 /* ================= POKER ================= */
 const PK={st:null,deck:[],timer:null,myStart:0,viewer:-1,cover:-1,sel:[],raiseTo:0,solveKey:'',solve:null,needRebuy:false};
-const VAR_NAME={holdem:'טקסס הולדם',omaha:'אומהה פוט-לימיט',draw:'פוקר 5 קלפים'};
-const STREET_HE={pre:'פרה-פלופ',flop:'פלופ',turn:'טרן',river:'ריבר',bet1:'סבב הימורים ראשון',draw:'החלפת קלפים',bet2:'סבב הימורים שני',done:'סוף היד',idle:''};
-const holeN=v=>v==='omaha'?4:v==='draw'?5:2;
+const VAR_NAME={holdem:'טקסס הולדם',omaha:'אומהה פוט-לימיט',draw:'פוקר 5 קלפים',pine:'פיינאפל',crazy:'קרייזי פיינאפל'};
+const STREET_HE={pre:'פרה-פלופ',flop:'פלופ',turn:'טרן',river:'ריבר',bet1:'סבב הימורים ראשון',draw:'החלפת קלפים',disc:'זריקת קלף',bet2:'סבב הימורים שני',done:'סוף היד',idle:''};
+const holeN=v=>v==='omaha'?4:v==='draw'?5:isPine(v)?3:2;
 const inHand=p=>!p.out&&!p.f;
 const canAct=p=>!p.out&&!p.f&&!p.a;
 const isHere=p=>p.t==='me'||p.t==='local';
@@ -650,7 +656,7 @@ function pkNextHand(){const s=PK.st;if(!s)return;clearTimeout(PK.timer);
   if(s.seats.filter(p=>p.c>0).length<2){s.street='idle';toast('אין מספיק שחקנים עם צ׳יפים');if(CUR.v==='pk')pkRender();return;}
   pkStartHand();pkTick();}
 function pkStartHand(){const s=PK.st,n=s.seats.length;
-  s.hand++;s.board=[];s.res=null;s.auto=false;PK.sel=[];PK.solveKey='';PK.raiseTo=0;
+  s.hand++;s.board=[];s.discDone=false;s.discFrom='';s.res=null;s.auto=false;PK.sel=[];PK.solveKey='';PK.raiseTo=0;
   s.seats.forEach(p=>{p.h=[];p.b=0;p.tot=0;p.ac=false;p.a=false;p.last='';p.show=false;p.dr=-1;p.out=p.c<=0;p.f=p.out;p.hx={pr:0,pc:0,lp:0,agg:0};if(!p.out)hudOf(p).h++;});s.lastAgg=-1;
   s.btn=nextSeat(s.btn<0?rnd(n):s.btn,p=>!p.out);
   PK.deck=newDeck();const hn=holeN(s.v);
@@ -665,7 +671,7 @@ function pkStartHand(){const s=PK.st,n=s.seats.length;
 function pkLegal(i){const s=PK.st,p=s.seats[i];const toCall=Math.min(s.cur-p.b,p.c);const all=p.b+p.c;let maxTo=all;
   if(s.v==='omaha')maxTo=Math.min(all,s.cur+potTotal()+(s.cur-p.b));
   const minTo=Math.min(s.cur+s.minR,maxTo);return {toCall,canCheck:s.cur===p.b,minTo,maxTo,canRaise:all>s.cur&&maxTo>s.cur};}
-function pkAct(i,a,amt){const s=PK.st,p=s.seats[i];if(!p||s.turn!==i||s.street==='draw'||s.street==='done')return false;
+function pkAct(i,a,amt){const s=PK.st,p=s.seats[i];if(!p||s.turn!==i||s.street==='draw'||s.street==='disc'||s.street==='done')return false;
   const L=pkLegal(i);const pre=s.street==='pre'||s.street==='bet1',curB=s.cur;
   if(a==='check'&&!L.canCheck)a='call';
   if(a==='allin'){amt=L.maxTo;a=L.maxTo>s.cur?'raise':'call';}
@@ -691,12 +697,19 @@ function pkEndRound(){const s=PK.st;s.seats.forEach(p=>{p.b=0;p.ac=false;});s.cu
   if(s.v==='draw'){
     if(s.street==='bet1'){s.street='draw';s.auto=false;s.seats.forEach(p=>{if(inHand(p)&&!p.a)p.last='';});s.turn=nextSeat(s.btn,p=>inHand(p)&&p.dr<0);return;}
     pkShowdown();return;}
+  if(isPine(s.v)&&!s.discDone&&s.street===(s.v==='pine'?'pre':'flop')){const nx=nextSeat(s.btn,p=>inHand(p)&&p.h.length===3);
+    if(nx>=0){s.discFrom=s.street;s.street='disc';s.auto=false;s.turn=nx;s.seats.forEach(p=>{if(inHand(p)&&!p.a)p.last='';});return;}s.discDone=true;}
   const nxt={pre:'flop',flop:'turn',turn:'river',river:'show'}[s.street];
   if(nxt==='show'){pkShowdown();return;}
   PK.deck.pop();const k=nxt==='flop'?3:1;for(let i=0;i<k;i++)s.board.push(PK.deck.pop());
   s.street=nxt;s.seats.forEach(p=>{if(canAct(p))p.last='';});
   if(actors<=1){s.turn=-1;s.auto=true;s.seats.forEach(p=>{if(inHand(p))p.show=true;});}
   else{s.auto=false;s.turn=nextSeat(s.btn,canAct);}}
+function pkDiscAct(i,k){const s=PK.st,p=s.seats[i];if(s.street!=='disc'||s.turn!==i||p.h.length!==3)return false;k=clamp(Math.round(+k||0),0,2);
+  p.h.splice(k,1);p.last='זרק קלף';pkLog(`${p.n}: זרק קלף`);const nx=nextSeat(i,q=>inHand(q)&&q.h.length===3);
+  if(nx<0){s.discDone=true;s.street=s.discFrom;pkEndRound();}else s.turn=nx;return true;}
+function botDiscard(h,b,opp){let best=0,be=-1;for(let k=0;k<3;k++){const two=h.filter((c,j)=>j!==k);const e=mcEquity('holdem',two,b,Math.max(1,opp),b.length?140:90).eq;if(e>be){be=e;best=k;}}return best;}
+function discOptions(h,b,opp){return [0,1,2].map(k=>{const two=h.filter((c,j)=>j!==k);return {k,two,eq:mcEquity('holdem',two,b,Math.max(1,opp),b.length?700:500).eq};}).sort((x,y)=>y.eq-x.eq);}
 function pkDrawAct(i,idxs){const s=PK.st,p=s.seats[i];if(s.street!=='draw'||s.turn!==i)return false;
   idxs=[...new Set(idxs)].filter(k=>k>=0&&k<5).slice(0,3);
   idxs.forEach(k=>{p.h[k]=PK.deck.pop();});p.dr=idxs.length;p.last=idxs.length?'החליף '+idxs.length:'עומד';pkLog(`${p.n}: ${p.last}`);
@@ -753,6 +766,7 @@ function pkTick(){const s=PK.st;if(!s||(NET&&NET.role==='guest'))return;clearTim
   if(s.turn>=0&&s.seats[s.turn].t==='bot'){const t=s.turn;PK.timer=setTimeout(()=>{botAct(t);pkTick();},(550+rnd(650))*SPD());}}
 function botAct(i){const s=PK.st;if(s.turn!==i)return;const p=s.seats[i];
   if(s.street==='draw'){pkDrawAct(i,botDraw(p.h));return;}
+  if(s.street==='disc'){pkDiscAct(i,botDiscard(p.h,s.board,s.seats.filter((q,j)=>j!==i&&inHand(q)).length));return;}
   const L=pkLegal(i);const opp=s.seats.filter((q,j)=>j!==i&&inHand(q)).length;
   let eq;if(s.v==='draw')eq=eqDraw(p.h,s.street==='bet1'?botDraw(p.h):[],opp,140).eq;else{const rg=oppRanges(i);eq=mcEquity(s.v,p.h,s.board,opp,s.v==='omaha'?110:260,rg.some(x=>x)?rg:null).eq;}
   const sty=STY[p.sty]||STY.pro;const pot=potTotal();const toCall=L.toCall;const odds=toCall/(pot+toCall||1);const base=1/(opp+1);
@@ -766,7 +780,7 @@ function botAct(i){const s=PK.st;if(s.turn!==i)return;const p=s.seats[i];
   else pkAct(i,'fold');}
 function pkCountOuts(v,hole,board){const used=new Set([...hole,...board]);const cur=catOf(handScore(v,hole,board));let outs=0;
   for(let c=0;c<52;c++){if(used.has(c))continue;const nb=board.concat([c]);const ns=catOf(handScore(v,hole,nb));
-    if(ns>cur&&ns>=2&&(v!=='holdem'||ns>catOf(evalHand(nb,nb.length))))outs++;}return outs;}
+    if(ns>cur&&ns>=2&&(!isHE(v)||ns>catOf(evalHand(nb,nb.length))))outs++;}return outs;}
 function pkSolve(i){const s=PK.st,p=s.seats[i];if(!p||!inHand(p)||!p.h.length||p.h[0]<0)return null;
   const nOpp=s.seats.filter((q,j)=>j!==i&&inHand(q)).length;if(!nOpp)return null;
   const pot=potTotal();const toCall=Math.max(0,Math.min(s.cur-p.b,p.c));const R={pot,toCall,nOpp};
@@ -775,11 +789,13 @@ function pkSolve(i){const s=PK.st,p=s.seats[i];if(!p||!inHand(p)||!p.h.length||p
     else{const e=eqDraw(p.h,[],nOpp,1200);R.eq=e.eq;R.cats=e.cats;}}
   else{const rg=oppRanges(i);const anyR=rg.some(x=>x);const e=mcEquity(s.v,p.h,s.board,nOpp,s.v==='omaha'?600:1800,anyR?rg:null);Object.assign(R,e);
     if(anyR){R.eqRand=mcEquity(s.v,p.h,s.board,nOpp,s.v==='omaha'?300:700).eq;}R.rinfo=s.seats.map((q,j)=>j!==i&&inHand(q)?{n:q.n,txt:rangeTxt(j)}:null).filter(Boolean);
-    R.curScore=(s.v==='holdem'||s.board.length>=3)?handScore(s.v,p.h,s.board):-1;
+    if(s.street==='disc'){R.dopts=discOptions(p.h,s.board,nOpp);}
+    R.curScore=(isHE(s.v)||s.board.length>=3)?handScore(s.v,p.h,s.board):-1;
     if(s.board.length===3||s.board.length===4){R.outs=pkCountOuts(s.v,p.h,s.board);R.left=52-p.h.length-s.board.length;}}
   R.need=toCall>0?toCall/(pot+toCall):0;R.evCall=toCall>0?R.eq*(pot+toCall)-toCall:0;
   const base=1/(nOpp+1);R.base=base;
   if(s.street==='draw')R.rec='draw';
+  else if(s.street==='disc')R.rec='disc';
   else if(toCall===0){if(R.eq>Math.max(.55,base+.22)){R.rec='raise';R.size=.66;}else R.rec='check';}
   else{if(R.eq>R.need+.22&&R.eq>Math.max(.5,base+.2)){R.rec='raise';R.size=.8;}else if(R.eq>=R.need)R.rec='call';else R.rec='fold';}
   if(s.tour&&s.v==='holdem'&&s.street==='pre'&&s.cur<=s.bb){const others=s.seats.filter((q,j)=>j!==i&&inHand(q)).map(q=>q.c+q.b);const eff=Math.min(p.c+p.b,Math.max(...others));const bbs=eff/s.bb;
@@ -833,10 +849,10 @@ function pkRender(V=$('#view')){const s=PK.st;if(!s){go('home');return;}
    ${s.v!=='draw'?`<div class="board">${slots.join('')}</div>`:'<div style="height:14px"></div>'}
    <div class="potline">קופה ${fmt(potTotal())}<small>${STREET_HE[s.street]||''}${s.turn>=0?' · תור: '+esc(s.seats[s.turn].n):''}</small></div>`;
   if(me){const key=`pk${s.hand}s${viewer}`;const res=s.res&&s.res.w.find(w=>w.i===viewer);
-    const selectable=s.street==='draw'&&s.turn===viewer&&pkCanControl(viewer);
+    const selectable=(s.street==='draw'||s.street==='disc')&&s.turn===viewer&&pkCanControl(viewer);
     h+=`<div class="mine v-${s.v}"><div class="cards">${me.h.map((c,k)=>`<span ${selectable?`data-a="pksel" data-k="${k}" role="button" tabindex="0" aria-pressed="${PK.sel.includes(k)}"`:''}>${cardHTML(c,(PK.sel.includes(k)?'sel ':'')+(me.f?'dim':''),key+'k'+k)}</span>`).join('')}</div>
      <div class="who">${avatar(me.n,me.t==='me',26)}<b>${esc(me.n)}</b><span class="mono" style="color:var(--brass-2)">${fmt(me.c)}</span>${s.btn===viewer?'<span class="pill">כפתור</span>':''}${me.b?`<span class="betchip">${fmt(me.b)}</span>`:''}</div>
-     <div class="resline">${res?`זכית ב-${fmt(res.x)}${res.h?' עם '+res.h:''}`:me.f&&!me.out?'קיפלת':me.h.length&&me.h[0]>=0&&(s.v==='holdem'||s.board.length>=3||s.v==='draw')?handName(handScore(s.v,me.h,s.board)):''}</div></div>`;}
+     <div class="resline">${res?`זכית ב-${fmt(res.x)}${res.h?' עם '+res.h:''}`:me.f&&!me.out?'קיפלת':me.h.length&&me.h[0]>=0&&(isHE(s.v)||s.board.length>=3||s.v==='draw')?handName(handScore(s.v,me.h,s.board)):''}</div></div>`;}
   else if(s.res){h+=`<div class="resline">${s.res.w.map(w=>`${esc(s.seats[w.i].n)} +${fmt(w.x)}${w.h?' ('+w.h+')':''}`).join(' · ')}</div>`;}
   h+=`</div>`;
   h+=pkActionsHTML(viewer);
@@ -850,6 +866,7 @@ function pkActionsHTML(viewer){const s=PK.st;
   if(s.street==='done'){if(NET&&NET.role==='guest')return `<div class="actions"><div class="who">היד הבאה תתחיל עוד רגע</div></div>`;
     return `<div class="actions"><div class="grid g2"><button class="btn" data-a="pknext">יד הבאה</button><button class="btn dark" data-a="pkleave">קום מהשולחן</button></div></div>`;}
   const i=s.turn;if(i<0||i!==viewer||!pkCanControl(i))return `<div class="actions"><div class="who">${i>=0?'ממתינים ל'+esc(s.seats[i].n)+'…':'מחלקים…'}</div></div>`;
+  if(s.street==='disc'){const k=PK.sel.length;return `<div class="actions"><div class="who">${s.v==='crazy'?'אחרי הפלופ: ':''}גע בקלף שאתה זורק — נשארים עם 2</div><div class="grid g2"><button class="btn" data-a="pkdisc" ${k===1?'':'disabled'}>זרוק את הקלף</button><button class="btn dark" data-a="pkhint">מה הסולבר ממליץ?</button></div></div>`;}
   if(s.street==='draw'){const k=PK.sel.length;return `<div class="actions"><div class="who">גע בקלפים שאתה רוצה להחליף (עד 3)</div><div class="grid g2"><button class="btn" data-a="pkdraw">${k?'החלף '+k:'עמוד (בלי החלפה)'}</button><button class="btn dark" data-a="pkhint">מה הסולבר ממליץ?</button></div></div>`;}
   const L=pkLegal(i);const pot=potTotal();const R=S.solver?pkSolveCached(i):null;const rec=R?R.rec:'';
   if(!PK.raiseTo||PK.raiseTo<L.minTo||PK.raiseTo>L.maxTo)PK.raiseTo=R&&R.to?R.to:L.minTo;
@@ -862,6 +879,10 @@ function pkActionsHTML(viewer){const s=PK.st;
      <button class="btn dark sm" data-a="pkpre" data-v="${pre(.5)}">½ קופה</button><button class="btn dark sm" data-a="pkpre" data-v="${pre(.75)}">¾ קופה</button><button class="btn dark sm" data-a="pkpre" data-v="${pre(1)}">קופה</button><button class="btn dark sm" data-a="pkpre" data-v="${L.maxTo}">${s.v==='omaha'?'מקס׳':'אול-אין'}</button></div></div>`:''}</div>`;}
 function pkSolverHTML(R,viewer){const s=PK.st;
   if(!R)return `<section class="solver" id="solver"><header><b>סולבר חי</b></header><div class="body note">אין יריבים פעילים.</div></section>`;
+  if(R.dopts){const me=s.seats[viewer];const b=R.dopts[0];return `<section class="solver" id="solver"><header><b>סולבר חי</b><span class="spacer"></span><span class="pill">מול ${R.nOpp} ${R.nOpp>1?'יריבים':'יריב'}</span></header><div class="body">
+    <div class="recbox"><div><small class="muted">הקלף לזרוק</small><div class="big">${cname(me.h[b.k])}</div></div></div>
+    <div class="scroll"><table class="t"><tr><th>זורקים</th><th>נשארים עם</th><th>אקוויטי</th></tr>${R.dopts.map((o,k)=>`<tr class="${k===0?'best':''}"><td>${cname(me.h[o.k])}</td><td>${o.two.map(cname).join(' ')}</td><td class="n">${pct(o.eq,0)}</td></tr>`).join('')}</table></div>
+    <p class="note">${s.v==='crazy'?'בקרייזי פיינאפל זורקים אחרי שרואים את הפלופ — שמרו את שני הקלפים שהכי מתחברים ללוח.':'זורקים לפני הפלופ, אז שומרים את הזוג הכי חזק לבד: זוגות, אסים, קלפים באותה צורה ומחוברים.'} האקוויטי מחושב מול ידיים אקראיות של היריבים.</p></div></section>`;}
   const recTxt=R.rec==='raise'?`${s.cur===0?'הימור':'רייז'} ל-${fmt(R.to)}`:REC_HE[R.rec];
   let why='';
   if(R.rec==='draw')why='הטבלה מטה מראה את סיכויי הניצחון לכל אפשרות החלפה.';
@@ -1288,7 +1309,7 @@ function rDrill(V){if(DR.id!==CUR.id){newDrill(CUR.id);return;}const d=DRILLS.fi
    <div class="drill" style="margin-top:12px"><div class="score"><span>נכונות: ${DR.ok}/${DR.n}</span><span>רצף: ${DR.streak}</span></div>${body}${DR.ans?`<button class="btn wide" data-a="dnext">שאלה הבאה</button>`:''}</div>`;}
 
 /* ================= STATS ================= */
-const G_HE={bj:'בלאק ג׳ק',rl:'רולטה',holdem:'הולדם',omaha:'אומהה',draw:'5 קלפים',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',tour:'טורניר פוקר'};
+const G_HE={bj:'בלאק ג׳ק',rl:'רולטה',holdem:'הולדם',pine:'פיינאפל',crazy:'קרייזי פיינאפל',omaha:'אומהה',draw:'5 קלפים',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',tour:'טורניר פוקר'};
 function rStats(V){const rows=Object.keys(G_HE).map(g=>[g,S.stats[g]]).filter(([,s])=>s);
   const dec=rows.reduce((a,[,s])=>a+s.dec,0),good=rows.reduce((a,[,s])=>a+s.good,0);
   V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>הסטטיסטיקה שלי</h2></div>
@@ -1352,7 +1373,7 @@ function netPeers(ch){if(!NET)return;const peers=ch.peers||[];netChatScan(peers)
   else if(CUR.v==='online')render();}
 function netApply(peer,act){const st=NET.game==='bj'?BJ.st:PK.st;if(!st||NET.phase!=='play')return;const i=st.seats.findIndex(x=>x.peer===peer);if(i<0)return;
   if(NET.game==='bj'){if(bjAct(i,String(act.a),+act.amt||0,act.d))bjTick();}
-  else{const ok=act.a==='draw'?pkDrawAct(i,Array.isArray(act.d)?act.d.map(Number):[]):pkAct(i,String(act.a),+act.amt||0);if(ok)pkTick();}}
+  else{const ok=act.a==='disc'?pkDiscAct(i,Array.isArray(act.d)?+act.d[0]:0):act.a==='draw'?pkDrawAct(i,Array.isArray(act.d)?act.d.map(Number):[]):pkAct(i,String(act.a),+act.amt||0);if(ok)pkTick();}}
 function netSend(a,amt,d){if(!NET||NET.role!=='guest')return;NET.seq++;NET.r.presence({act:{n:NET.seq,a,amt:amt||0,d:d||null}}).catch(()=>{});}
 function netStart(){const g=NET.game;const guests=Object.entries(NET.guests);
   if(g==='bj'){const seats=[{n:S.nick||'מארח',t:'local',c:5000},...guests.map(([peer,x])=>({n:x.nick,t:'remote',peer,c:5000}))];botsFor(NET.bots).forEach(([n],k)=>seats.push({n,t:'bot',sty:['count','basic','wild'][k%3],c:5000}));
@@ -1387,7 +1408,7 @@ function rAch(V){const n=Object.keys(S.ach).length;
 
 /* ================= HAND HISTORY + ANALYSIS ================= */
 function histPush(e){if(!S.hist)S.hist=[];S.hist.unshift(e);if(S.hist.length>40)S.hist.length=40;save();}
-const ST_HE={pre:'פרה-פלופ',flop:'פלופ',turn:'טרן',river:'ריבר',bet1:'הימור 1',bet2:'הימור 2',draw:'החלפה'};
+const ST_HE={disc:'זריקת קלף',pre:'פרה-פלופ',flop:'פלופ',turn:'טרן',river:'ריבר',bet1:'הימור 1',bet2:'הימור 2',draw:'החלפה'};
 const A_HE={fold:'פולד',check:'צ׳ק',call:'קול',raise:'רייז',allin:'אול-אין',draw:'החלפה',hit:'קלף',stand:'עמוד',double:'דאבל',split:'פיצול',surr:'כניעה',ins:'ביטוח',noins:'בלי ביטוח'};
 function rHist(V){const H=S.hist||[];
   V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>היסטוריית ידיים</h2></div>
@@ -1397,6 +1418,7 @@ function rHist(V){const H=S.hist||[];
    :`<div class="panel" style="margin-top:12px"><p class="muted">אחרי כל יד של פוקר או בלאק ג׳ק שלך היא נשמרת כאן (40 אחרונות), עם ניתוח של כל החלטה — גם אם שיחקת בלי עזרה.</p></div>`}`;}
 function verdictHTML(k){return `<span class="verdict ${k}">${{ok:'נכון',mid:'סביר',no:'טעות'}[k]}</span>`;}
 function anaPoker(e,d){
+  if(d.st==='disc'){const o=discOptions(d.h,d.b||[],d.n||1);const mine=o.find(x=>x.k===d.k)||o[2];const best=o[0];const k=mine.eq>=best.eq-.03?'ok':mine.eq>=best.eq-.08?'mid':'no';return {k,txt:`זרקת ${cname(d.h[d.k])} — אקוויטי ${pct(mine.eq,0)}. הכי טוב: לזרוק ${cname(d.h[best.k])} (${pct(best.eq,0)}).`};}
   if(d.st==='draw'){const o=drawOptions(d.h,d.n);const m=d.disc.reduce((a,k)=>a|(1<<k),0);const mine=o.find(x=>x.m===m)||o[o.length-1];const best=o[0];
     const k=mine.eq>=best.eq-.03?'ok':mine.eq>=best.eq-.08?'mid':'no';
     return {k,txt:`החלפת ${d.disc.length?d.disc.map(j=>cname(d.h[j])).join(' '):'כלום'} — אקוויטי ${pct(mine.eq,0)}. הטוב ביותר: ${best.disc.length?'להחליף '+best.disc.map(j=>cname(d.h[j])).join(' '):'לעמוד'} (${pct(best.eq,0)}).`};}
@@ -1909,6 +1931,7 @@ function netChatScan(peers){if(!NET)return;if(!NET.said)NET.said={};if(!NET.chat
     const who=p.sameTab?'אני':String(p.presence.nick||'שחקן').slice(0,14);NET.chat.push({who,t:String(sy.t||'').slice(0,80)});if(NET.chat.length>40)NET.chat.shift();got=true;
     if(!p.sameTab){if(!NET.chatOpen)NET.unread=(NET.unread||0)+1;toast(`<b>${esc(who)}:</b> ${esc(String(sy.t||'').slice(0,80))}`);}});
   if(got)chatRender();}
+LESSONS.push({id:'pk10',g:'פוקר',t:'פיינאפל וקרייזי פיינאפל',b:`<p>וריאציה של טקסס הולדם: כל שחקן מקבל <b>3 קלפים</b> וזורק אחד, ומשם המשחק זהה להולדם (2 ביד + 5 על השולחן).</p><ul><li><b>פיינאפל:</b> זורקים אחרי סבב ההימורים הראשון, לפני הפלופ.</li><li><b>קרייזי פיינאפל:</b> משחקים את הפלופ עם 3 קלפים, וזורקים רק אחרי סבב ההימורים של הפלופ.</li><li>הידיים חזקות יותר מבהולדם רגיל, אז זוג גבוה שווה פחות. צבעים ורצפים נפוצים יותר.</li><li>לפני הזריקה: שמרו זוג אם יש, אחרת את שני הקלפים הגבוהים או את אלה שבאותה צורה ומחוברים.</li><li>בקרייזי: אחרי הפלופ זרקו את הקלף שהכי פחות מתחבר ללוח, גם אם הוא גבוה.</li></ul><p>היריבים זורקים גם הם את הקלף הכי גרוע שלהם — לכן הם חזקים יותר ממה שנראה.</p>`});
 LESSONS.push({id:'pk9',g:'פוקר',t:'Push/Fold — סוף טורניר',fn:'pftable',b:`<p>כשנשארים עם 15 בליינדים או פחות, אין מקום לרייז קטן ולפלופ: אם תעלה ותקבל רייז, תצטרך לזרוק. לכן משחקים "דחוף או קפל" — אול-אין או פולד.</p><ul><li>ככל שהסטאק קצר יותר — דוחפים יותר ידיים.</li><li>ככל שהפוזיציה מאוחרת יותר — דוחפים יותר (פחות שחקנים יכולים להתעורר עם יד).</li><li>היתרון של הדחיפה הוא שגם כשמקבלים קול, יש לך עדיין 30–50% לנצח, ופעמים רבות כולם פשוט מקפלים.</li></ul><p>בטורנירים הסולבר עובר אוטומטית לטבלה הזו כשהסטאק שלך מתחת ל-15 בליינדים.</p>`});
 /* ================= LOOK & FEEL ================= */
 const SPD=()=>S.fast?0.45:1;
@@ -1945,13 +1968,13 @@ const TAB_VIEWS=new Set(['home','academy','lesson','chal','board','profile','sta
 function tabsRender(){const tb=$('#tabbar');if(!tb)return;const show=TAB_VIEWS.has(CUR.v);tb.hidden=!show;try{document.body.classList.toggle('tabs',show);}catch(e){}if(!show)return;
   const act={lesson:'academy',bjsim:'academy',stats:'profile',ach:'profile',hist:'profile',histd:'profile',online:'home'}[CUR.v]||CUR.v;
   tb.innerHTML=TABS.map(([v,l,ic])=>`<button class="${act===v?'on':''}" data-a="go" data-v="${v}" ${act===v?'aria-current="page"':''}>${ic}<span>${l}</span></button>`).join('');}
-const TILE_STYLE={bj:['#2c8a5a','♠','bj'],rl:['#b8262c','◎','rl'],holdem:['#2f6cae','♥','holdem'],omaha:['#6a3fa0','♦','omaha'],draw:['#2a8f8f','♣','draw'],vp:['#cf9f42','J','vp'],tcp:['#d06a2c','3','tcp'],bac:['#a83e74','9','bac']};
+const TILE_STYLE={bj:['#2c8a5a','♠','bj'],rl:['#b8262c','◎','rl'],holdem:['#2f6cae','♥','holdem'],omaha:['#6a3fa0','♦','omaha'],draw:['#2a8f8f','♣','draw'],pine:['#c9a227','✦','pine'],vp:['#cf9f42','J','vp'],tcp:['#d06a2c','3','tcp'],bac:['#a83e74','9','bac']};
 function decorateTiles(V){if(!V.querySelectorAll)return;V.querySelectorAll('.tile').forEach(t=>{const g=t.dataset.g==='poker'?t.dataset.var:t.dataset.g;const st=TILE_STYLE[g];if(!st)return;t.style.setProperty('--ta',st[0]);t.dataset.deco=st[1];
   const n=(S.stats[st[2]]||{}).hands||0;if(n){const c=document.createElement('span');c.className='tchip';c.textContent=fmt(n)+' ידיים';t.appendChild(c);}});}
 
 /* ================= SESSION SUMMARY ================= */
 let SESS=null;
-const SESS_NAME={bj:'בלאק ג׳ק',rl:'רולטה',holdem:'הולדם',omaha:'אומהה',draw:'5 קלפים',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',tour:'טורניר פוקר',chal:'אתגר חברים'};
+const SESS_NAME={bj:'בלאק ג׳ק',rl:'רולטה',holdem:'הולדם',pine:'פיינאפל',crazy:'קרייזי פיינאפל',omaha:'אומהה',draw:'5 קלפים',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',tour:'טורניר פוקר',chal:'אתגר חברים'};
 function sessStart(g){SESS={g,t:Date.now(),hands:0,net:0,dec:0,good:0,best:0,lv:lvl()};}
 function sessEnd(){const s=SESS;SESS=null;if(!s||!s.hands)return;const mins=Math.max(1,Math.round((Date.now()-s.t)/60000));
   modal(`<p class="eyebrow">סיכום הסשן · ${SESS_NAME[s.g]||''}</p><h2 style="margin-top:6px" class="${s.net>0?'good':s.net<0?'bad':''}">${sgn(s.net)} צ׳יפים</h2>
@@ -2017,9 +2040,13 @@ const ACT={
   start:startGame,
   pk:d=>pkDo(d.x),pkraise:()=>pkDo('raise',PK.raiseTo),
   pkpre:d=>{PK.raiseTo=+d.v;const r=$('#raiseRange');if(r)r.value=PK.raiseTo;$('#raiseVal').textContent=fmt(PK.raiseTo);},
-  pksel:d=>{const k=+d.k;const i=PK.sel.indexOf(k);if(i>=0)PK.sel.splice(i,1);else if(PK.sel.length<3)PK.sel.push(k);else toast('אפשר להחליף עד 3 קלפים');pkRender();},
+  pksel:d=>{const k=+d.k;if(PK.st&&PK.st.street==='disc'){PK.sel=PK.sel[0]===k?[]:[k];pkRender();return;}const i=PK.sel.indexOf(k);if(i>=0)PK.sel.splice(i,1);else if(PK.sel.length<3)PK.sel.push(k);else toast('אפשר להחליף עד 3 קלפים');pkRender();},
   pkdraw:pkDoDraw,
-  pkhint:()=>{const R=pkSolveCached(PK.st.turn);if(R&&R.opts){PK.sel=R.opts[0].disc.slice();pkRender();toast(R.opts[0].disc.length?'סימנתי את הקלפים שהסולבר ממליץ להחליף':'הסולבר ממליץ לעמוד');}},
+  pkdisc:()=>{const s=PK.st;const i=s.turn;if(!pkCanControl(i)||PK.sel.length!==1)return;const k=PK.sel[0];
+    if(s.seats[i].t==='me'){if(!PK.rec||PK.rec.hand!==s.hand)PK.rec={hand:s.hand,dec:[]};PK.rec.dec.push({st:'disc',h:s.seats[i].h.slice(),b:s.board.slice(),n:s.seats.filter((q,j)=>j!==i&&inHand(q)).length,k});}
+    if(S.coach){const R=pkSolveCached(i);if(R&&R.dopts){const mine=R.dopts.find(o=>o.k===k),best=R.dopts[0];const ok=mine.eq>=best.eq-.03;recDec(s.v,ok);if(!ok)toast(`הסולבר המליץ לזרוק ${cname(s.seats[i].h[best.k])} (${pct(best.eq,0)} מול ${pct(mine.eq,0)})`,'bad');}}
+    PK.sel=[];if(NET&&NET.role==='guest'){netSend('disc',0,[k]);return;}pkDiscAct(i,k);pkTick();},
+  pkhint:()=>{const R=pkSolveCached(PK.st.turn);if(R&&R.dopts){PK.sel=[R.dopts[0].k];pkRender();toast('סימנתי את הקלף שהסולבר ממליץ לזרוק');return;}if(R&&R.opts){PK.sel=R.opts[0].disc.slice();pkRender();toast(R.opts[0].disc.length?'סימנתי את הקלפים שהסולבר ממליץ להחליף':'הסולבר ממליץ לעמוד');}},
   pknext:()=>{if(NET&&NET.role==='guest')return;pkNextHand();},
   pkreveal:()=>{PK.viewer=PK.cover;PK.cover=-1;PK.solveKey='';pkRender();},
   pkleave:pkLeave,
