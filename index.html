@@ -1800,11 +1800,11 @@ function loadScript(src){return new Promise((res,rej)=>{const el=document.create
 function fbCfg(){if(FIREBASE_CONFIG)return FIREBASE_CONFIG;try{return S.fbcfg?JSON.parse(S.fbcfg):null;}catch(e){return null;}}
 async function fbInit(){const cfg=fbCfg();if(!cfg||inClaude()||FB.loading||FB.on)return;FB.loading=true;
   try{const V='10.12.2';for(const m of ['app','auth','firestore'])await loadScript(`https://www.gstatic.com/firebasejs/${V}/firebase-${m}-compat.js`);
-    firebase.initializeApp(cfg);FB.auth=firebase.auth();FB.db=firebase.firestore();FB.on=true;FB.auth.getRedirectResult().catch(e=>{FB.err=e.message||'';});
+    firebase.initializeApp(cfg);FB.auth=firebase.auth();FB.db=firebase.firestore();FB.on=true;
     FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;if(u)fbLoad();if(CUR.v==='home')render();});}
   catch(e){FB.err='לא הצלחתי לטעון את Firebase — בדקו את ה-config ואת החיבור.';}FB.loading=false;if(CUR.v==='home')render();}
 async function fbSignIn(){if(!FB.on){toast('Firebase לא מוגדר עדיין','bad');return;}const pr=new firebase.auth.GoogleAuthProvider();
-  try{await FB.auth.signInWithPopup(pr);}catch(e){if(/popup|environment|cancelled-popup/.test(e.code||''))FB.auth.signInWithRedirect(pr);else toast('ההתחברות נכשלה: '+esc(e.code||e.message||''),'bad');}}
+  pr.setCustomParameters({prompt:'select_account'});try{await FB.auth.signInWithPopup(pr);}catch(e){const c=e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;if(c==='auth/popup-blocked')toast('הדפדפן חסם את חלון ההתחברות. אפשרו חלונות קופצים לאתר ונסו שוב.','bad');else if(c==='auth/unauthorized-domain')toast('הדומיין לא מאושר ב-Firebase: הוסיפו את orisella10-a11y.github.io ב-Authorized domains','bad');else toast('ההתחברות נכשלה: '+esc(c||e.message||''),'bad');}}
 async function fbLoad(){try{const ref=FB.db.collection('casino77').doc(FB.user.uid);const snap=await ref.get();
     if(snap.exists){const d=snap.data()||{};const t=+d.t||0;if(t>(S.savedAt||0)+3000){const fresh=!Object.keys(S.stats||{}).length&&!(S.xp>0);
       if(fresh)cloudApply(d);else{CLOUD.pending=d;let b0=0;try{b0=JSON.parse(d.s).chips;}catch(e){}modal(`<h3>נמצאה שמירה בחשבון Google</h3><p class="muted" style="margin-top:8px">שמירה מ-${new Date(t).toLocaleString('he-IL')} עם יתרה של ${fmt(b0)}. היתרה במכשיר הזה: ${fmt(S.chips)}.</p><div class="row" style="margin-top:14px"><button class="btn grow" data-a="cloudload">טען מהחשבון</button><button class="btn dark grow" data-a="cloudkeep">השאר את המכשיר הזה</button></div>`);}}}
