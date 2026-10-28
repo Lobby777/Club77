@@ -1790,7 +1790,7 @@ async function cloudInit(){try{if(!(window.claude&&typeof window.claude.use==='f
 function cloudApply(d){try{const v=JSON.parse(d.s);S=Object.assign(JSON.parse(JSON.stringify(DEF)),v);S.savedAt=+d.t;try{localStorage.setItem(SKEY,JSON.stringify(S));}catch(e){}CLOUD.pending=null;render();toast('ההתקדמות נטענה מהענן','good');}catch(e){toast('לא הצלחתי לקרוא את השמירה מהענן','bad');}}
 function cloudQueue(){if(CLOUD.pending)return;if(FB.user&&FB.ready){clearTimeout(FB.t);FB.t=setTimeout(fbPush,4000);}if(!CLOUD.ready)return;clearTimeout(CLOUD.timer);CLOUD.timer=setTimeout(cloudPush,4000);}
 /* ================= FIREBASE (Google sign-in when hosted outside Claude) ================= */
-const FIREBASE_CONFIG=null; /* אפשר להדביק כאן את ה-firebaseConfig מ-Firebase Console, או דרך ההגדרות במשחק */
+const FIREBASE_CONFIG={apiKey:"AIzaSyAU4Y1qo7xu8hI5tSEo7d0d6HovmuaKUIs",authDomain:"lobby77-93cb5.firebaseapp.com",projectId:"lobby77-93cb5",storageBucket:"lobby77-93cb5.firebasestorage.app",messagingSenderId:"1078612304057",appId:"1:1078612304057:web:14698b63019b483927fb68"}; /* אפשר להדביק כאן את ה-firebaseConfig מ-Firebase Console, או דרך ההגדרות במשחק */
 const FB={on:false,user:null,db:null,auth:null,loading:false,ready:false,err:'',t:null,last:0};
 const inClaude=()=>!!(window.claude&&typeof window.claude.use==='function');
 function loadScript(src){return new Promise((res,rej)=>{const el=document.createElement('script');el.src=src;el.onload=res;el.onerror=rej;document.head.appendChild(el);});}
