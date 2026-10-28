@@ -108,7 +108,7 @@ body.tabs #app{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
 .bigcard .card{--cw:96px}
 .seg button.on{background:var(--brass);color:#2a1b06;border-color:var(--brass);font-weight:700}
 label.lbl{font:600 13px var(--f-body);color:var(--brass-2);letter-spacing:.3px}
-input.txt{width:100%;min-height:42px;border-radius:10px;border:1px solid var(--line-2);background:var(--night);color:var(--ivory);padding:8px 12px;font:15px var(--f-body)}
+.txt{width:100%;min-height:42px;border-radius:10px;border:1px solid var(--line-2);background:var(--night);color:var(--ivory);padding:8px 12px;font:15px var(--f-body)}
 .hint{font-size:13px;color:var(--muted)}
 /* cards */
 .card{--cw:44px;container-type:inline-size;width:var(--cw);height:calc(var(--cw)*1.42);flex:none;background:radial-gradient(120% 80% at 30% 15%,#fffefa 0%,#f9f3e3 55%,#efe5cd 100%);color:var(--ink);border-radius:calc(var(--cw)*.13);display:inline-block;padding:0;box-shadow:inset 0 0 0 calc(var(--cw)*.035) rgba(255,255,255,.55),0 1px 0 rgba(255,255,255,.6) inset,0 1px 2px rgba(0,0,0,.35),0 4px 10px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.14);direction:ltr;position:relative;user-select:none;transform-style:preserve-3d}
@@ -351,6 +351,8 @@ table.t tr.best td{color:var(--good);font-weight:600}
 @media (prefers-reduced-motion:reduce){.node.cur .ndot{animation:none}}
 #tip{position:fixed;left:12px;right:12px;margin-inline:auto;max-width:460px;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:14;background:var(--panel-2);border:1px solid var(--brass);border-radius:14px;padding:12px 14px;box-shadow:0 12px 30px rgba(0,0,0,.55);animation:tin .25s ease-out both;font-size:14.5px}
 .tipdot{flex:none;font:700 11px var(--f-mono);background:var(--brass);color:#2a1b06;border-radius:999px;padding:2px 7px;margin-top:2px}
+.ann{padding:12px 14px;border-radius:14px;border:1px solid var(--brass);background:linear-gradient(120deg,rgba(207,159,66,.2),rgba(207,159,66,.04));margin-top:14px}.ann b{color:var(--brass-2);font:700 14px var(--f-display)}.ann p{margin:4px 0 0;white-space:pre-wrap}
+.admrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}.admrow:last-of-type{border-bottom:0}
 .champ{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--brass);background:linear-gradient(120deg,rgba(207,159,66,.22),rgba(207,159,66,.05))}
 .champ .crown{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:#2a1b06;font-size:20px;flex:none}
 .champ small{display:block;color:var(--muted)}.champ b{font:700 17px var(--f-display)}
@@ -591,7 +593,7 @@ let CUR={v:'home'};
 function stopTimers(){clearTimeout(PK.timer);clearTimeout(BJ.timer);if(typeof DR!=='undefined'&&DR.timer){clearTimeout(DR.timer);DR.timer=null;}if(typeof BAC!=='undefined'&&BAC.phase==='deal'){clearTimeout(BAC.timer);bacSettle();}}
 function go(v,p={}){if(v!=='pk'&&v!=='bj')stopTimers();CUR={v,...p};render();window.scrollTo(0,0);}
 function render(){const V=$('#view');
-  const map={les:rLes,course:rCourse,profile:rProfile,chal:rChal,bjsim:rBjSim,board:rBoard,exam:rExam,home:rHome,setup:rSetup,pk:pkRender,bj:bjRender,rl:rlRender,vp:vpRender,tcp:tcpRender,bac:bacRender,academy:rAcademy,lesson:rLesson,drill:rDrill,stats:rStats,online:rOnline,ach:rAch,hist:rHist,histd:rHistD};
+  const map={admin:rAdmin,les:rLes,course:rCourse,profile:rProfile,chal:rChal,bjsim:rBjSim,board:rBoard,exam:rExam,home:rHome,setup:rSetup,pk:pkRender,bj:bjRender,rl:rlRender,vp:vpRender,tcp:tcpRender,bac:bacRender,academy:rAcademy,lesson:rLesson,drill:rDrill,stats:rStats,online:rOnline,ach:rAch,hist:rHist,histd:rHistD};
   if(!['pk','bj','rl','vp','tcp','bac'].includes(CUR.v))tutHide();
   (map[CUR.v]||rHome)(V);updTop();tabsRender();try{document.body.classList.toggle('fast',!!S.fast);}catch(e){}}
 function modal(html){const m=$('#modal');m.innerHTML=`<div class="sheet">${html}</div>`;m.hidden=false;}
@@ -622,7 +624,7 @@ function rHome0(V){
     <button class="linkrow" data-a="go" data-v="online"><span class="ic">⇄</span><span class="grow"><b>שחק עם חברים אונליין</b><small>חדר עם קוד · בלאק ג׳ק ופוקר</small></span></button>
   </div>
   ${!inClaude()&&FB.on&&!FB.user?`<button class="linkrow" style="margin-top:14px" data-a="fbin"><span class="ic">G</span><span class="grow"><b>התחבר עם Google</b><small>שמירת ההתקדמות בחשבון — עובר בין מכשירים</small></span></button>`:''}
-  ${installHomeHTML()}${careerHTML()}${dailyHTML()}
+  ${annHTML()}${installHomeHTML()}${careerHTML()}${dailyHTML()}
   <p class="note" style="text-align:center;margin-top:18px">משחק לבידור ולימוד בלבד · צ׳יפים וירטואליים ללא ערך כספי</p>
   ${bal()<200?`<div class="panel" style="margin-top:14px"><p>נגמרו הצ׳יפים?</p><button class="btn wide" style="margin-top:8px" data-a="bonus">קבל בונוס 5,000</button></div>`:''}`;
 }
@@ -1419,6 +1421,7 @@ function rOnline(V){
   if(inClaude()&&ROOMAPI===undefined){V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>אונליין</h2></div><p class="muted" style="margin-top:16px">בודק חיבור…</p>`;roomApi().then(()=>{if(CUR.v==='online')render();});return;}
   let h=`<div class="tbar"><button class="btn ghost sm" data-a="netback">חזרה</button><h2>שחק עם חברים</h2></div><div class="stack" style="margin-top:12px">`;
   const RAPI=inClaude()?ROOMAPI:((FB.on&&FB.user)?FBROOM:null);
+  if(!inClaude()&&FB.user&&(ADM.conf.onlineOff||ADM.banned)&&!NET){V.innerHTML=h+`<div class="panel stack"><h3>${ADM.banned?'החשבון שלך חסום מאונליין':'החדרים סגורים זמנית'}</h3><p class="muted">${ADM.banned?'פנה למנהל המשחק.':'המנהל סגר את חדרי האונליין. אפשר לשחק עם בוטים או עם חברים מאותו טלפון.'}</p><button class="btn" data-a="setup" data-g="bj">בלאק ג׳ק מאותו טלפון</button></div></div>`;return;}
   if(!RAPI&&!inClaude()&&fbCfg()){h+=`<div class="panel stack"><h3>מתחברים כדי לשחק עם חברים</h3><p class="muted">חדרי אונליין עובדים לכל מי שמתחבר עם Google לאתר. כל חבר נכנס לאותו אתר, מתחבר, ומצטרף עם קוד החדר.</p><button class="btn" data-a="fbin">התחבר עם Google</button><button class="btn dark" data-a="setup" data-g="bj">או: בלאק ג׳ק מאותו טלפון</button></div>`;}
   else if(!RAPI){h+=`<div class="panel stack"><h3>אונליין לא זמין כאן</h3><p class="muted">משחק אונליין עובד כשהמשחק פתוח בתוך Claude וכל החברים נכנסים לאותו קישור שיתוף כשהם מחוברים לחשבון. בינתיים אפשר לשחק עם חברים מאותו טלפון.</p><button class="btn" data-a="setup" data-g="bj">בלאק ג׳ק מאותו טלפון</button><button class="btn dark" data-a="setup" data-g="poker" data-var="holdem">פוקר מאותו טלפון</button></div>`;}
   else if(!NET){h+=`<div class="panel stack"><label class="lbl" for="nick">הכינוי שלך</label><input class="txt" id="nick" maxlength="14" value="${esc(S.nick)}" placeholder="למשל: אורי"></div>
@@ -1969,7 +1972,7 @@ function fbCfg(){if(FIREBASE_CONFIG)return FIREBASE_CONFIG;try{return S.fbcfg?JS
 async function fbInit(){const cfg=fbCfg();if(!cfg||inClaude()||FB.loading||FB.on)return;FB.loading=true;
   try{const V='10.12.2';for(const m of ['app','auth','firestore'])await loadScript(`https://www.gstatic.com/firebasejs/${V}/firebase-${m}-compat.js`);
     firebase.initializeApp(cfg);FB.auth=firebase.auth();FB.db=firebase.firestore();FB.on=true;
-    FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;if(LB.kind==='fb'||LB.err)lbReset();if(u){fbLoad();setTimeout(lbInit,1500);}if(['board','chal','online'].includes(CUR.v))render();if(CUR.v==='home')render();});}
+    FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;admReset();if(u)admInit();if(LB.kind==='fb'||LB.err)lbReset();if(u){fbLoad();setTimeout(lbInit,1500);}if(['board','chal','online'].includes(CUR.v))render();if(CUR.v==='home')render();});}
   catch(e){FB.err='לא הצלחתי לטעון את Firebase — בדקו את ה-config ואת החיבור.';}FB.loading=false;if(CUR.v==='home')render();}
 async function fbSignIn(){if(!FB.on){toast('Firebase לא מוגדר עדיין','bad');return;}const pr=new firebase.auth.GoogleAuthProvider();
   pr.setCustomParameters({prompt:'select_account'});try{await FB.auth.signInWithPopup(pr);}catch(e){const c=e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;if(c==='auth/popup-blocked')toast('הדפדפן חסם את חלון ההתחברות. אפשרו חלונות קופצים לאתר ונסו שוב.','bad');else if(c==='auth/unauthorized-domain')toast('הדומיין לא מאושר ב-Firebase: הוסיפו את orisella10-a11y.github.io ב-Authorized domains','bad');else toast('ההתחברות נכשלה: '+esc(c||e.message||''),'bad');}}
@@ -2084,6 +2087,7 @@ function rProfile(V){const st=Object.entries(S.stats).filter(([g])=>g!=='drill'&
    <label class="toggle"><span>צלילים</span><input type="checkbox" id="psnd" ${S.sound?'checked':''}></label>
    <label class="toggle" style="border:0"><span>רטט<br><small class="muted">בטלפונים שתומכים</small></span><input type="checkbox" id="phap" ${S.haptic!==false?'checked':''}></label></div>
   <div class="panel stack"><b>חשבון ושמירה</b>${fbSettingsHTML()}<small class="muted">${cloudLine()}</small>${installProfHTML()}${transferHTML()}</div>
+  ${ADM.admin&&!inClaude()?`<button class="linkrow" data-a="go" data-v="admin"><span class="ic" style="background:var(--brass);color:#2a1b06">★</span><span class="grow"><b>לוח ניהול</b><small>הודעות, חדרים, שחקנים ומתנות</small></span></button>`:''}
   <div class="panel row"><span class="grow"><b>מדריכים</b><br><small class="muted">יד מודרכת ראשונה בכל משחק</small></span><button class="btn dark sm" data-a="tutreset">הפעל מחדש</button></div>
   <button class="btn ghost" data-a="settings">הגדרות נוספות</button></div>`;
   const ni=$('#pnick');if(ni&&ni.addEventListener)ni.addEventListener('change',()=>{S.nick=ni.value.trim().slice(0,14);save();render();});
@@ -2389,8 +2393,8 @@ function lbReset(){try{LB.unsub&&LB.unsub();}catch(e){}Object.assign(LB,{init:fa
 function lbMine(){wkRoll();const st=Object.entries(S.stats).filter(([g])=>g!=='drill');
   return {chips:Math.round(S.chips),lvl:lvl(),dec:st.reduce((a,[,x])=>a+x.dec,0),good:st.reduce((a,[,x])=>a+x.good,0),hands:st.reduce((a,[,x])=>a+x.hands,0),ach:Object.keys(S.ach||{}).length,
    ch:Object.fromEntries(Object.entries(S.chals||{}).slice(-10).map(([k,v])=>[k,{net:v.net,acc:Math.round(v.acc*1000)/1000,g:v.g}])),wk:S.wk,lw:S.lw||null,t:Date.now()};}
-async function lbPublish(){if(!LB.init)return;const m=lbMine();
-  try{if(LB.kind==='fb'){m.name=(S.nick||'').trim()||((FB.user&&FB.user.displayName)||'').split(' ')[0]||'שחקן';await FB.db.collection('casino77_board').doc(LB.id).set(m);}
+async function lbPublish(){if(!LB.init)return;if(LB.kind==='fb'&&ADM.banned){LB.msg='החשבון שלך חסום מהטבלה.';if(CUR.v==='board')render();return;}const m=lbMine();
+  try{if(LB.kind==='fb'){m.name=((S.nick||'').trim()||((FB.user&&FB.user.displayName)||'').split(' ')[0]||'שחקן').slice(0,20);await FB.db.collection('casino77_board').doc(LB.id).set(m);}
     else{if(!LB.db||!LB.id){LB.msg=LB.db?'צריך להיות מחובר לחשבון כדי להופיע בטבלה.':'';if(CUR.v==='board')render();return;}await LB.db.doc('board/'+LB.id).set(m);}
     LB.msg='השורה שלך עודכנה.';}
   catch(e){LB.msg=LB.kind==='fb'?'לא הצלחתי לעדכן את השורה — בדוק את החיבור לאינטרנט.':'לא הצלחתי לעדכן את השורה שלך — צריך הרשאת Contributor לקישור (מתפריט Share).';}
@@ -2467,6 +2471,27 @@ tcpRender=(f=>function(V){f(V);tutCheck('tcp');})(tcpRender);
 bacRender=(f=>function(V){f(V);tutCheck('bac');})(bacRender);
 
 ACH.push(['weekly_champ','אלוף השבוע','לנצח באליפות השבועית']);
+/* ================= OWNER CONTROL (Firebase site) ================= */
+const ADM={conf:{},admin:false,banned:false,unConf:null,unGift:null,rowsMsg:'',confirmReset:false,giftFor:null};
+function admReset(){try{ADM.unConf&&ADM.unConf();ADM.unGift&&ADM.unGift();}catch(e){}Object.assign(ADM,{conf:{},admin:false,banned:false,unConf:null,unGift:null});}
+async function admInit(){if(!FB.db||!FB.user)return;const uid=FB.user.uid;
+  ADM.unConf=FB.db.collection('casino77_admin').doc('config').onSnapshot(d=>{ADM.conf=(d&&d.exists&&d.data())||{};ADM.banned=(ADM.conf.banned||[]).includes(uid);if(['home','online','board','admin','profile'].includes(CUR.v))render();},()=>{});
+  ADM.unGift=FB.db.collection('casino77_gifts').doc(uid).onSnapshot(d=>{if(!d||!d.exists)return;const g=d.data()||{};const amt=Math.round(+g.amount||0);if(amt>0){S.chips+=amt;save();updTop();celebrate(amt>=1000);snd('bigwin');toast(`קיבלת ${fmt(amt)} צ׳יפים מהמנהל${g.note?': '+esc(String(g.note).slice(0,60)):''}`,'good');}FB.db.collection('casino77_gifts').doc(uid).delete().catch(()=>{});},()=>{});
+  try{await FB.db.collection('casino77_admin').doc('owner').get();ADM.admin=true;if(CUR.v==='profile')render();}catch(e){ADM.admin=false;}}
+function admConfSet(patch){return FB.db.collection('casino77_admin').doc('config').set(Object.assign({},ADM.conf,patch)).then(()=>toast('נשמר','good')).catch(()=>toast('השמירה נכשלה — בדוק שהחוקים עודכנו ושנכנסת עם חשבון המנהל','bad'));}
+function annHTML(){const m=!inClaude()&&ADM.conf&&ADM.conf.msg;return m?`<div class="ann"><b>הודעה</b><p>${esc(m)}</p></div>`:'';}
+function rAdmin(V){if(!ADM.admin){V.innerHTML=`<div class="panel" style="margin-top:16px"><p class="muted">הלוח הזה זמין רק למנהל המשחק.</p></div>`;return;}if(!LB.init)lbInit();
+  const c=ADM.conf||{};const ban=new Set(c.banned||[]);const rows=(LB.rows||[]).slice().sort((a,b)=>(+b.chips||0)-(+a.chips||0));
+  let h=`<div class="tbar"><button class="btn ghost sm" data-a="go" data-v="profile">חזרה</button><h2>לוח ניהול</h2><span class="pill gold">מנהל</span></div><div class="stack" style="margin-top:12px">
+  <div class="panel stack"><b>הודעה לכל השחקנים</b><small class="muted">מופיעה בראש עמוד הבית אצל כל מי שנכנס לאתר.</small><textarea class="txt" id="admmsg" rows="2" maxlength="200" placeholder="למשל: טורניר ביום חמישי ב-21:00!">${esc(c.msg||'')}</textarea>
+   <div class="row"><button class="btn sm" data-a="admmsg">פרסם</button>${c.msg?'<button class="btn dark sm" data-a="admmsgclear">הסר הודעה</button>':''}</div></div>
+  <div class="panel row"><span class="grow"><b>חדרי אונליין</b><br><small class="muted">${c.onlineOff?'סגורים — אף אחד לא יכול לפתוח או להצטרף':'פתוחים'}</small></span><button class="btn ${c.onlineOff?'':'dark'} sm" data-a="admonline">${c.onlineOff?'פתח':'סגור'}</button></div>
+  <div class="panel stack"><div class="row"><b class="grow">שחקנים (${rows.length})</b>${ADM.confirmReset?'<button class="btn fold sm" data-a="admresetyes">כן, למחוק את כל הטבלה</button><button class="btn ghost sm" data-a="admresetno">ביטול</button>':'<button class="btn dark sm" data-a="admreset">אפס טבלה</button>'}</div>
+   ${rows.length?rows.map(r=>`<div class="admrow"><div class="grow"><b>${esc(r.name||'שחקן')}</b>${ban.has(r.id)?' <span class="pill" style="color:var(--bad)">חסום</span>':''}<br><small class="muted mono">${fmt(+r.chips||0)} · רמה ${+r.lvl||1} · ${fmt(+r.hands||0)} ידיים${r.wk&&r.wk.id===weekId()?' · השבוע '+sgn(+r.wk.net||0):''}</small></div>
+     <div class="row" style="gap:4px">${ADM.giftFor===r.id?`<input class="txt" id="giftamt" type="number" min="1" max="1000000" value="1000" style="width:90px;min-height:34px" aria-label="כמות צ׳יפים"><button class="btn sm" data-a="admgiftgo" data-u="${r.id}">שלח</button>`:`<button class="btn dark sm" data-a="admgift" data-u="${r.id}">צ׳יפים</button>`}
+     <button class="btn dark sm" data-a="admban" data-u="${r.id}">${ban.has(r.id)?'בטל חסימה':'חסום'}</button><button class="btn ghost sm" data-a="admdel" data-u="${r.id}">מחק</button></div></div>`).join(''):'<p class="muted">עוד אין שחקנים בטבלה.</p>'}
+   <p class="note">חסימה מונעת מהשחקן להופיע בטבלה ולהיכנס לחדרי אונליין. מחיקת שורה מוציאה אותו מהטבלה עד שישחק שוב.</p></div></div>`;
+  V.innerHTML=h;}
 /* ================= events ================= */
 const ACT={
   home:()=>{if(CUR.v==='pk'&&PK.st){pkLeave();return;}if(CUR.v==='bj'&&BJ.st){bjLeave();return;}if(VP.chal){if(!VP.chal.done){S.solver=VP.chal.prev.solver;S.coach=VP.chal.prev.coach;save();}VP.chal=null;go('chal');sessEnd();return;}const wasG=['rl','vp','tcp','bac'].includes(CUR.v);go('home');if(wasG)sessEnd();},
@@ -2477,6 +2502,15 @@ const ACT={
   bonus:()=>{const now=Date.now();if(now-S.bonusAt<3600e3&&bal()>=200){toast('הבונוס הבא זמין בעוד '+Math.ceil((3600e3-(now-S.bonusAt))/60000)+' דקות');return;}S.bonusAt=now;addBal(5000);toast('קיבלת 5,000 צ׳יפים','good');render();},
   setup:d=>openSetup(d.g,d.var,d.kind),
   quick:quickPlay,
+  admmsg:()=>admConfSet({msg:(($('#admmsg')||{}).value||'').trim().slice(0,200)}),admmsgclear:()=>admConfSet({msg:''}),
+  admonline:()=>admConfSet({onlineOff:!ADM.conf.onlineOff}),
+  admban:d=>{const b=new Set(ADM.conf.banned||[]);b.has(d.u)?b.delete(d.u):b.add(d.u);admConfSet({banned:[...b]});},
+  admdel:d=>{FB.db.collection('casino77_board').doc(d.u).delete().then(()=>toast('השורה נמחקה')).catch(()=>toast('המחיקה נכשלה','bad'));},
+  admreset:()=>{ADM.confirmReset=true;render();},admresetno:()=>{ADM.confirmReset=false;render();},
+  admresetyes:()=>{ADM.confirmReset=false;Promise.all((LB.rows||[]).map(r=>FB.db.collection('casino77_board').doc(r.id).delete())).then(()=>toast('הטבלה אופסה','good')).catch(()=>toast('חלק מהשורות לא נמחקו','bad'));render();},
+  admgift:d=>{ADM.giftFor=d.u;render();},
+  admgiftgo:d=>{const amt=Math.round(+(($('#giftamt')||{}).value)||0);if(!(amt>0&&amt<=1000000)){toast('סכום לא תקין','bad');return;}const ref=FB.db.collection('casino77_gifts').doc(d.u);
+    ref.get().then(x=>{const prev=x&&x.exists?(+x.data().amount||0):0;return ref.set({amount:prev+amt,t:Date.now()});}).then(()=>{ADM.giftFor=null;toast(`נשלחו ${fmt(amt)} צ׳יפים`,'good');render();}).catch(()=>toast('השליחה נכשלה','bad'));},
   pwainstall:()=>{if(!DEFER)return;DEFER.prompt();DEFER.userChoice.finally(()=>{DEFER=null;render();});},
   pwahide:()=>{S.pwaHide=1;save();render();},
   tutok:()=>{const o=TUT.open;if(!o)return;const last=o.idx===TUTS[o.g].length-1;if(last){tutEnd(o.g,false);return;}const el=$('#tip');if(el)el.hidden=true;TUT.open=null;tutCheck(o.g);},
