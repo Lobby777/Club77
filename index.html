@@ -1,4 +1,5 @@
-<!doctype html><html lang="he"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081b16"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="icon" href="icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="קזינו 77"></head><body>
 <title>קזינו 77</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,16 +111,19 @@ label.lbl{font:600 13px var(--f-body);color:var(--brass-2);letter-spacing:.3px}
 input.txt{width:100%;min-height:42px;border-radius:10px;border:1px solid var(--line-2);background:var(--night);color:var(--ivory);padding:8px 12px;font:15px var(--f-body)}
 .hint{font-size:13px;color:var(--muted)}
 /* cards */
-.card{--cw:44px;container-type:inline-size;width:var(--cw);height:calc(var(--cw)*1.42);flex:none;background:linear-gradient(165deg,#fffef9 0%,#f4ecd9 100%);color:var(--ink);border-radius:calc(var(--cw)*.13);display:inline-block;padding:0;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 3px 8px rgba(0,0,0,.45);border:1px solid rgba(0,0,0,.12);direction:ltr;position:relative;user-select:none;transform-style:preserve-3d}
+.card{--cw:44px;container-type:inline-size;width:var(--cw);height:calc(var(--cw)*1.42);flex:none;background:radial-gradient(120% 80% at 30% 15%,#fffefa 0%,#f9f3e3 55%,#efe5cd 100%);color:var(--ink);border-radius:calc(var(--cw)*.13);display:inline-block;padding:0;box-shadow:inset 0 0 0 calc(var(--cw)*.035) rgba(255,255,255,.55),0 1px 0 rgba(255,255,255,.6) inset,0 1px 2px rgba(0,0,0,.35),0 4px 10px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.14);direction:ltr;position:relative;user-select:none;transform-style:preserve-3d}
 .card .ci{position:absolute;top:calc(var(--cw)*.07);left:calc(var(--cw)*.09);display:flex;flex-direction:column;align-items:center;line-height:1;gap:calc(var(--cw)*.02)}
 .card .ci b{font:700 calc(var(--cw)*.34)/1 var(--f-mono);letter-spacing:-.06em}
-.card .ci s{text-decoration:none;font-size:calc(var(--cw)*.26);line-height:1}
-.card i{position:absolute;right:calc(var(--cw)*.09);bottom:calc(var(--cw)*.07);font-style:normal;font-size:calc(var(--cw)*.62);line-height:1}
+.card .ci s{display:block;width:calc(var(--cw)*.25);height:calc(var(--cw)*.25)}
+.card svg{display:block;width:100%;height:100%;fill:currentColor}
+.card i{position:absolute;right:calc(var(--cw)*.08);bottom:calc(var(--cw)*.08);width:calc(var(--cw)*.58);height:calc(var(--cw)*.58);font-style:normal}
+.card.fc i{width:calc(var(--cw)*.62);height:calc(var(--cw)*.62)}
+.card.fc i svg path{stroke:#9c6f1f;stroke-width:.8;stroke-linejoin:round;paint-order:stroke}
 .card.fc::before{content:"";position:absolute;inset:calc(var(--cw)*.05);border:1px solid rgba(207,159,66,.55);border-radius:calc(var(--cw)*.08);pointer-events:none}
-@container (max-width:36px){.card i{display:none}.card .ci{inset:0;justify-content:center;gap:1px}.card .ci b{font-size:calc(var(--cw)*.42)}.card .ci s{font-size:calc(var(--cw)*.38)}.card.fc::before{inset:2px}}
+@container (max-width:36px){.card i{display:none}.card .ci{inset:0;justify-content:center;gap:1px}.card .ci b{font-size:calc(var(--cw)*.42)}.card .ci s{width:calc(var(--cw)*.36);height:calc(var(--cw)*.36)}.card.fc::before{inset:2px}}
 .card.red{color:var(--suit-red)}.card.blu{color:#1d5fc4}.card.grn{color:#1b8648}
-.card.back{background:radial-gradient(circle at 50% 50%,rgba(241,207,128,.22) 0 22%,transparent 23%),repeating-linear-gradient(45deg,var(--back) 0 5px,var(--back-2) 5px 10px);border:3px solid var(--card);box-shadow:inset 0 0 0 1px var(--back-2),0 3px 8px rgba(0,0,0,.45)}
-.card.back::after{content:"77";position:absolute;inset:0;display:grid;place-items:center;font:900 calc(var(--cw)*.3)/1 var(--f-display);color:rgba(241,207,128,.9);letter-spacing:-.04em}
+.card.back{background:radial-gradient(circle at 50% 50%,#7a1e1a 0 24%,transparent 25%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Crect width='12' height='12' fill='%237a1e1a'/%3E%3Cpath d='M6 0L12 6L6 12L0 6z' fill='%23922d27'/%3E%3Cpath d='M6 2.2L9.8 6L6 9.8L2.2 6z' fill='none' stroke='%23d4ac5c' stroke-width='.45' opacity='.7'/%3E%3Ccircle cx='6' cy='6' r='.9' fill='%23e8c77d' opacity='.85'/%3E%3C/svg%3E") center/calc(var(--cw)*.24) calc(var(--cw)*.24),#7a1e1a;border:calc(var(--cw)*.06) solid #fbf6ea;box-shadow:inset 0 0 0 1px #d4ac5c,inset 0 0 0 calc(var(--cw)*.05) #7a1e1a,inset 0 0 0 calc(var(--cw)*.06) #d4ac5c,0 4px 10px rgba(0,0,0,.4)}
+.card.back::after{content:"77";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(var(--cw)*.5);height:calc(var(--cw)*.5);border-radius:50%;display:grid;place-items:center;font:900 calc(var(--cw)*.24)/1 var(--f-display);color:#f1cf80;background:radial-gradient(circle at 40% 35%,#9a2b25,#5c1411);box-shadow:0 0 0 1px #d4ac5c;letter-spacing:-.04em}
 .card.deal{animation:deal .32s ease-out both}
 .card.sel{transform:translateY(-12px);box-shadow:0 0 0 3px var(--warn),0 6px 10px rgba(0,0,0,.5)}
 .card.dim{filter:brightness(.55)}
@@ -145,7 +149,8 @@ body.fast .card.deal{animation-duration:.16s}
 .seat.folded{opacity:.45}
 .seat .cards .card{--cw:26px}
 .dbtn{position:absolute;top:-6px;left:-4px;width:22px;height:22px;border-radius:50%;background:var(--ivory);color:var(--ink);font:700 11px var(--f-mono);display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.5)}
-.betchip{font:600 11.5px var(--f-mono);background:var(--chip-blue);color:#fff;border-radius:999px;padding:1px 8px;border:1px dashed rgba(255,255,255,.6)}
+.betchip{font:600 11.5px var(--f-mono);background:rgba(0,0,0,.45);color:var(--brass-2);border-radius:999px;padding:1px 8px 1px 4px;border:1px solid rgba(241,207,128,.35);display:inline-flex;align-items:center;gap:4px;direction:ltr}
+.betchip::before{content:"";width:12px;height:12px;border-radius:50%;flex:none;background:radial-gradient(circle,#2f6cae 0 45%,#f3ebd7 46% 52%,#2f6cae 53% 64%,transparent 65%),repeating-conic-gradient(#f3ebd7 0 15deg,#2f6cae 15deg 45deg);box-shadow:0 1px 1px rgba(0,0,0,.5)}
 .board{display:flex;justify-content:center;gap:5px;direction:ltr;margin:14px 0 6px}
 .board .card{--cw:46px}
 .board .slot{width:46px;height:65px;border-radius:6px;border:1px dashed rgba(255,255,255,.18)}
@@ -208,10 +213,12 @@ table.t tr.best td{color:var(--good);font-weight:600}
 .res{font:700 12px var(--f-body);padding:1px 8px;border-radius:999px}
 .res.win,.res.bj{background:var(--good);color:#06240f}.res.lose,.res.bust{background:var(--bad);color:#2b0703}.res.push,.res.surr{background:var(--muted);color:#0b1a14}
 .chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.chip{width:48px;height:48px;border-radius:50%;border:0;color:#fff;font:700 12px var(--f-mono);cursor:pointer;box-shadow:inset 0 0 0 4px rgba(255,255,255,.85),inset 0 0 0 7px currentColor;position:relative}
-.chip::after{content:"";position:absolute;inset:9px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.55)}
-.chip.on{transform:translateY(-4px);box-shadow:inset 0 0 0 4px var(--brass-2),inset 0 0 0 7px currentColor,0 6px 12px rgba(0,0,0,.5)}
-.c5{background:var(--chip-grn)}.c10{background:var(--chip-blue)}.c25{background:var(--chip-grn)}.c50{background:var(--chip-blue)}.c100{background:var(--chip-blk)}.c500{background:var(--chip-pur)}.c1000{background:var(--chip-red)}
+.chip{--cc:var(--chip-red);width:50px;height:50px;border-radius:50%;border:0;color:#fff;font:700 12px var(--f-mono);cursor:pointer;position:relative;text-shadow:0 1px 2px rgba(0,0,0,.7);
+  background:radial-gradient(circle,color-mix(in srgb,var(--cc) 88%,#000) 0 46%,rgba(255,255,255,.92) 46.5% 49.5%,var(--cc) 50% 63%,transparent 63.5%),repeating-conic-gradient(from 7.5deg,#f3ebd7 0 15deg,var(--cc) 15deg 45deg);
+  box-shadow:0 2px 0 color-mix(in srgb,var(--cc) 55%,#000),0 5px 10px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.25);transition:transform .12s}
+.chip::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.42),transparent 42%);pointer-events:none}
+.chip.on{transform:translateY(-6px);box-shadow:0 0 0 2px var(--brass-2),0 2px 0 color-mix(in srgb,var(--cc) 55%,#000),0 10px 16px rgba(0,0,0,.5)}
+.c5{--cc:#c4403a}.c10{--cc:#2f6cae}.c25{--cc:#2c8a5a}.c50{--cc:#d06a2c}.c100{--cc:#26262b}.c500{--cc:#6a3fa0}.c1000{--cc:#c9a227}
 /* roulette */
 .wheelwrap{display:flex;justify-content:center;position:relative;margin-top:4px}
 .wheelwrap canvas{width:min(250px,70vw);height:auto;aspect-ratio:1;max-width:100%}
@@ -298,6 +305,56 @@ table.t tr.best td{color:var(--good);font-weight:600}
 .chatlog{max-height:180px;overflow:auto;font-size:13.5px;display:flex;flex-direction:column;gap:3px}
 @media (max-width:420px){.brand small{display:none}.tile .glyph{font-size:26px}}
 .tile .glyph{white-space:nowrap}
+.lestop{display:flex;gap:10px;align-items:center;margin-top:12px}
+.lesttl{font:700 16px var(--f-display);margin-bottom:6px}
+.segbar{height:8px;border-radius:999px;background:var(--line);overflow:hidden;position:relative;z-index:1}
+.segbar i{display:block;margin-left:auto;margin-right:0;height:100%;background:linear-gradient(90deg,var(--brass),var(--brass-2));border-radius:999px;transition:width .35s ease}
+.segbar.thin{height:5px;width:100%}
+.lslide{margin-top:14px;min-height:240px}
+.lslide h3{color:var(--brass-2);font-size:20px}
+.lesnav{margin-top:12px}
+.formula{font:600 14px var(--f-mono);unicode-bidi:plaintext;text-align:center;background:var(--night);border:1px solid var(--line-2);border-radius:10px;padding:10px;margin:8px 0;color:var(--brass-2)}
+.qcard{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-size:16.5px;line-height:1.6;padding:20px 14px;margin-top:6px}
+.qcard p{max-width:52ch;margin:0}
+.qcard .board{margin:4px 0}
+.qopts{display:grid;gap:8px;margin-top:12px}
+.qopt{min-height:54px;border-radius:12px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ivory);font:600 15px var(--f-body);cursor:pointer;padding:8px 10px;transition:transform .1s,background .2s}
+.qopt:active{transform:scale(.98)}
+.qopt.right{background:rgba(99,211,143,.18);border-color:var(--good);color:var(--good)}
+.qopt.wrong{background:rgba(255,128,111,.15);border-color:var(--bad);color:var(--bad)}
+.qopt:disabled{cursor:default}
+.qfb{margin-top:10px;padding:12px;border-radius:12px;font-size:14.5px;line-height:1.6}
+.qfb.ok{background:rgba(99,211,143,.1);border:1px solid rgba(99,211,143,.4)}
+.qfb.no{background:rgba(255,128,111,.08);border:1px solid rgba(255,128,111,.4)}
+.stars{display:inline-flex;gap:2px}.stars .st{font-size:15px;color:var(--line-2)}.stars .st.on{color:var(--brass-2)}
+.lesdone .stars .st{font-size:36px}
+.crsgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:600px){.crsgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.crs{display:flex;flex-direction:column;gap:6px;text-align:right;padding:14px;border-radius:16px;border:1px solid var(--line-2);background:radial-gradient(120% 90% at 100% 0%,color-mix(in srgb,var(--cc) 40%,transparent),transparent 60%),linear-gradient(160deg,var(--panel-2),var(--panel));color:var(--ivory);cursor:pointer;min-height:178px;min-width:0}
+.crs:active{transform:scale(.98)}
+.crs b{font:700 17px var(--f-display)}.crs small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.crsic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--cc);color:#fff;font:800 17px var(--f-display);box-shadow:inset 0 0 0 2px rgba(255,255,255,.2)}
+.crsic.big{width:54px;height:54px;font-size:22px;flex:none}
+.lvlhead{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 8px;font:700 15px var(--f-display);color:var(--brass-2)}
+.lvlhead.locked{color:var(--muted)}
+.path{display:flex;flex-direction:column;gap:8px}
+.node{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ivory);text-align:right;cursor:pointer;width:100%}
+.node:disabled{opacity:.45;cursor:not-allowed}
+.node b{display:block;font:700 15.5px var(--f-display)}.node small{color:var(--muted)}
+.ndot{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 15px var(--f-mono);background:var(--line);color:var(--muted)}
+.ndot svg{width:18px;height:18px;fill:none;stroke:currentColor}
+.node.done .ndot{background:var(--brass);color:#2a1b06}
+.node.cur{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.node.cur .ndot{background:var(--ivory);color:var(--night);animation:pulse 1.6s ease-in-out infinite}
+.node.test .ndot{background:var(--panel-2);border:2px dashed var(--brass);color:var(--brass-2)}
+.node.test.done .ndot,.node.cert.done .ndot{background:var(--brass);border:0;color:#2a1b06}
+@media (prefers-reduced-motion:reduce){.node.cur .ndot{animation:none}}
+#tip{position:fixed;left:12px;right:12px;margin-inline:auto;max-width:460px;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:14;background:var(--panel-2);border:1px solid var(--brass);border-radius:14px;padding:12px 14px;box-shadow:0 12px 30px rgba(0,0,0,.55);animation:tin .25s ease-out both;font-size:14.5px}
+.tipdot{flex:none;font:700 11px var(--f-mono);background:var(--brass);color:#2a1b06;border-radius:999px;padding:2px 7px;margin-top:2px}
+.champ{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--brass);background:linear-gradient(120deg,rgba(207,159,66,.22),rgba(207,159,66,.05))}
+.champ .crown{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:#2a1b06;font-size:20px;flex:none}
+.champ small{display:block;color:var(--muted)}.champ b{font:700 17px var(--f-display)}
+@media (prefers-reduced-motion:reduce){#tip{animation:none}}
 @media (prefers-reduced-motion:reduce){.card.deal,.toast,.hero h1 span,.seat.turn,.bjseat.turn,.fdelta{animation:none}.card.sel{transform:none}}
 </style>
 
@@ -315,6 +372,7 @@ table.t tr.best td{color:var(--good);font-weight:600}
 </div>
 <div id="modal" hidden></div>
 <div id="netchat" hidden></div>
+<div id="tip" hidden role="status"></div>
 <nav id="tabbar" hidden aria-label="ניווט ראשי"></nav>
 <div id="toast" aria-live="polite"></div>
 
@@ -344,10 +402,10 @@ if(!S.v2){S.solver=false;S.coach=false;S.v2=1;save();}
 const bal=()=>S.practice?S.pchips:S.chips;
 function addBal(d){if(S.practice)S.pchips+=d;else S.chips+=d;save();updTop();}
 function stat(g){return S.stats[g]||(S.stats[g]={hands:0,net:0,dec:0,good:0,best:0,worst:0});}
-function recHand(g,net,exp){if(SESS){SESS.hands++;SESS.net+=net;SESS.best=Math.max(SESS.best,net);}if(net>=300)celebrate(net>=2000);const s=stat(g);s.hands++;s.net+=net;s.best=Math.max(s.best,net);s.worst=Math.min(s.worst,net);save();if(net>0){unlock('first_win');snd(net>=300?'bigwin':'win');}addXP(1);
+function recHand(g,net,exp){wkAdd(net);if(SESS){SESS.hands++;SESS.net+=net;SESS.best=Math.max(SESS.best,net);}if(net>=300)celebrate(net>=2000);const s=stat(g);s.hands++;s.net+=net;s.best=Math.max(s.best,net);s.worst=Math.min(s.worst,net);save();if(net>0){unlock('first_win');snd(net>=300?'bigwin':'win');}addXP(1);
   if(!S.practice){if(!S.bk)S.bk=[];if(!S.bk.length)S.bk.push([Date.now(),S.chips-net,Math.round(S.luck||0)]);S.luck=(S.luck||0)+(exp===undefined?0:net-exp);S.bk.push([Date.now(),S.chips,Math.round(S.luck)]);if(S.bk.length>400)S.bk=S.bk.filter((x,i)=>i>=200||i%2===0);save();}
   checkGeneral();}
-function recDec(g,ok){if(SESS&&g!=='drill'){SESS.dec++;if(ok)SESS.good++;}const s=stat(g);s.dec++;if(ok){s.good++;addXP(1);}save();checkGeneral();}
+function recDec(g,ok){wkDec(g,ok);if(SESS&&g!=='drill'){SESS.dec++;if(ok)SESS.good++;}const s=stat(g);s.dec++;if(ok){s.good++;addXP(1);}save();checkGeneral();}
 function updTop(){animBal();const lv=$('#lvlmini');if(lv)lv.textContent=lvl();const t=$('#ptag');if(t)t.hidden=!S.practice;const sb=$('#sndbtn');if(sb){sb.textContent=S.sound?'♪':'×';sb.setAttribute('aria-pressed',String(!!S.sound));sb.setAttribute('aria-label',S.sound?'השתק צלילים':'הפעל צלילים');}}
 
 /* ================= cards ================= */
@@ -356,11 +414,19 @@ const RCH=r=>r===14?'A':r===13?'K':r===12?'Q':r===11?'J':String(r);
 const rk=c=>(c>>2)+2;
 const isRed=c=>(c&3)===1||(c&3)===2;
 const SEEN=new Set();
+const svgP=d=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+const SUIT_SVG=['M12 1.8C9.6 5.6 3 9 3 13.7 3 16.5 5.1 18.3 7.5 18.3c1.6 0 2.9-.7 3.7-1.8-.3 2.3-1.3 3.8-2.8 5h7.2c-1.5-1.2-2.5-2.7-2.8-5 .8 1.1 2.1 1.8 3.7 1.8 2.4 0 4.5-1.8 4.5-4.6C21 9 14.4 5.6 12 1.8z',
+ 'M12 21.3S3.2 15.9 2.4 10C1.9 6.6 4.2 3.6 7.4 3.6c2.1 0 3.6 1.2 4.6 2.9 1-1.7 2.5-2.9 4.6-2.9 3.2 0 5.5 3 5 6.4-.8 5.9-9.6 11.3-9.6 11.3z',
+ 'M12 1.5c1.9 3.5 4.6 7 7.6 10.5-3 3.5-5.7 7-7.6 10.5C10.1 19 7.4 15.5 4.4 12 7.4 8.5 10.1 5 12 1.5z',
+ 'M12 2a4.5 4.5 0 0 0-4.1 6.3A4.5 4.5 0 1 0 10.8 16.2c-.3 2.3-1.2 3.8-2.7 5h7.8c-1.5-1.2-2.4-2.7-2.7-5a4.5 4.5 0 1 0 2.9-7.9A4.5 4.5 0 0 0 12 2z'].map(svgP);
+const EMB_SVG={11:svgP('M12 2.2 19.5 5v6.2c0 5.1-3.3 9-7.5 10.8C7.8 20.2 4.5 16.3 4.5 11.2V5zM12 6.4 8.3 7.8v3.6c0 3 1.6 5.4 3.7 6.6 2.1-1.2 3.7-3.6 3.7-6.6V7.8z'),
+ 12:svgP('M4 18.5 3 9.2l4.4 3.4L12 5l4.6 7.6L21 9.2l-1 9.3zM12 2.2a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2zM2.8 6.3a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zm18.4 0a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zM4 19.7h16V22H4z'),
+ 13:svgP('M3 17.6 2 7l5.2 4.3L12 3.5l4.8 7.8L22 7l-1 10.6zM3.2 19h17.6v3H3.2zM12 12.4a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z')};
 function cardHTML(c,cls='',key=null){
   if(key!==null){const k=key+':'+c;if(!SEEN.has(k)){SEEN.add(k);cls+=' deal';sndCard();if(SEEN.size>3000)SEEN.clear();}}
   if(c==null||c<0)return `<div class="card back ${cls}"></div>`;
-  const r=rk(c),R=RCH(r),su=SUITSYM[c&3],face=r>=11&&r<=13;const ix=`<b>${R}</b><s>${su}</s>`;
-  return `<div class="card ${suitCls(c)} ${face?'fc':''} ${cls}" aria-label="${R}${su}"><span class="ci">${ix}</span><i>${su}</i></div>`;
+  const r=rk(c),R=RCH(r),su=SUITSYM[c&3],face=r>=11&&r<=13;const ix=`<b>${R}</b><s>${SUIT_SVG[c&3]}</s>`;
+  return `<div class="card ${suitCls(c)} ${face?'fc':''} ${cls}" aria-label="${R}${su}"><span class="ci">${ix}</span><i>${face?EMB_SVG[r]:SUIT_SVG[c&3]}</i></div>`;
 }
 const suitCls=c=>{const u=c&3;if(S.fourc){if(u===2)return 'blu';if(u===3)return 'grn';}return u===1||u===2?'red':'';};
 const cname=c=>c<0?'?':`<span class="cn ${suitCls(c)}">${RCH(rk(c))}${SUITSYM[c&3]}</span>`;
@@ -525,7 +591,8 @@ let CUR={v:'home'};
 function stopTimers(){clearTimeout(PK.timer);clearTimeout(BJ.timer);if(typeof DR!=='undefined'&&DR.timer){clearTimeout(DR.timer);DR.timer=null;}if(typeof BAC!=='undefined'&&BAC.phase==='deal'){clearTimeout(BAC.timer);bacSettle();}}
 function go(v,p={}){if(v!=='pk'&&v!=='bj')stopTimers();CUR={v,...p};render();window.scrollTo(0,0);}
 function render(){const V=$('#view');
-  const map={profile:rProfile,chal:rChal,bjsim:rBjSim,board:rBoard,exam:rExam,home:rHome,setup:rSetup,pk:pkRender,bj:bjRender,rl:rlRender,vp:vpRender,tcp:tcpRender,bac:bacRender,academy:rAcademy,lesson:rLesson,drill:rDrill,stats:rStats,online:rOnline,ach:rAch,hist:rHist,histd:rHistD};
+  const map={les:rLes,course:rCourse,profile:rProfile,chal:rChal,bjsim:rBjSim,board:rBoard,exam:rExam,home:rHome,setup:rSetup,pk:pkRender,bj:bjRender,rl:rlRender,vp:vpRender,tcp:tcpRender,bac:bacRender,academy:rAcademy,lesson:rLesson,drill:rDrill,stats:rStats,online:rOnline,ach:rAch,hist:rHist,histd:rHistD};
+  if(!['pk','bj','rl','vp','tcp','bac'].includes(CUR.v))tutHide();
   (map[CUR.v]||rHome)(V);updTop();tabsRender();try{document.body.classList.toggle('fast',!!S.fast);}catch(e){}}
 function modal(html){const m=$('#modal');m.innerHTML=`<div class="sheet">${html}</div>`;m.hidden=false;}
 function closeModal(){$('#modal').hidden=true;$('#modal').innerHTML='';}
@@ -555,7 +622,7 @@ function rHome0(V){
     <button class="linkrow" data-a="go" data-v="online"><span class="ic">⇄</span><span class="grow"><b>שחק עם חברים אונליין</b><small>חדר עם קוד · בלאק ג׳ק ופוקר</small></span></button>
   </div>
   ${!inClaude()&&FB.on&&!FB.user?`<button class="linkrow" style="margin-top:14px" data-a="fbin"><span class="ic">G</span><span class="grow"><b>התחבר עם Google</b><small>שמירת ההתקדמות בחשבון — עובר בין מכשירים</small></span></button>`:''}
-  ${careerHTML()}${dailyHTML()}
+  ${installHomeHTML()}${careerHTML()}${dailyHTML()}
   <p class="note" style="text-align:center;margin-top:18px">משחק לבידור ולימוד בלבד · צ׳יפים וירטואליים ללא ערך כספי</p>
   ${bal()<200?`<div class="panel" style="margin-top:14px"><p>נגמרו הצ׳יפים?</p><button class="btn wide" style="margin-top:8px" data-a="bonus">קבל בונוס 5,000</button></div>`:''}`;
 }
@@ -1111,24 +1178,34 @@ function rlSpin(){if(RL.spinning)return;const people=RL.players.filter(p=>p.t!==
   const target=-(idx+.5)*seg;const cur=RL.angle%(2*Math.PI);let delta=target-cur;while(delta<0)delta+=2*Math.PI;const end=RL.angle+delta+2*Math.PI*6;
   RL.spinning=true;RL.last=null;rlRender();
   const start=RL.angle,t0=performance.now(),dur=matchMedia('(prefers-reduced-motion: reduce)').matches?300:(S.fast?2300:4200);
-  let lastSeg=-1;const step=now=>{const t=Math.min(1,(now-t0)/dur);const e=1-Math.pow(1-t,3.2);RL.angle=start+(end-start)*e;const sg=Math.floor(RL.angle/seg);if(sg!==lastSeg){lastSeg=sg;snd('tick');}rlDraw();if(t<1)requestAnimationFrame(step);else rlSettle(res);};
+  let lastSeg=-1;const step=now=>{const t=Math.min(1,(now-t0)/dur);const e=1-Math.pow(1-t,3.2);RL.angle=start+(end-start)*e;RL.bt=t;const sg=Math.floor(RL.angle/seg);if(sg!==lastSeg){lastSeg=sg;snd('tick');}rlDraw();if(t<1)requestAnimationFrame(step);else rlSettle(res);};
   requestAnimationFrame(step);}
 function rlSettle(res){RL.spinning=false;RL.hist.unshift(res);if(RL.hist.length>60)RL.hist.length=60;
   RL.players.forEach(p=>{let win=0;const st=rlStake(p);Object.entries(p.bets).forEach(([k,a])=>{if(rlCovers(k).includes(res))win+=a*(rlPay(k)+1);});
     if(p.t==='me'){addBal(win);if(Object.keys(p.bets).some(k=>k[0]==='n'&&rlCovers(k).includes(res)))unlock('rl_straight');}else p.c+=win;p.net=win-st;if(p.t==='me'&&st){recHand('rl',p.net,-st*(RL.type==='eu'?1/37:2/38));chal('rl_spin10');}if(p.t!=='bot'&&st)p.prev={...p.bets};p.bets=p.t==='bot'?p.bets:{};});
   RL.last=res;rlRender();
   const me=RL.players.find(p=>p.t==='me');if(me&&me.net)toast(me.net>0?`זכית ${fmt(me.net)}`:`הפסדת ${fmt(-me.net)}`,me.net>0?'good':'');}
-function rlDraw(){const cv=$('#wheel');if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,R=W/2;const order=RL.type==='eu'?EU_ORDER:US_ORDER;const seg=2*Math.PI/order.length;
+function rlDraw(){const cv=$('#wheel');if(!cv)return;const ctx=cv.getContext('2d');if(!ctx||!ctx.createRadialGradient)return;const W=cv.width,R=W/2;const order=RL.type==='eu'?EU_ORDER:US_ORDER;const seg=2*Math.PI/order.length;const TAU=Math.PI*2;
   ctx.clearRect(0,0,W,W);ctx.save();ctx.translate(R,R);
-  ctx.beginPath();ctx.arc(0,0,R-2,0,2*Math.PI);ctx.fillStyle='#3a1f13';ctx.fill();
-  ctx.rotate(RL.angle);
-  order.forEach((n,i)=>{const a0=-Math.PI/2+i*seg;ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,R-10,a0,a0+seg);ctx.closePath();
-    ctx.fillStyle=rlColor(n)==='g'?'#2c8a5a':rlColor(n)==='r'?'#b8262c':'#1c1c20';ctx.fill();ctx.strokeStyle='#d9b468';ctx.lineWidth=1;ctx.stroke();
-    ctx.save();ctx.rotate(a0+seg/2+Math.PI/2);ctx.fillStyle='#f6eedb';ctx.font=`600 ${Math.round(R*.085)}px "IBM Plex Mono",monospace`;ctx.textAlign='center';ctx.fillText(rlName(n),0,-R+R*.15);ctx.restore();});
-  ctx.beginPath();ctx.arc(0,0,R*.6,0,2*Math.PI);ctx.fillStyle='#0f3a2d';ctx.fill();ctx.strokeStyle='#d9b468';ctx.lineWidth=2;ctx.stroke();
-  for(let k=0;k<4;k++){ctx.rotate(Math.PI/4);ctx.fillStyle='#cf9f42';ctx.fillRect(-2,-R*.42,4,R*.84);}
-  ctx.beginPath();ctx.arc(0,0,R*.12,0,2*Math.PI);ctx.fillStyle='#f1cf80';ctx.fill();ctx.restore();
-  if(!RL.spinning&&RL.last!=null){ctx.beginPath();ctx.arc(R,R*.33,R*.045,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();}}
+  let g=ctx.createRadialGradient(0,0,R*.8,0,0,R);g.addColorStop(0,'#6b3a1e');g.addColorStop(.55,'#43210f');g.addColorStop(1,'#1c0d05');ctx.beginPath();ctx.arc(0,0,R-1,0,TAU);ctx.fillStyle=g;ctx.fill();
+  ctx.beginPath();ctx.arc(0,0,R*.905,0,TAU);ctx.strokeStyle='#e2c071';ctx.lineWidth=R*.014;ctx.stroke();
+  const ro=R*.89,ri=R*.58,rp=R*.68;
+  ctx.save();ctx.rotate(RL.angle);
+  order.forEach((n,i)=>{const a0=-Math.PI/2+i*seg;const col=rlColor(n);ctx.beginPath();ctx.arc(0,0,ro,a0,a0+seg);ctx.arc(0,0,ri,a0+seg,a0,true);ctx.closePath();
+    const gg=ctx.createRadialGradient(0,0,ri,0,0,ro);const b=col==='g'?['#17663f','#2fa166']:col==='r'?['#7d1418','#cf3a40']:['#0d0d10','#34343a'];gg.addColorStop(0,b[0]);gg.addColorStop(1,b[1]);ctx.fillStyle=gg;ctx.fill();
+    ctx.save();ctx.rotate(a0+seg/2+Math.PI/2);ctx.fillStyle='#fdf6e3';ctx.font=`700 ${Math.round(R*.072)}px "Frank Ruhl Libre",Georgia,serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(rlName(n),0,-(ro-R*.075));ctx.restore();});
+  order.forEach((n,i)=>{const a=-Math.PI/2+i*seg;ctx.save();ctx.rotate(a);ctx.strokeStyle='#e9c983';ctx.lineWidth=R*.009;ctx.beginPath();ctx.moveTo(ri,0);ctx.lineTo(rp,0);ctx.stroke();ctx.strokeStyle='rgba(233,201,131,.55)';ctx.lineWidth=R*.005;ctx.beginPath();ctx.moveTo(rp,0);ctx.lineTo(ro,0);ctx.stroke();ctx.restore();});
+  ctx.beginPath();ctx.arc(0,0,rp,0,TAU);ctx.strokeStyle='rgba(233,201,131,.75)';ctx.lineWidth=R*.008;ctx.stroke();
+  g=ctx.createRadialGradient(0,0,R*.05,0,0,ri);g.addColorStop(0,'#246b51');g.addColorStop(.7,'#123b2c');g.addColorStop(1,'#0a2219');ctx.beginPath();ctx.arc(0,0,ri,0,TAU);ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='#e2c071';ctx.lineWidth=R*.014;ctx.stroke();
+  for(let k=0;k<4;k++){ctx.save();ctx.rotate(k*Math.PI/4);const sg=ctx.createLinearGradient(0,-R*.03,0,R*.03);sg.addColorStop(0,'#fff0c2');sg.addColorStop(.5,'#d4a94f');sg.addColorStop(1,'#7c5716');ctx.fillStyle=sg;ctx.beginPath();if(ctx.ellipse)ctx.ellipse(0,0,R*.42,R*.024,0,0,TAU);else ctx.rect(-R*.42,-R*.02,R*.84,R*.04);ctx.fill();
+    [R*.42,-R*.42].forEach(x=>{const kg=ctx.createRadialGradient(x-R*.01,-R*.01,R*.004,x,0,R*.04);kg.addColorStop(0,'#fff6d8');kg.addColorStop(1,'#a07a2c');ctx.beginPath();ctx.arc(x,0,R*.036,0,TAU);ctx.fillStyle=kg;ctx.fill();});ctx.restore();}
+  g=ctx.createRadialGradient(-R*.035,-R*.035,R*.01,0,0,R*.14);g.addColorStop(0,'#fff6d6');g.addColorStop(.45,'#e0b860');g.addColorStop(1,'#6e4d14');ctx.beginPath();ctx.arc(0,0,R*.14,0,TAU);ctx.fillStyle=g;ctx.fill();
+  ctx.restore();ctx.restore();
+  let bx=null,by=null,br=R*.033;
+  if(RL.spinning&&RL.bt!=null){const t=RL.bt;const rad=R*.95-(R*.95-(ri+R*.05))*Math.pow(t,3);const th=-Math.PI/2-Math.pow(1-t,2)*46;bx=Math.cos(th)*rad;by=Math.sin(th)*rad;}
+  else if(RL.last!=null){bx=0;by=-(ri+R*.05);}
+  if(bx!=null){const bg=ctx.createRadialGradient(R+bx-br*.35,R+by-br*.35,br*.1,R+bx,R+by,br);bg.addColorStop(0,'#ffffff');bg.addColorStop(.7,'#e4e4e4');bg.addColorStop(1,'#9a9a9a');ctx.beginPath();ctx.arc(R+bx,R+by,br,0,TAU);ctx.fillStyle=bg;ctx.fill();}
+  g=ctx.createLinearGradient(0,0,0,W);g.addColorStop(0,'rgba(255,255,255,.09)');g.addColorStop(.45,'rgba(255,255,255,0)');ctx.beginPath();ctx.arc(R,R,R-1,0,TAU);ctx.fillStyle=g;ctx.fill();}
 function rlSolve(bets){const order=RL.type==='eu'?EU_ORDER:US_ORDER;const N=order.length;const list=Object.entries(bets);if(!list.length)return null;
   const total=list.reduce((a,[,v])=>a+v,0);let ev=0,pw=0,best=-Infinity,worst=Infinity;
   order.forEach(n=>{let win=0;list.forEach(([k,a])=>{if(rlCovers(k).includes(n))win+=a*(rlPay(k)+1);});const net=win-total;ev+=net/N;if(net>0)pw++;best=Math.max(best,net);worst=Math.min(worst,net);});
@@ -1149,7 +1226,7 @@ function rlRender(V=$('#view')){const p=RL.players[RL.act];const us=RL.type==='u
   const cnt=new Map();RL.hist.forEach(n=>cnt.set(n,(cnt.get(n)||0)+1));
   const reds=RL.hist.filter(n=>rlColor(n)==='r').length,blacks=RL.hist.filter(n=>rlColor(n)==='b').length;
   let h=`<div class="tbar"><button class="btn ghost sm" data-a="home">קום</button><h2>רולטה ${us?'אמריקאית':'אירופאית'}</h2><span class="pill gold">יתרון הבית ${us?'5.26%':'2.70%'}</span>${helpBtn()}</div>
-  <div class="felt"><div class="wheelwrap"><span class="ptr"></span><canvas id="wheel" width="500" height="500" aria-label="גלגל רולטה"></canvas></div>
+  <div class="felt"><div class="wheelwrap"><span class="ptr"></span><canvas id="wheel" width="840" height="840" aria-label="גלגל רולטה"></canvas></div>
    <div class="rlres">${RL.spinning?'הכדור מתגלגל…':RL.last!=null?`<span class="hn ${rlColor(RL.last)}" style="display:inline-grid;width:40px;height:40px;font-size:18px">${rlName(RL.last)}</span>`:'הניחו הימורים'}</div>
    ${hist.length?`<div class="hist">${hist.map(n=>`<span class="hn ${rlColor(n)}">${rlName(n)}</span>`).join('')}</div>`:''}
    ${RL.players.length>1?`<div class="ptabs" style="margin-top:6px">${RL.players.map((q,i)=>q.t==='bot'?`<span class="pill">${esc(q.n)} ${fmt(q.c)}${RL.last!=null&&q.net?` <b class="${q.net>0?'good':'bad'}">${sgn(q.net)}</b>`:''}</span>`:`<button class="btn sm ${i===RL.act?'':'dark'}" data-a="rlplayer" data-i="${i}">${esc(q.n)} · ${fmt(rlChips(q))}</button>`).join('')}</div>`:''}
@@ -1246,7 +1323,7 @@ const LESSONS=[
  {id:'g1',g:'כללי',t:'ניהול כסף ומשחק אחראי',b:`<ul><li>בכל משחק כאן — חוץ מבלאק ג׳ק עם ספירה ופוקר מול שחקנים חלשים — התוחלת שלילית. הכסף זז לבית לאט אבל בטוח.</li><li>קבעו סכום לסשן מראש, והפסיקו כשהוא נגמר.</li><li>שיטות הימור (מרטינגייל, פיבונאצ׳י) לא משנות את התוחלת. הן רק מחליפות הרבה רווחים קטנים בהפסד גדול ונדיר.</li><li>המשחק הזה הוא עם צ׳יפים וירטואליים בלבד. אם הימורים אמיתיים מתחילים להרגיש לא בשליטה — אפשר לפנות לקו הסיוע של הרשות למלחמה בסמים והתמכרויות.</li></ul>`},
 ];
 const DRILLS=[{id:'count',t:'מאמן ספירת קלפים',d:'קלפים רצים על המסך — מה הספירה? הקצב עולה'},{id:'tc',t:'ספירה אמיתית',d:'ספירה רצה וחפיסות שנשארו → הספירה האמיתית'},{id:'pre',t:'פתיחה לפני הפלופ',d:'יד ופוזיציה → רייז או פולד'},{id:'bjd',t:'מאמן אסטרטגיה בסיסית',d:'יד + קלף דילר → בחר מהלך'},{id:'odds',t:'סיכויי קופה: קול או פולד?',d:'קופה, הימור ואאוטים'},{id:'hands',t:'מי מנצח?',d:'שתי ידיים ולוח — בחר את הזוכה'}];
-function rAcademy(V){const groups=[...new Set(LESSONS.map(l=>l.g))];
+function rAcademyOld(V){const groups=[...new Set(LESSONS.map(l=>l.g))];
   V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>אקדמיה</h2><span class="pill gold">${Object.keys(S.cert||{}).length}/6 תעודות</span></div>
   <div class="stack" style="margin-top:12px"><button class="linkrow" data-a="go" data-v="bjsim"><span class="ic">∿</span><span class="grow"><b>סימולטור אסטרטגיה — בלאק ג׳ק</b><small>תחושה מול אסטרטגיה בסיסית מול ספירה, על עשרות אלפי ידיים</small></span></button>
   <div class="panel stack"><h3>מבחני סיום</h3><p class="hint">90% ומעלה = תעודה ו-200 XP. השאלות משתנות בכל פעם.</p><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px">${Object.entries(EXAM_G).map(([g,n])=>`<button class="btn ${S.cert&&S.cert[g]?'':'dark'}" data-a="exam" data-g="${g}">${S.cert&&S.cert[g]?'★ ':''}${n}</button>`).join('')}</div></div><div class="panel stack"><h3>תרגולים</h3>${DRILLS.map(d=>`<button class="linkrow" data-a="go" data-v="drill" data-id="${d.id}"><span class="ic">✓</span><span class="grow"><b>${d.t}</b><small>${d.d}</small></span></button>`).join('')}</div>
@@ -1337,18 +1414,20 @@ function openSettings(){modal(`<h3>הגדרות</h3>
 
 /* ================= ONLINE (room presence) ================= */
 let NET=null,ROOMAPI;
-async function roomApi(){if(ROOMAPI!==undefined)return ROOMAPI;try{ROOMAPI=(window.claude&&typeof window.claude.use==='function')?await window.claude.use('room'):null;}catch(e){ROOMAPI=null;}return ROOMAPI;}
+async function roomApi(){if(inClaude()){if(ROOMAPI!==undefined)return ROOMAPI;try{ROOMAPI=await window.claude.use('room');}catch(e){ROOMAPI=null;}return ROOMAPI;}return (FB.on&&FB.user&&FB.db)?FBROOM:null;}
 function rOnline(V){
-  if(ROOMAPI===undefined){V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>אונליין</h2></div><p class="muted" style="margin-top:16px">בודק חיבור…</p>`;roomApi().then(()=>{if(CUR.v==='online')render();});return;}
+  if(inClaude()&&ROOMAPI===undefined){V.innerHTML=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>אונליין</h2></div><p class="muted" style="margin-top:16px">בודק חיבור…</p>`;roomApi().then(()=>{if(CUR.v==='online')render();});return;}
   let h=`<div class="tbar"><button class="btn ghost sm" data-a="netback">חזרה</button><h2>שחק עם חברים</h2></div><div class="stack" style="margin-top:12px">`;
-  if(!ROOMAPI){h+=`<div class="panel stack"><h3>אונליין לא זמין כאן</h3><p class="muted">משחק אונליין עובד כשהמשחק פתוח בתוך Claude וכל החברים נכנסים לאותו קישור שיתוף כשהם מחוברים לחשבון. בינתיים אפשר לשחק עם חברים מאותו טלפון.</p><button class="btn" data-a="setup" data-g="bj">בלאק ג׳ק מאותו טלפון</button><button class="btn dark" data-a="setup" data-g="poker" data-var="holdem">פוקר מאותו טלפון</button></div>`;}
+  const RAPI=inClaude()?ROOMAPI:((FB.on&&FB.user)?FBROOM:null);
+  if(!RAPI&&!inClaude()&&fbCfg()){h+=`<div class="panel stack"><h3>מתחברים כדי לשחק עם חברים</h3><p class="muted">חדרי אונליין עובדים לכל מי שמתחבר עם Google לאתר. כל חבר נכנס לאותו אתר, מתחבר, ומצטרף עם קוד החדר.</p><button class="btn" data-a="fbin">התחבר עם Google</button><button class="btn dark" data-a="setup" data-g="bj">או: בלאק ג׳ק מאותו טלפון</button></div>`;}
+  else if(!RAPI){h+=`<div class="panel stack"><h3>אונליין לא זמין כאן</h3><p class="muted">משחק אונליין עובד כשהמשחק פתוח בתוך Claude וכל החברים נכנסים לאותו קישור שיתוף כשהם מחוברים לחשבון. בינתיים אפשר לשחק עם חברים מאותו טלפון.</p><button class="btn" data-a="setup" data-g="bj">בלאק ג׳ק מאותו טלפון</button><button class="btn dark" data-a="setup" data-g="poker" data-var="holdem">פוקר מאותו טלפון</button></div>`;}
   else if(!NET){h+=`<div class="panel stack"><label class="lbl" for="nick">הכינוי שלך</label><input class="txt" id="nick" maxlength="14" value="${esc(S.nick)}" placeholder="למשל: אורי"></div>
     <div class="panel stack"><h3>פתח חדר</h3>${seg('netg',[['bj','בלאק ג׳ק'],['holdem','הולדם'],['omaha','אומהה'],['draw','5 קלפים']],SETUP.netg||'holdem')}<button class="btn" data-a="netcreate">צור חדר וקבל קוד</button></div>
     <div class="panel stack"><h3>הצטרף לחדר</h3><input class="txt" id="joincode" maxlength="6" placeholder="קוד בן 4 תווים" style="direction:ltr;text-align:center;letter-spacing:4px"><button class="btn dark" data-a="netjoin">הצטרף</button></div>
-    <p class="note">החברים צריכים לפתוח את אותו קישור של המשחק (שיתוף מתוך Claude). הצ׳יפים בחדר הם צ׳יפים של השולחן — היתרה האישית לא משתנה.</p>`;}
+    <p class="note">${inClaude()?'החברים צריכים לפתוח את אותו קישור של המשחק (שיתוף מתוך Claude).':'החברים נכנסים לאותו אתר ומתחברים עם Google.'} הצ׳יפים בחדר הם צ׳יפים של השולחן — היתרה האישית לא משתנה.</p>`;}
   else if(NET.role==='host'){const g=NET.game;h+=`<div class="panel stack"><p class="lbl">קוד החדר</p><div class="code">${esc(NET.code)}</div><p class="hint" style="text-align:center">שלחו לחברים את הקוד ואת הקישור למשחק</p></div>
     <div class="panel stack"><h3>בחדר (${1+Object.keys(NET.guests).length})</h3><div class="plist"><div><span>${esc(S.nick||'מארח')}</span><span class="muted">מארח</span></div>${Object.values(NET.guests).map(x=>`<div><span>${esc(x.nick)}</span><span class="muted">מחובר</span></div>`).join('')}</div>
-    <label class="lbl">בוטים נוספים</label>${seg('netbots',[0,1,2,3],NET.bots)}</div><button class="btn" data-a="netstart" ${Object.keys(NET.guests).length?'':'disabled'}>התחל ${g==='bj'?'בלאק ג׳ק':VAR_NAME[g]}</button>${Object.keys(NET.guests).length?'':'<p class="hint">ממתינים שלפחות חבר אחד יצטרף…</p>'}`;}
+    <label class="lbl">בוטים נוספים</label>${seg('netbots',[0,1,2,3].map(n=>[n,n]),NET.bots)}</div><button class="btn" data-a="netstart" ${Object.keys(NET.guests).length?'':'disabled'}>התחל ${g==='bj'?'בלאק ג׳ק':VAR_NAME[g]}</button>${Object.keys(NET.guests).length?'':'<p class="hint">ממתינים שלפחות חבר אחד יצטרף…</p>'}`;}
   else{h+=`<div class="panel stack"><p class="lbl">חדר</p><div class="code">${esc(NET.code)}</div>${NET.host?`<p style="text-align:center">מחובר! ${esc(NET.host.presence.nick||'המארח')} יתחיל את המשחק בקרוב.</p>`:`<p class="muted" style="text-align:center">מחפש את המארח… ודא שהקוד נכון.</p>`}</div>`;}
   h+=`</div>`;V.innerHTML=h;const ni=$('#nick');if(ni)ni.addEventListener('input',()=>{S.nick=ni.value.trim();save();});}
 async function netCreate(){const R=await roomApi();if(!R)return;const code=Math.random().toString(36).slice(2,6);
@@ -1586,6 +1665,8 @@ function snd(t){if(t==='chip')vib(6);else if(t==='win'||t==='bigwin')vib([18,40,
     if(t==='card')cardSnd(n);
     else if(t==='chip')chipDrop(n,.9);
     else if(t==='tick')ballTick(n);
+    else if(t==='right'){chime(n,1319,{g:.045,dur:.7,rev:.5});chime(n+.08,1760,{g:.04,dur:.8,rev:.5});}
+    else if(t==='wrong'){nz(n,.14,{type:'lowpass',f:320,q:.8,g:.55});osc(n,150,.22,{g:.07,type:'triangle'});}
     else if(t==='win'){cascade(n,6,.32,.3);[784,988,1175].forEach((f,i)=>chime(n+.06+i*.085,f,{g:.05,dur:1.3}));}
     else if(t==='bigwin'){cascade(n,18,.9,.32);[1047,1319,1568,2093].forEach((f,i)=>chime(n+.05+i*.09,f,{g:.05,dur:1.6}));[1047,1319,1568].forEach(f=>chime(n+.5,f,{g:.035,dur:2.2}));}
     else if(t==='level'){whoosh(n,.45,.07);[523,587,659,784,880,1047,1175].forEach((f,i)=>chime(n+.25+i*.06,f,{g:.04,dur:.9}));[1047,1319,1568,2093].forEach(f=>chime(n+.72,f,{g:.04,dur:2.6,rev:.9}));cascade(n+.7,10,.6,.22);}
@@ -1620,29 +1701,7 @@ function dailyHTML(){const D=ensureDaily();return `<div class="panel stack" styl
   <div class="bars">${D.ids.map(id=>{const c=CH_POOL.find(x=>x.id===id);const p=Math.min(c.n,D.prog[id]||0);return `<div class="bar" style="grid-template-columns:minmax(0,1fr) 64px 40px"><span style="${D.done[id]?'color:var(--good)':''}">${D.done[id]?'✓ ':''}${c.t}</span><span class="tr"><span class="fl ${D.done[id]?'g':''}" style="display:block;width:${p/c.n*100}%"></span></span><span>${p}/${c.n}</span></div>`;}).join('')}</div><p class="note">אתגרים חדשים כל יום בחצות.</p></div>`;}
 
 /* ================= LEADERBOARD (db) ================= */
-const LB={init:false,db:null,user:null,id:null,rows:[],names:{},err:'',msg:'',tab:'chips'};
-async function lbInit(){if(LB.init)return;LB.init=true;
-  try{if(window.claude&&typeof window.claude.use==='function'){LB.db=await window.claude.use('db');LB.user=await window.claude.use('user');LB.id=LB.user?await LB.user.id():null;}}catch(e){LB.db=null;}
-  if(!LB.db){LB.err='none';if(CUR.v==='board')render();return;}
-  LB.db.collection('board').onSnapshot(snap=>{LB.rows=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()}));lbNames();},e=>{LB.err=e&&e.code||'error';if(CUR.v==='board')render();});
-  lbPublish();}
-function lbMine(){const st=Object.entries(S.stats).filter(([g])=>g!=='drill');return {chips:Math.round(S.chips),lvl:lvl(),dec:st.reduce((a,[,x])=>a+x.dec,0),good:st.reduce((a,[,x])=>a+x.good,0),hands:st.reduce((a,[,x])=>a+x.hands,0),ach:Object.keys(S.ach||{}).length,ch:Object.fromEntries(Object.entries(S.chals||{}).slice(-10).map(([k,v])=>[k,{net:v.net,acc:Math.round(v.acc*1000)/1000,g:v.g}])),t:Date.now()};}
-async function lbPublish(){if(!LB.db||!LB.id){LB.msg=LB.db?'צריך להיות מחובר לחשבון כדי להופיע בטבלה.':'';if(CUR.v==='board')render();return;}
-  try{await LB.db.doc('board/'+LB.id).set(lbMine());LB.msg='השורה שלך עודכנה.';}catch(e){LB.msg='לא הצלחתי לעדכן את השורה שלך — כדי להופיע בטבלה צריך הרשאת Contributor לקישור (מתפריט Share).';}
-  if(CUR.v==='board')render();}
-async function lbNames(){if(LB.user){try{const ids=LB.rows.map(r=>r.id);const ps=ids.length?await LB.user.profiles(ids):{};ids.forEach(id=>{LB.names[id]=(ps[id]&&ps[id].name)||'';});}catch(e){}}if(CUR.v==='board')render();}
-function rBoard(V){if(!LB.init)lbInit();
-  let h=`<div class="tbar"><button class="btn ghost sm" data-a="home">חזרה</button><h2>טבלת מובילים</h2></div><div class="stack" style="margin-top:12px">`;
-  if(LB.err==='none')h+=`<div class="panel"><p class="muted">טבלת המובילים עובדת כשהמשחק פתוח בתוך Claude. שתפו את הקישור עם חברים (Share), וכל מי שנכנס מופיע כאן עם היתרה, הרמה והדיוק שלו.</p></div>`;
-  else if(!LB.db)h+=`<p class="muted">מתחבר…</p>`;
-  else{const tabs=[['chips','יתרה'],['acc','דיוק'],['lvl','רמה'],['ach','הישגים']];
-    const rows=LB.rows.map(r=>({id:r.id,chips:+r.chips||0,lvl:+r.lvl||1,dec:+r.dec||0,good:+r.good||0,ach:+r.ach||0,hands:+r.hands||0})).map(r=>({...r,acc:r.dec>=30?r.good/r.dec:-1}));
-    rows.sort((a,b)=>b[LB.tab]-a[LB.tab]);
-    h+=`<div class="seg">${tabs.map(([k,l])=>`<button class="${LB.tab===k?'on':''}" data-a="lbtab" data-v="${k}">${l}</button>`).join('')}</div>
-    <div class="panel scroll"><table class="t"><tr><th>#</th><th>שחקן</th><th>יתרה</th><th>רמה</th><th>דיוק</th><th>הישגים</th></tr>
-    ${rows.length?rows.map((r,i)=>`<tr class="${r.id===LB.id?'best':''}"><td class="n">${i+1}</td><td>${esc(r.id===LB.id?'אני':(LB.names[r.id]||'שחקן'))}</td><td class="n">${fmt(r.chips)}</td><td class="n">${r.lvl}</td><td class="n">${r.acc>=0?pct(r.acc,0):'—'}</td><td class="n">${r.ach}</td></tr>`).join(''):`<tr><td colspan="6" class="muted">עוד אין שורות. השורה שלך תופיע כאן ברגע שתתעדכן.</td></tr>`}</table></div>
-    <p class="note">${esc(LB.msg)} דיוק נספר מ-30 החלטות ומעלה. היתרה היא היתרה הרגילה (לא מצב אימון).</p><button class="btn dark" data-a="lbpub">עדכן את השורה שלי</button>`;}
-  h+=`</div>`;V.innerHTML=h;}
+
 
 /* ================= BANKROLL GRAPH ================= */
 const short=n=>Math.abs(n)>=1e6?(n/1e6).toFixed(1)+'M':Math.abs(n)>=1e4?Math.round(n/1e3)+'K':String(Math.round(n));
@@ -1784,7 +1843,7 @@ function rChal(V){if(!LB.init)lbInit();const mine=Object.entries(S.chals||{}).re
      const all=[{n:'אני',net:r.net,acc:r.acc,me:1},...fr].sort((a,b)=>b.acc-a.acc||b.net-a.net);
      return `<div class="panel" style="background:var(--night)"><div class="row"><b class="mono grow" style="color:var(--brass-2)">${code}</b><span class="pill">${r.g==='vp'?'וידאו פוקר':'בלאק ג׳ק'}</span><button class="btn ghost sm" data-a="copyshare" data-code="${code}">שתף</button></div>
        <table class="t">${all.map((x,i)=>`<tr class="${x.me?'best':''}"><td class="n">${i+1}</td><td>${esc(x.n)}</td><td class="n">${sgn(x.net)}</td><td class="n">${pct(x.acc,0)}</td></tr>`).join('')}</table>
-       ${fr.length?'':`<p class="note">${LB.db?'עוד אף חבר לא שיחק את הקוד הזה.':'בתוך Claude רואים כאן גם את התוצאות של החברים.'}</p>`}</div>`;}).join('')}</div>`;
+       ${fr.length?'':`<p class="note">${LB.init?'עוד אף חבר לא שיחק את הקוד הזה.':(inClaude()?'רגע, טוען את התוצאות של החברים…':'מתחברים עם Google כדי לראות את התוצאות של החברים.')}</p>`}</div>`;}).join('')}</div>`;
   V.innerHTML=h+`</div>`;}
 
 /* ================= MULTI-TABLE TOURNAMENT ================= */
@@ -1910,7 +1969,7 @@ function fbCfg(){if(FIREBASE_CONFIG)return FIREBASE_CONFIG;try{return S.fbcfg?JS
 async function fbInit(){const cfg=fbCfg();if(!cfg||inClaude()||FB.loading||FB.on)return;FB.loading=true;
   try{const V='10.12.2';for(const m of ['app','auth','firestore'])await loadScript(`https://www.gstatic.com/firebasejs/${V}/firebase-${m}-compat.js`);
     firebase.initializeApp(cfg);FB.auth=firebase.auth();FB.db=firebase.firestore();FB.on=true;
-    FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;if(u)fbLoad();if(CUR.v==='home')render();});}
+    FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;if(LB.kind==='fb'||LB.err)lbReset();if(u){fbLoad();setTimeout(lbInit,1500);}if(['board','chal','online'].includes(CUR.v))render();if(CUR.v==='home')render();});}
   catch(e){FB.err='לא הצלחתי לטעון את Firebase — בדקו את ה-config ואת החיבור.';}FB.loading=false;if(CUR.v==='home')render();}
 async function fbSignIn(){if(!FB.on){toast('Firebase לא מוגדר עדיין','bad');return;}const pr=new firebase.auth.GoogleAuthProvider();
   pr.setCustomParameters({prompt:'select_account'});try{await FB.auth.signInWithPopup(pr);}catch(e){const c=e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;if(c==='auth/popup-blocked')toast('הדפדפן חסם את חלון ההתחברות. אפשרו חלונות קופצים לאתר ונסו שוב.','bad');else if(c==='auth/unauthorized-domain')toast('הדומיין לא מאושר ב-Firebase: הוסיפו את orisella10-a11y.github.io ב-Authorized domains','bad');else toast('ההתחברות נכשלה: '+esc(c||e.message||''),'bad');}}
@@ -1987,9 +2046,9 @@ const ICO={home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1
  trophy:'<svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H4a3 3 0 0 0 4 4M16 6h4a3 3 0 0 1-4 4M12 13v4M8 21h8M9 17h6"/></svg>',
  user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.4 4.4-6 8-6s7 1.6 8 6"/></svg>'};
 const TABS=[['home','לובי',ICO.home],['academy','אקדמיה',ICO.cap],['chal','אתגרים',ICO.bolt],['board','דירוג',ICO.trophy],['profile','פרופיל',ICO.user]];
-const TAB_VIEWS=new Set(['home','academy','lesson','chal','board','profile','stats','ach','hist','histd','online','bjsim']);
+const TAB_VIEWS=new Set(['course','home','academy','lesson','chal','board','profile','stats','ach','hist','histd','online','bjsim']);
 function tabsRender(){const tb=$('#tabbar');if(!tb)return;const show=TAB_VIEWS.has(CUR.v);tb.hidden=!show;try{document.body.classList.toggle('tabs',show);}catch(e){}if(!show)return;
-  const act={lesson:'academy',bjsim:'academy',stats:'profile',ach:'profile',hist:'profile',histd:'profile',online:'home'}[CUR.v]||CUR.v;
+  const act={course:'academy',lesson:'academy',bjsim:'academy',stats:'profile',ach:'profile',hist:'profile',histd:'profile',online:'home'}[CUR.v]||CUR.v;
   tb.innerHTML=TABS.map(([v,l,ic])=>`<button class="${act===v?'on':''}" data-a="go" data-v="${v}" ${act===v?'aria-current="page"':''}>${ic}<span>${l}</span></button>`).join('');}
 const TILE_STYLE={bj:['#2c8a5a','♠','bj'],rl:['#b8262c','◎','rl'],holdem:['#2f6cae','♥','holdem'],omaha:['#6a3fa0','♦','omaha'],draw:['#2a8f8f','♣','draw'],pine:['#c9a227','✦','pine'],vp:['#cf9f42','J','vp'],tcp:['#d06a2c','3','tcp'],bac:['#a83e74','9','bac']};
 function decorateTiles(V){if(!V.querySelectorAll)return;V.querySelectorAll('.tile').forEach(t=>{const g=t.dataset.g==='poker'?t.dataset.var:t.dataset.g;const st=TILE_STYLE[g];if(!st)return;t.style.setProperty('--ta',st[0]);t.dataset.deco=st[1];
@@ -1999,7 +2058,7 @@ function decorateTiles(V){if(!V.querySelectorAll)return;V.querySelectorAll('.til
 let SESS=null;
 const SESS_NAME={bj:'בלאק ג׳ק',rl:'רולטה',holdem:'הולדם',pine:'פיינאפל',crazy:'קרייזי פיינאפל',omaha:'אומהה',draw:'5 קלפים',vp:'וידאו פוקר',tcp:'פוקר 3 קלפים',bac:'באקרה',tour:'טורניר פוקר',chal:'אתגר חברים'};
 function sessStart(g){SESS={g,t:Date.now(),hands:0,net:0,dec:0,good:0,best:0,lv:lvl()};}
-function sessEnd(){const s=SESS;SESS=null;if(!s||!s.hands)return;const mins=Math.max(1,Math.round((Date.now()-s.t)/60000));
+function sessEnd(){const s=SESS;SESS=null;if(!s||!s.hands)return;if(LB.init)lbPublish();const mins=Math.max(1,Math.round((Date.now()-s.t)/60000));
   modal(`<p class="eyebrow">סיכום הסשן · ${SESS_NAME[s.g]||''}</p><h2 style="margin-top:6px" class="${s.net>0?'good':s.net<0?'bad':''}">${sgn(s.net)} צ׳יפים</h2>
    <div class="kv" style="margin-top:12px"><div><small>ידיים</small><b>${s.hands}</b></div><div><small>הזכייה הגדולה</small><b>${s.best>0?sgn(s.best):'—'}</b></div><div><small>זמן</small><b>${mins} דק׳</b></div></div>
    ${s.dec?`<div class="kv" style="margin-top:8px"><div><small>החלטות שנבדקו</small><b>${s.dec}</b></div><div><small>דיוק</small><b class="${s.good/s.dec>=.9?'good':''}">${pct(s.good/s.dec,0)}</b></div><div><small>רמה</small><b>${s.lv}${lvl()>s.lv?' → '+lvl():''}</b></div></div>`:''}
@@ -2024,11 +2083,390 @@ function rProfile(V){const st=Object.entries(S.stats).filter(([g])=>g!=='drill'&
    <label class="toggle"><span>משחק מהיר<br><small class="muted">חלוקה, בוטים וגלגל מהירים יותר</small></span><input type="checkbox" id="pfast" ${S.fast?'checked':''}></label>
    <label class="toggle"><span>צלילים</span><input type="checkbox" id="psnd" ${S.sound?'checked':''}></label>
    <label class="toggle" style="border:0"><span>רטט<br><small class="muted">בטלפונים שתומכים</small></span><input type="checkbox" id="phap" ${S.haptic!==false?'checked':''}></label></div>
-  <div class="panel stack"><b>חשבון ושמירה</b>${fbSettingsHTML()}<small class="muted">${cloudLine()}</small>${transferHTML()}</div>
+  <div class="panel stack"><b>חשבון ושמירה</b>${fbSettingsHTML()}<small class="muted">${cloudLine()}</small>${installProfHTML()}${transferHTML()}</div>
+  <div class="panel row"><span class="grow"><b>מדריכים</b><br><small class="muted">יד מודרכת ראשונה בכל משחק</small></span><button class="btn dark sm" data-a="tutreset">הפעל מחדש</button></div>
   <button class="btn ghost" data-a="settings">הגדרות נוספות</button></div>`;
   const ni=$('#pnick');if(ni&&ni.addEventListener)ni.addEventListener('change',()=>{S.nick=ni.value.trim().slice(0,14);save();render();});
   const bind=(id,k,inv)=>{const el=$('#'+id);if(el)el.onchange=e=>{S[k]=e.target.checked;save();updTop();render();};};bind('pfour','fourc');bind('pfast','fast');bind('psnd','sound');
   const hp=$('#phap');if(hp)hp.onchange=e=>{S.haptic=e.target.checked;save();if(S.haptic)vib(20);};}
+const LOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+/* ================= SCHOOL: courses → levels → lessons → quizzes ================= */
+const LVL_NAMES=['מתחילים','מתקדמים','מומחים'];
+const FLAME='<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true" style="vertical-align:-2px"><path d="M12 2c1 3.5-1.5 5-1.5 7.5 0 1.4 1 2.5 2.3 2.5 1.6 0 2.2-1.6 1.7-3.4C17 10.4 19 13 19 15.5 19 19.1 15.9 22 12 22s-7-2.9-7-6.5C5 10 10.5 8 12 2z"/></svg>';
+const MART_HTML=`<div class="panel stack" style="background:var(--night)"><h3>סימולטור מרטינגייל</h3><p class="note">מכפילים את ההימור על אדום אחרי כל הפסד, עד שמרוויחים 100 או נגמר הכסף (קופה 1,000, הימור בסיס 10). 1,000 סשנים:</p><button class="btn" data-a="mart">הרץ סימולציה</button><div id="martout" class="note"></div></div>`;
+const SL={};
+function L(id,t,s,q,o={}){SL[id]=Object.assign({id,t,s:s||[],q:q||[]},o);}
+/* ---- יסודות ---- */
+L('b1','מה זו תוחלת',[`<h3>מה זו תוחלת?</h3><p>תוחלת (EV — Expected Value) היא כמה מרוויחים או מפסידים <b>בממוצע</b> בכל הימור, אם חוזרים עליו המון פעמים.</p><p>החישוב: כל תוצאה כפול הסיכוי שלה, ומחברים.</p><div class="formula">EV = סיכוי לזכות × רווח − סיכוי להפסיד × הפסד</div>`,
+ `<h3>דוגמה: מטבע</h3><p>מהמרים 10 על "עץ". עץ — מרוויחים 10, פלי — מפסידים 10.</p><div class="formula">EV = 0.5×10 − 0.5×10 = 0</div><p>משחק הוגן. עכשיו נניח שעל עץ משלמים רק 9:</p><div class="formula">EV = 0.5×9 − 0.5×10 = −0.5</div><p>בכל הימור של 10 מפסידים בממוצע חצי צ׳יפ. כך בדיוק קזינו מרוויח.</p>`,
+ `<h3>יתרון הבית</h3><p>יתרון הבית הוא התוחלת השלילית של השחקן, באחוזים מההימור. ברולטה אירופאית הוא 2.7%: מכל 100 שמהמרים, הקזינו שומר בממוצע 2.70.</p><p>בטווח קצר הכל יכול לקרות. בטווח ארוך — התוצאה נצמדת לתוחלת.</p>`],
+ [['מטבע הוגן: מרוויחים 10 בניצחון ומפסידים 10 בהפסד. מה התוחלת?',['0','+10','−10','+5'],'0.5×10 − 0.5×10 = 0.'],
+  ['הימור משלם 2 בזכייה (סיכוי 30%) ומפסיד 1 בהפסד. מה התוחלת?',['−0.1','+0.1','+0.6','−0.4'],'0.3×2 − 0.7×1 = −0.1.'],
+  ['יתרון בית של 5% אומר ש…',['בממוצע מפסידים 5 על כל 100 שמהמרים','מפסידים ב-5% מהסיבובים','הקזינו מנצח ב-55% מהפעמים','אחרי 20 הימורים בטוח מפסידים'],'זה ממוצע לטווח ארוך, לא תוצאה של סיבוב.'],
+  ['שיחקת 10 ידיים בהימור עם תוחלת שלילית והרווחת. מה זה אומר?',['שהיה לך מזל בטווח הקצר','שהתוחלת בעצם חיובית','שמצאת שיטה','שהקזינו טעה'],'בטווח קצר המזל גדול מהתוחלת.'],
+  ['מה התוחלת של הימור 100 על אדום ברולטה אירופאית?',['כ-−2.70','0','כ-−5.26','כ-+2.70'],'18/37×100 − 19/37×100 ≈ −2.70.']]);
+L('b2','הסתברות בקלפים ובגלגל',[`<h3>הסתברות בסיסית</h3><p>הסתברות = מספר התוצאות המתאימות ÷ מספר כל התוצאות.</p><p>בחפיסה 52 קלפים: 4 צורות × 13 ערכים. הסיכוי לשלוף אס: 4/52 ≈ 7.7%. הסיכוי ללב: 13/52 = 25%.</p>`,
+ `<h3>"או" ו"וגם"</h3><ul><li><b>או</b> (תוצאות שלא חופפות): מחברים. אס או מלך: 4/52 + 4/52 ≈ 15.4%.</li><li><b>וגם</b> (בזה אחר זה): מכפילים. שני אסים ברצף: 4/52 × 3/51 ≈ 0.45%.</li><li><b>לפחות פעם אחת</b>: 1 פחות הסיכוי שזה אף פעם לא קורה.</li></ul>`,
+ `<h3>תלוי או בלתי תלוי</h3><p>ברולטה, בקוביות ובמטבע כל סיבוב לא יודע מה קרה קודם. אחרי 5 אדומים ברצף, הסיכוי לאדום נשאר 18/37.</p><p>בקלפים זה שונה: קלף שיצא כבר לא בחפיסה. זה הבסיס לספירת קלפים בבלאק ג׳ק.</p>`],
+ [['מה הסיכוי לשלוף קלף תמונה (J, Q, K)?',['12/52 ≈ 23%','3/52 ≈ 6%','4/52 ≈ 8%','13/52 = 25%'],'3 ערכים × 4 צורות = 12.'],
+  ['מה הסיכוי ששני הקלפים הראשונים יהיו אסים?',['כ-0.45%','כ-7.7%','כ-1.5%','כ-15%'],'4/52 × 3/51.'],
+  ['יצא אדום 6 פעמים ברצף. מה הסיכוי לשחור עכשיו (אירופאית)?',['18/37 ≈ 48.6%','יותר מ-50%','פחות מ-40%','100%'],'לגלגל אין זיכרון.'],
+  ['למה ספירת קלפים עובדת בבלאק ג׳ק ולא ברולטה?',['קלפים שיצאו לא חוזרים לנעל עד הערבוב','בבלאק ג׳ק יש פחות שחקנים','הדילר עושה טעויות','ברולטה יש 0'],'בבלאק ג׳ק הסיכויים משתנים לפי מה שיצא.'],
+  ['מה הסיכוי שבשתי הטלות מטבע ייצא לפחות עץ אחד?',['75%','50%','25%','100%'],'1 − 0.25.']]);
+L('b3','יתרון הבית בכל משחק',[`<h3>טבלת יתרון הבית</h3><div class="scroll"><table class="t"><tr><th>הימור</th><th>יתרון הבית</th></tr><tr><td>וידאו פוקר 9/6 (משחק מושלם)</td><td class="n">0.46%</td></tr><tr><td>בלאק ג׳ק עם אסטרטגיה בסיסית</td><td class="n">≈0.3–0.6%</td></tr><tr><td>באקרה — בנקאי</td><td class="n">1.06%</td></tr><tr><td>באקרה — שחקן</td><td class="n">1.24%</td></tr><tr><td>רולטה אירופאית</td><td class="n">2.70%</td></tr><tr><td>פוקר 3 קלפים — אנטה</td><td class="n">3.37%</td></tr><tr><td>הימורי צד בבלאק ג׳ק</td><td class="n">≈4–6%</td></tr><tr><td>רולטה אמריקאית</td><td class="n">5.26%</td></tr><tr><td>באקרה — טאי</td><td class="n">14.36%</td></tr></table></div><p>בפוקר רגיל אין יתרון בית: משחקים נגד שחקנים, והקזינו גובה עמלה מכל קופה (rake).</p>`,
+ `<h3>מה זה אומר בכסף</h3><p>ההפסד הצפוי = סכום כל ההימורים × יתרון הבית. מי שמהמר 25 ליד ו-60 ידיים בשעה מגלגל 1,500 בשעה:</p><ul><li>בלאק ג׳ק עם אסטרטגיה (0.5%): כ-7.5 לשעה.</li><li>רולטה אירופאית (2.7%): כ-40 לשעה.</li><li>טאי בבאקרה (14.4%): כ-216 לשעה.</li></ul><p>אותו כסף, אותו זמן — הבדל של פי 30.</p>`],
+ [['איזה הימור הכי טוב לשחקן מהרשימה?',['בנקאי בבאקרה','טאי בבאקרה','מספר ברולטה אמריקאית','Perfect Pairs'],'1.06% לעומת 14.4%, 5.26% וכ-6%.'],
+  ['למה בפוקר אין יתרון בית?',['משחקים נגד שחקנים, והקזינו לוקח עמלה','הקלפים הוגנים יותר','הדילר לא משחק','זה אסור בחוק'],'הכסף עובר בין השחקנים.'],
+  ['מהמרים 20 ליד, 50 ידיים בשעה, ביתרון בית 2%. מה ההפסד הצפוי לשעה?',['20','2','100','40'],'1,000 מגלגלים × 2%.'],
+  ['מה יתרון הבית בבלאק ג׳ק למי שלא יודע אסטרטגיה?',['כ-2% ויותר','0%','כ-0.5%','כ-15%'],'טעויות מכפילות אותו פי 4 ויותר.']]);
+L('b4','שונות: מזל מול מתמטיקה',[`<h3>שונות</h3><p>התוחלת אומרת מה קורה בממוצע. השונות אומרת כמה התוצאות קופצות מסביב לממוצע.</p><p>הימור על אדום: תוצאות קרובות לאפס. הימור על מספר בודד: רוב הזמן מפסידים, ופעם ב-37 זוכים פי 35 — אותה תוחלת, שונות ענקית.</p>`,
+ `<h3>חוק המספרים הגדולים</h3><p>ככל שמשחקים יותר, הממוצע מתקרב לתוחלת. אחרי 10 סיבובים אפשר להיות ברווח גדול; אחרי 10,000 כמעט בטוח שתהיה קרוב ל"מינוס יתרון הבית".</p><p>מזל מכריע ערב אחד — מתמטיקה מכריעה שנה.</p>`,
+ `<h3>מה זה אומר לשחקן</h3><ul><li>שופטים החלטה לפי התוחלת, לא לפי התוצאה. דאבל על 11 שהפסיד עדיין היה נכון.</li><li>רצף הפסדים לא אומר שמשהו "חייב" להשתנות.</li><li>בגרף היתרה בפרופיל רואים את הקו שלך מול הקו הצפוי — זו השונות בפעולה.</li></ul>`],
+ [['עשית דאבל על 11 מול 6 והפסדת. איך לשפוט את ההחלטה?',['היא הייתה נכונה — התוצאה היא מזל','טעות, כי הפסדת','צריך לבדוק עוד 2 ידיים','אין דרך לדעת'],'מעריכים החלטה לפי התוחלת שלה.'],
+  ['מה ההבדל בין הימור על אדום לבין מספר בודד ברולטה?',['אותה תוחלת, שונות שונה מאוד','למספר בודד תוחלת טובה יותר','לאדום אין יתרון בית','אין הבדל'],'שניהם −2.7%.'],
+  ['מה אומר חוק המספרים הגדולים?',['עם הרבה סיבובים הממוצע מתקרב לתוחלת','אחרי הפסדים מגיעים ניצחונות','מי שמהמר יותר מרוויח יותר','ההסתברויות משתנות עם הזמן'],'הוא מדבר על ממוצע, לא על "תיקון" רצפים.'],
+  ['הפסדת 8 ידיים ברצף בבלאק ג׳ק. מה הכי נכון?',['להמשיך לפי האסטרטגיה בהימור הרגיל','להכפיל כדי להחזיר','לשנות אסטרטגיה','לעבור לשולחן "חם"'],'רצפים הם חלק נורמלי מהשונות.']]);
+L('b5','ניהול כסף',[],[['תקציב של 1,000. מה גודל הימור סביר?',['10–20','200','500','הכל בבת אחת'],'1%–2% מהתקציב.'],
+  ['מה זה "לרדוף אחרי הפסדים"?',['להגדיל הימורים כדי להחזיר כסף שהפסדת','לעצור אחרי הפסד','לעבור משחק','לשחק לאט'],'זה מגדיל סיכון בלי לשנות תוחלת.'],
+  ['איזו שיטת הימור הופכת את הרולטה לרווחית?',['אף אחת','מרטינגייל','פיבונאצ׳י','דלמבר'],'סכום של הימורים שליליים נשאר שלילי.'],
+  ['מה הערך הכספי של הצ׳יפים במשחק הזה?',['אין — זה לבידור ולימוד','אפשר לפדות אותם','הם שווים שקלים','אפשר להעביר לבנק'],'צ׳יפים וירטואליים בלבד.']],
+ {src:'g1',s2:[`<h3>כללים מעשיים</h3><ul><li><b>תקציב לסשן</b>: סכום שמוכנים להפסיד, ולא יותר.</li><li><b>גודל יחידה</b>: 1%–2% מהתקציב לכל הימור מאפשר לשרוד תנודות.</li><li><b>מגבלת הפסד</b>: מחליטים מראש מתי עוצרים — ולא "רק עוד יד אחת".</li><li><b>לא רודפים</b>: הגדלת הימור אחרי הפסד מגדילה רק את הסיכון.</li></ul>`]});
+L('b6','הטעות של המהמר ומערכות הימור',[`<h3>הטעות של המהמר</h3><p>"יצא אדום 7 פעמים — עכשיו חייב לצאת שחור." זו הטעות הנפוצה ביותר בקזינו. לגלגל, לקובייה ולמטבע אין זיכרון.</p><p>גם ההפך שגוי: "היד חמה" — רצף ניצחונות לא מנבא את הבא.</p>`,
+ `<h3>מערכות הימור</h3><ul><li><b>מרטינגייל</b>: מכפילים אחרי כל הפסד. רוב הזמן רווח קטן, ולפעמים הפסד ענק כשמגיעים לגבול השולחן או לסוף הכסף.</li><li><b>פיבונאצ׳י / דלמבר</b>: אותו רעיון בעלייה איטית יותר.</li></ul><p>אף מערכת לא הופכת הימורים עם תוחלת שלילית לרווחיים — היא רק משנה את צורת הסיכון.</p>`,MART_HTML],
+ [['יצא שחור 5 פעמים ברצף. מה נכון?',['הסיכוי לאדום בסיבוב הבא לא השתנה','עכשיו יותר סביר אדום','עכשיו יותר סביר שחור','הגלגל מקולקל'],'כל סיבוב עצמאי.'],
+  ['מה החולשה של מרטינגייל?',['רצף הפסדים קצר מגיע לגבול השולחן או מוחק את הקופה','מפסידה כל סיבוב','אסורה בקזינו','מסובכת לחישוב'],'אחרי 8 הפסדים ההימור פי 256.'],
+  ['מה מערכת הימור באמת משנה?',['את צורת התוצאות, לא את התוחלת','את יתרון הבית','את הסיכוי בכל סיבוב','את המספרים שיוצאים'],'התוחלת נשארת שלילית.'],
+  ['"היד חמה, ממשיך להעלות". מה הבעיה?',['ניצחונות קודמים לא משפיעים על הבא','אין בעיה','צריך להוריד הימור','זה נכון רק ברולטה'],'הטעות ההפוכה של המהמר.']]);
+/* ---- בלאק ג׳ק ---- */
+L('bj1','החוקים בשתי דקות',[],[['כמה שווה מלך?',['10','13','11','1'],'כל קלפי התמונה שווים 10.'],
+  ['מה זו יד "רכה"?',['יד עם אס שנספר כ-11','יד מתחת ל-12','יד בלי קלפי תמונה','יד של שני קלפים'],'אפשר לקחת קלף בלי להישרף.'],
+  ['מה עושה דאבל?',['מכפיל את ההימור ומקבל קלף אחד בלבד','מכפיל ומקבל כמה קלפים שרוצים','מפצל את היד','מוותר על חצי'],''],
+  ['כמה מחזירה כניעה?',['חצי מההימור','את כל ההימור','כלום','פי 1.5'],''],
+  ['איזה זוג תמיד מפצלים?',['אסים ושמיניות','עשרות','חמישיות','רביעיות'],'']],{src:'bj1',play:['bj']});
+L('bja','ספירת היד: רך, קשה וטבעי',[`<h3>חישוב יד</h3><ul><li>2–10: לפי המספר.</li><li>J, Q, K: 10.</li><li>A: 1 או 11 — מה שטוב יותר בלי לעבור 21.</li></ul><p>A+6 = 7 או 17 — "17 רך". אם מוסיפים 9: האס הופך ל-1 → 16 קשה.</p>`,
+ `<h3>בלאק ג׳ק טבעי</h3><p>A עם 10 או תמונה בשני הקלפים הראשונים = 21 "טבעי". הוא מנצח כל 21 אחר ומשלם 3:2 (על 10 מקבלים 15). 21 אחרי פיצול הוא 21 רגיל.</p>`,
+ `<h3>נשרף</h3><p>מעל 21 = הפסד מיידי, גם אם הדילר יישרף אחר כך. זה היתרון המרכזי של הקזינו: השחקן משחק ראשון.</p>`],
+ [['A + 6 + 9 = ?',['16 קשה','26','16 רך','נשרף'],'האס הופך ל-1.'],
+  ['כמה משלם בלאק ג׳ק טבעי על הימור 20 (3:2)?',['30','20','40','24'],'20 × 1.5.'],
+  ['השחקן נשרף והדילר גם נשרף. מה קורה?',['השחקן הפסיד','תיקו','השחקן ניצח','מחלקים מחדש'],'השחקן משחק ראשון.'],
+  ['A+K אחרי פיצול אסים — בלאק ג׳ק?',['לא, זה 21 רגיל','כן, משלם 3:2','כן, משלם 2:1','תיקו אוטומטי'],'']],{gen:[['bjtotal',2]],play:['bj']});
+L('bjb','הדילר וחוקי השולחן',[`<h3>לדילר אין החלטות</h3><p>הדילר לוקח קלף עד 16 ועוצר מ-17. בחלק מהשולחנות הוא לוקח גם על 17 רך (H17) — זה כתוב על הבד.</p>`,
+ `<h3>הקלף הגלוי</h3><p>2–6 הם קלפים "חלשים": הדילר ייאלץ לקחת ויישרף בכ-35%–42%. 7 עד A "חזקים": הוא נשרף רק 17%–26%.</p><p>מכאן האסטרטגיה: מול קלף חלש — זהירות ודאבלים; מול חזק — צריך לשפר את היד.</p>`,
+ `<h3>הצצה וביטוח</h3><p>כשלדילר A או 10 גלוי הוא מציץ אם יש לו בלאק ג׳ק לפני שאתה משחק. מול A מציעים ביטוח (חצי מההימור, משלם 2:1). בלי ספירת קלפים — לא לוקחים.</p>`],
+ [['לדילר 16. מה הוא עושה?',['לוקח קלף','עוצר','בוחר לפי השחקנים','מפצל'],''],
+  ['באיזה קלף גלוי הדילר נשרף הכי הרבה?',['6','10','A','7'],'מול 5 ו-6 כ-42%.'],
+  ['מה זה H17?',['הדילר לוקח קלף על 17 רך','הדילר עוצר על 17','השחקן חייב לקחת על 17','הבית משלם 17:1'],''],
+  ['לקחת ביטוח בלי ספירה?',['לא — הוא מפסיד כ-7%','כן, תמיד','רק עם בלאק ג׳ק','רק מול A אדום'],''],
+  ['כמה משלם ביטוח כשלדילר בלאק ג׳ק?',['2:1','3:2','1:1','אין תשלום'],'']]);
+L('bjc','אסטרטגיה בסיסית: ידיים קשות',[`<h3>הכללים החשובים</h3><ul><li>17 ומעלה: תמיד עומדים.</li><li>13–16 מול 2–6: עומדים. מול 7–A: קלף (או כניעה ב-15/16).</li><li>12: עומדים רק מול 4–6.</li><li>11: דאבל (חוץ ממול A כשהדילר עומד על 17 רך). 10: דאבל מול 2–9. 9: דאבל מול 3–6.</li></ul>`],
+ [['13 מול 2?',['עמוד','קלף','דאבל','כניעה'],''],['12 מול 3?',['קלף','עמוד','דאבל','כניעה'],''],['10 מול 9?',['דאבל','קלף','עמוד','כניעה'],'']],{src:'bj2',gen:[['bjq',2]],play:['bj']});
+L('bjd','ידיים רכות וזוגות',[`<h3>ידיים רכות</h3><ul><li>19 רך ומעלה: עומדים.</li><li>A,7 (18 רך): עומדים מול 2, 7, 8; דאבל מול 3–6; קלף מול 9, 10, A.</li><li>A,2 עד A,6: דאבל מול 4–6 (A,6 גם מול 3), אחרת קלף.</li></ul><h3>זוגות</h3><ul><li>תמיד: A,A ו-8,8. אף פעם: 10,10 ו-5,5.</li><li>9,9: מפצלים חוץ ממול 7, 10, A.</li><li>2,2 / 3,3 / 7,7 מול 2–7. 6,6 מול 2–6. 4,4 רק מול 5–6.</li></ul>`],
+ [['A,7 מול 9?',['קלף','עמוד','דאבל','פיצול'],'18 רך לא מספיק מול 9.'],['5,5 מול 6?',['דאבל','פיצול','עמוד','קלף'],'5,5 משחקים כמו 10.'],['9,9 מול 7?',['עמוד','פיצול','קלף','דאבל'],'18 כבר מנצח את ה-17 הצפוי.']],{gen:[['bjq',2]],play:['bj']});
+L('bj4','5 טעויות יקרות',[],[['מה הבעיה בפיצול 10,10?',['הורסים 20 שמנצח ברוב המקרים','אין בעיה','מאבדים ביטוח','מותר רק ב-H17'],''],
+  ['"Even Money" עם בלאק ג׳ק מול A?',['זה ביטוח — לא כדאי בלי ספירה','תמיד לקחת','זה אסור','משלם 3:2'],''],
+  ['"לדילר 10, אז עם 16 אני עומד". נכון?',['לא — כניעה, ואם אין, קלף','כן','רק בשולחן 6:5','רק עם 3 קלפים'],'']],{src:'bj4',gen:[['bjq',2]]});
+L('bj6','איך החוקים משנים את היתרון',[],[['איזה חוק הכי יקר לשחקן?',['בלאק ג׳ק משלם 6:5','8 חפיסות','דילר H17','אין כניעה'],'כ-1.4%.'],
+  ['מה עדיף לשחקן?',['פחות חפיסות','יותר חפיסות','אין הבדל','רק 8'],''],['כמה מוסיף H17 ליתרון הבית?',['כ-0.2%','כ-2%','כ-5%','כלום'],''],['כניעה מאוחרת מותרת. זה…',['טוב לשחקן','רע לשחקן','לא משנה','טוב רק לדילר'],'']],{src:'bj6'});
+L('bj3','ספירת קלפים Hi-Lo',[],[['מה הספירה הרצה אחרי: 5, K, 3, A, 6?',['+1','0','+3','−1'],'+1 −1 +1 −1 +1.'],
+  ['ספירה גבוהה אומרת ש…',['נשארו הרבה 10 ואסים — טוב לשחקן','נשארו הרבה קלפים נמוכים','הדילר ינצח','צריך לעזוב'],'']],{src:'bj3',gen:[['hilo',3]]});
+L('bje','ספירה אמיתית וגובה הימור',[`<h3>למה מחלקים בחפיסות</h3><p>+6 כשנשארה חפיסה אחת זה המון 10 ואסים ביחס לקלפים. +6 עם 6 חפיסות — כמעט כלום. ספירה אמיתית = ספירה רצה ÷ חפיסות שנשארו.</p>`,
+ `<h3>מרווח הימורים</h3><ul><li>ספירה אמיתית 1 ומטה: יחידה אחת.</li><li>+2: 2 יחידות. +3: 4. +4: 6. +5 ומעלה: 8.</li></ul><p>היתרון מגיע מגודל ההימור: מעט כשהקזינו מוביל, הרבה כשאתה מוביל. בסימולטור באקדמיה רואים את זה על 100,000 ידיים.</p>`,
+ `<h3>הערכת חפיסות</h3><p>בקזינו מעריכים בעין את גובה הקלפים שנזרקו. במשחק כאן מספר הקלפים בנעל כתוב למעלה — מחלקים ב-52.</p>`],
+ [['ספירה רצה +9, נשארו 3 חפיסות. ספירה אמיתית?',['+3','+9','+27','+1'],''],['ספירה אמיתית +4 במרווח 1–8. כמה יחידות?',['6','1','8','2'],''],['למה מגדילים הימור בספירה גבוהה?',['כי אז לשחקן יש יתרון','הדילר עייף','זה מבלבל את הקזינו','זה חובה'],'']],{gen:[['tc',2]]});
+L('bj5','סטיות לפי ספירה',[],[['16 מול 10, בלי כניעה, ספירה אמיתית +1?',['עמוד','קלף','דאבל','פיצול'],''],['10,10 מול 6 בספירה +4?',['פיצול','עמוד','דאבל','קלף'],''],['מאיזו ספירה אמיתית לוקחים ביטוח?',['+3','0','−1','+10'],''],['12 מול 3 בספירה +2?',['עמוד','קלף','דאבל','כניעה'],'']],{src:'bj5'});
+L('bjf','הימורי צד',[`<h3>Perfect Pairs</h3><p>מהמרים ששני הקלפים הראשונים יהיו זוג: מעורב (צבע שונה) 6:1, צבעוני (אותו צבע, צורה שונה) 12:1, מושלם (אותה צורה) 25:1.</p>`,
+ `<h3>21+3</h3><p>שני הקלפים שלך + הקלף הגלוי של הדילר = יד פוקר של 3 קלפים: צבע 5:1, רצף 10:1, שלישייה 30:1, רצף צבע 40:1, שלישייה באותה צורה 100:1.</p>`,
+ `<h3>השורה התחתונה</h3><p>ב-6 חפיסות Perfect Pairs מפסיד כ-6% ו-21+3 כ-4.6% — פי 10 מההימור הראשי עם אסטרטגיה. הסולבר בשולחן מחשב את הסיכויים לפי הנעל, ולפעמים הם הופכים לרווחיים.</p>`],
+ [['כמה משלם זוג מושלם?',['25:1','6:1','12:1','100:1'],''],['8♥ ו-8♦ זה…',['זוג צבעוני (12:1)','זוג מושלם','זוג מעורב','לא זוג'],'שניהם אדומים, צורה שונה.'],['5♠ 6♠ והדילר 7♠ ב-21+3?',['רצף צבע (40:1)','צבע','רצף','כלום'],''],['איזה הימור עדיף לטווח ארוך?',['ההימור הראשי עם אסטרטגיה','Perfect Pairs','21+3','שניהם יחד'],'']]);
+/* ---- פוקר ---- */
+L('pk1','דירוג הידיים',[],[['מה חזק יותר?',['צבע','רצף','שלישייה','שני זוגות'],''],['מה החלש מהרשימה?',['שני זוגות','שלישייה','רצף','צבע'],''],['A-2-3-4-5 זה רצף?',['כן — הנמוך ביותר','לא','רק באומהה','רק באותה צורה'],'']],{src:'pk1',gen:[['rank',3]]});
+L('pka','מהלך יד בטקסס הולדם',[`<h3>בליינדים וכפתור</h3><p>הכפתור (D) מסמן את הדילר. שני השחקנים משמאלו שמים הימורי חובה: בליינד קטן ובליינד גדול. הכפתור זז בכל יד.</p>`,
+ `<h3>4 סבבים</h3><ol><li><b>פרה-פלופ</b>: 2 קלפים לכל אחד, הימור ראשון.</li><li><b>פלופ</b>: 3 קלפים משותפים, הימור.</li><li><b>טרן</b>: קלף רביעי, הימור.</li><li><b>ריבר</b>: קלף חמישי, הימור אחרון.</li></ol><p>בשואודאון מנצחת יד 5 הקלפים הטובה ביותר מתוך 7.</p>`,
+ `<h3>הפעולות</h3><ul><li><b>צ׳ק</b> — להעביר בלי להמר (רק אם אף אחד לא הימר).</li><li><b>הימור / רייז</b> — לשים או להעלות.</li><li><b>קול</b> — להשוות.</li><li><b>פולד</b> — לוותר.</li><li><b>אול-אין</b> — כל הצ׳יפים; מי שיש לו פחות זוכה רק בקופה עד הסכום שלו.</li></ul>`],
+ [['כמה קלפים משותפים יש בריבר?',['5','3','4','7'],''],['מתי מותר צ׳ק?',['כשאף אחד לא הימר בסבב','תמיד','רק בריבר','רק בבליינד הגדול'],''],['מה זה בליינד?',['הימור חובה לפני החלוקה','קלף הפוך','בלוף','קופה צדדית'],''],['בשואודאון בונים יד מ…',['5 הטובים מתוך 7','2 הקלפים שביד','כל 7','3 מהשולחן בלבד'],''],['מי מדבר אחרון אחרי הפלופ?',['הכפתור (או הקרוב אליו שנשאר)','הבליינד הקטן','הבליינד הגדול','מי שהימר ראשון'],'']],{play:['poker','holdem']});
+L('pkb','קיקרים וקופה מתחלקת',[`<h3>קיקר</h3><p>כששני שחקנים עם אותה קטגוריה (נגיד זוג A), מכריעים הקלפים הנוספים — "קיקר". A-K מנצח A-Q על לוח A-7-5-3-2.</p>`,
+ `<h3>הלוח משחק</h3><p>אם 5 הקלפים הטובים לשניכם הם הלוח עצמו (נגיד רצף על השולחן), הקופה מתחלקת.</p>`,`<h3>קופה צדדית</h3><p>מי שהלך אול-אין זוכה רק במה שכל אחד שם עד הסכום שלו. השאר הולך לקופה צדדית בין האחרים.</p>`],
+ [['לוח A♠ 9♦ 7♣ 4♥ 2♠. יד א׳ A-K, יד ב׳ A-Q. מי מנצח?',['יד א׳ — קיקר K','יד ב׳','תיקו','אין מנצח'],''],['לוח 5-6-7-8-9 בצורות שונות, ולאף אחד אין קלף שמשפר. מה קורה?',['הקופה מתחלקת','מי שיש לו קלף גבוה ביד','הבליינד הגדול','מחלקים מחדש'],''],['שחקן הלך אול-אין עם 100, ושניים שמו 300 כל אחד. על כמה הוא יכול לזכות?',['300','700','100','200'],'100 מכל אחד מהשלושה.']],{gen:[['hands',2]]});
+L('pk4','פוזיציה וידיים פותחות',[],[['איפה משחקים הכי הרבה ידיים?',['בכפתור','בפוזיציה הראשונה','בבליינד הקטן','אין הבדל'],''],['למה פוזיציה מאוחרת טובה?',['רואים מה כולם עשו לפני שמחליטים','משלמים פחות','מקבלים קלפים טובים','אפשר לבלף רק שם'],'']],{src:'pk4',s2:['@pfchart'],gen:[['pre',3]],play:['poker','holdem']});
+L('pk2','סיכויי קופה ואקוויטי',[],[['קופה 300, הימור 100 עליך. כמה אקוויטי צריך?',['20%','33%','25%','50%'],'100 ÷ (300+100+100).'],['יש לך 40% וצריך 25%. מה עושים?',['קול (לפחות)','פולד','תמיד אול-אין','תלוי במזל'],'']],{src:'pk2',gen:[['potodds',2],['odds',1]]});
+L('pk3','אאוטים וחוק 2 ו-4',[],[['כמה אאוטים לרצף פתוח משני הצדדים?',['8','4','9','15'],''],['9 אאוטים בפלופ — כמה % עד הריבר?',['כ-36%','כ-18%','כ-9%','כ-50%'],'9×4.'],['כמה אאוטים לרצף "בטן"?',['4','8','2','6'],'']],{src:'pk3',gen:[['odds',2]]});
+L('pkc','גודל הימור',[`<h3>למה מהמרים?</h3><ul><li><b>לערך</b>: יד טובה, ורוצים שידיים חלשות ישלמו.</li><li><b>כבלוף</b>: יד חלשה, ורוצים שידיים טובות יוותרו.</li><li><b>הגנה</b>: לחייב דרואים לשלם כדי לראות קלף.</li></ul>`,
+ `<h3>כמה להמר</h3><ul><li>פתיחה לפני הפלופ: 2.5–3 בליינדים, ועוד בליינד לכל מי שנכנס לפניך.</li><li>אחרי הפלופ: חצי עד שלושה רבעים קופה.</li><li>לוח "רטוב" (הרבה דרואים): הימור גדול יותר. לוח "יבש": קטן יותר.</li></ul>`,
+ `<h3>המחיר ליריב</h3><p>הימור של חצי קופה מחייב את היריב ל-25% אקוויטי כדי לקרוא. קופה מלאה — 33%. ככל שההימור גדול יותר, דרואים צריכים יותר סיכוי.</p>`],
+ [['מהמרים חצי קופה. כמה אקוויטי היריב צריך?',['25%','50%','33%','10%'],'0.5 ÷ (1+0.5+0.5).'],['גודל פתיחה סטנדרטי לפני פלופ?',['2.5–3 בליינדים','בליינד אחד','10 בליינדים','אול-אין'],''],['לוח עם הרבה דרואים. מה עדיף?',['הימור גדול יותר','הימור קטן','תמיד צ׳ק','פולד'],''],['מה המטרה של הימור לערך?',['שידיים חלשות ממך ישלמו','שכולם יוותרו','להסתיר בלוף','לחסוך צ׳יפים'],'']],{gen:[['potodds',1]]});
+L('pk7','טווחי ידיים',[],[['שחקן העלה מהפוזיציה הראשונה. הטווח שלו…',['צר — ידיים חזקות','רחב — כל יד','רק זוגות','רק בלופים'],''],['למה האקוויטי מול "טווח" נמוך יותר מאשר מול יד אקראית?',['כי הידיים החלשות כבר קיפלו','הסולבר טועה','יש יותר שחקנים','אין הבדל'],''],['שחקן הימר פעמיים אחרי הפלופ. מה הוא כנראה מחזיק?',['יד עשויה או דרו חזק','קלף גבוה בלבד','כלום','זוג קטן תמיד'],'']],{src:'pk7',gen:[['pre',1]]});
+L('pkd','בלוף: מתי וכמה',[`<h3>מתי בלוף מרוויח</h3><p>בלוף רווחי אם היריב מקפל מספיק פעמים. הימור בגודל הקופה צריך להצליח 50%; חצי קופה — 33%.</p><div class="formula">אחוז קיפול נדרש = הימור ÷ (קופה + הימור)</div>`,
+ `<h3>את מי לבלף</h3><ul><li>"סלע" שמקפל הרבה — כן.</li><li>"קולר" שקורא הכל — לא! מולו מהמרים רק לערך.</li><li>לוח שמתאים לסיפור שלך (קלף שלישי לצבע אחרי שהימרת לאורך היד).</li></ul><p>ה-HUD בשולחן מראה VPIP: שחקן עם VPIP גבוה קורא הרבה.</p>`,
+ `<h3>חצי-בלוף</h3><p>הימור עם דרו: אם היריב מקפל — ניצחת; אם הוא קורא — עדיין יש סיכוי לתפוס. זה הבלוף הבריא ביותר.</p>`],
+ [['מהמרים 100 לקופה של 100. כמה פעמים היריב צריך לקפל?',['50%','33%','25%','100%'],''],['מול שחקן שקורא הכל כדאי…',['לא לבלף ולהמר לערך','לבלף הרבה','לקפל הכל','תמיד אול-אין'],''],['מה זה חצי-בלוף?',['הימור עם דרו שיכול להשתפר','הימור של חצי קופה','בלוף בחצי מהידיים','קול במקום רייז'],''],['VPIP של 55% אומר ש…',['השחקן נכנס להרבה ידיים — קשה לבלף אותו','השחקן טייט','תמיד מעלה','מקפל הכל'],'']]);
+L('pk9','Push/Fold בטורנירים',[],[['כמה בליינדים זה סטאק קצר?',['15 ומטה','50','100','3 בלבד'],''],['למה לא רייז קטן עם 8 בליינדים?',['אם יעלו עליך תצטרך לזרוק חלק גדול מהסטאק','זה אסור','מבזבז זמן','הבוטים לא מבינים'],''],['מאיפה דוחפים יותר ידיים?',['מהכפתור ומהבליינד הקטן','מהפוזיציה הראשונה','אין הבדל','רק מהבליינד הגדול'],'']],{src:'pk9',play:['poker','holdem','tour']});
+L('pk5','אומהה',[],[['יש לך A♥ K♥ ועוד שניים, ועל השולחן 3 לבבות. צבע?',['כן — 2 מהיד ו-3 מהשולחן','לא','רק עם 4 לבבות ביד','רק בריבר'],''],['על השולחן 4 לבבות ויש לך לב אחד. צבע?',['לא — חייבים בדיוק 2 מהיד','כן','רק באומהה הי-לו','כן אם הוא A'],''],['מה ההימור המקסימלי בפוט-לימיט?',['גודל הקופה (כולל הקריאה)','כל הסטאק','בליינד גדול','פי 2 מהבליינד'],'']],{src:'pk5',play:['poker','omaha']});
+L('pk10','פיינאפל וקרייזי פיינאפל',[],[['כמה קלפים מקבלים בהתחלה?',['3','2','4','5'],''],['מתי זורקים בקרייזי פיינאפל?',['אחרי סבב ההימורים של הפלופ','לפני ההימור הראשון','בריבר','לא זורקים'],''],['A♠ A♦ 7♣ לפני הפלופ. מה זורקים?',['7♣','A♠','A♦','לא משנה'],'שומרים את הזוג.']],{src:'pk10',play:['poker','pine']});
+L('pk6','פוקר 5 קלפים',[],[['זוג — כמה מחליפים?',['3','1','2','0'],''],['שני זוגות — כמה מחליפים?',['1','3','2','0'],''],['4 לצבע — מה הסיכוי לצבע אחרי החלפה?',['כ-19%','כ-50%','כ-4%','כ-35%'],'9 מתוך 47.']],{src:'pk6',play:['poker','draw']});
+/* ---- רולטה ---- */
+L('rla','הלוח וסוגי ההימורים',[`<h3>הגלגל</h3><p>אירופאית: 37 תאים — 1–36 (חצי אדומים, חצי שחורים) ו-0 ירוק. אמריקאית מוסיפה 00 — 38 תאים.</p>`,
+ `<h3>הימורים פנימיים</h3><ul><li>מספר בודד: 35:1</li><li>שני מספרים (Split): 17:1</li><li>שורה של 3: 11:1</li><li>פינה של 4: 8:1</li><li>שתי שורות (6): 5:1</li></ul>`,
+ `<h3>הימורים חיצוניים</h3><ul><li>אדום/שחור, זוגי/אי-זוגי, 1–18/19–36: 1:1</li><li>תריסר או עמודה (12 מספרים): 2:1</li></ul><p>ה-0 אינו אדום, שחור, זוגי או נמוך — ולכן הימורי 1:1 מפסידים כשהוא יוצא.</p>`],
+ [['כמה משלם מספר בודד?',['35:1','36:1','17:1','2:1'],''],['יצא 0. מה קורה להימור על זוגי?',['מפסיד','זוכה','מוחזר','מתחלק'],''],['כמה משלם תריסר?',['2:1','3:1','1:1','11:1'],''],['כמה תאים בגלגל אירופאי?',['37','36','38','40'],'']],{gen:[['rlpay',2]],play:['rl']});
+L('rl1','למה הבית תמיד מנצח',[],[['למה מספר בודד משלם 35:1 ולא 36:1?',['ההפרש הוא יתרון הבית','מסורת','יש 35 מספרים','כך זה הוגן'],''],['אירופאית או אמריקאית?',['אירופאית — 2.70% במקום 5.26%','אמריקאית — יותר מספרים','אין הבדל','תלוי בצבע'],''],['מה יתרון הבית בהימור על תריסר באירופאית?',['2.70%','8.1%','0%','5.26%'],'כל ההימורים באירופאית: 1/37.']],{src:'rl1',gen:[['rlpay',1]]});
+L('rlb','מספרים "חמים" ו"קרים"',[`<h3>מספרים חמים</h3><p>שולחנות מציגים את 20 התוצאות האחרונות, ואנשים רואים "דפוסים". עם 37 תאים, ב-20 סיבובים בטוח שמספרים יחזרו ואחרים לא יופיעו.</p><p>ב-37 סיבובים, בממוצע כשליש מהמספרים לא יוצאים בכלל — וזה נורמלי לגמרי.</p>`,
+ `<h3>מתי כן יש הטיה?</h3><p>היו בהיסטוריה גלגלים פיזיים פגומים. בקזינו מודרני — ובמשחק הזה, שמשתמש במחולל אקראי קריפטוגרפי — אין. בדקנו מיליוני סיבובים כדי לוודא.</p>`],
+ [['17 לא יצא 80 סיבובים. מה הסיכוי שייצא עכשיו?',['1/37 — כמו תמיד','גבוה יותר','נמוך יותר','50%'],''],['ב-37 סיבובים, האם סביר שכל המספרים ייצאו?',['לא — בממוצע כשליש לא יוצאים','כן, תמיד','רק באמריקאית','רק בשולחן חדש'],''],['מה עושה לוח המספרים החמים?',['מראה את העבר — לא מנבא','מנבא את הבא','משנה תשלומים','מגדיל סיכויים'],'']]);
+L('rlc','צירופי הימורים',[`<h3>כיסוי הרבה מספרים</h3><p>כל צירוף נותן תוחלת של −2.7% על סך ההימורים. מה שמשתנה: כמה פעמים זוכים ובכמה.</p><p>שני תריסרים (24 מספרים): זוכים ב-65% מהסיבובים, אבל כל זכייה מחזירה רק פי 1.5 מההימור הכולל.</p>`,
+ `<h3>נסו בעצמכם</h3><p>הסולבר בשולחן מחשב כל צירוף: סיכוי לרווח, רווח מקסימלי, הפסד מקסימלי ותוחלת. נסו לבנות צירוף "מנצח" — ותראו שהתוחלת תמיד −2.7%.</p>`],
+ [['10 על תריסר ראשון ו-10 על שני. יצא 5. רווח נקי?',['+10','+20','+30','0'],'זוכים 30 (כולל 10) ומפסידים 10: 30−20.'],['מה התוחלת של כל צירוף באירופאית?',['−2.7% מסך ההימורים','תלוי בצירוף','0','חיובית אם מכסים 30 מספרים'],''],['מכסים את כל 36 המספרים בלי 0. מה יקרה?',['כמעט תמיד הפסד קטן, ו-0 מוחק הכל','רווח בטוח','תיקו תמיד','הקזינו לא מרשה'],'']],{gen:[['rlpay',1]],play:['rl']});
+/* ---- וידאו פוקר ---- */
+L('vpa','חוקים וטבלת תשלומים',[`<h3>איך משחקים</h3><p>מקבלים 5 קלפים, מסמנים אילו להחזיק ומחליפים את השאר פעם אחת. משלמים לפי היד הסופית — אין יריב.</p>`,
+ `<h3>טבלת 9/6</h3><p>ב-Jacks or Better התשלום הנמוך הוא זוג J ומעלה (מחזיר את ההימור). "9/6" = פול האוס משלם 9 וצבע 6 — הטבלה הטובה ביותר.</p>`,
+ `<h3>5 מטבעות</h3><p>רויאל פלאש משלם 250 למטבע, אבל ב-5 מטבעות — 4,000 (800 למטבע). בלי 5 מטבעות מפסידים כ-1.1% מההחזר.</p>`],
+ [['מה היד הנמוכה ביותר שמשלמת?',['זוג J ומעלה','כל זוג','שני זוגות','A גבוה'],''],['מה "9/6" מתאר?',['פול האוס 9, צבע 6','9 מטבעות, 6 קלפים','רצף 9, שלישייה 6','החזר 96%'],''],['למה לשחק 5 מטבעות?',['בונוס הרויאל','קלפים טובים יותר','זה זול יותר','אין סיבה'],''],['יש יריב בווידאו פוקר?',['לא — משלמים לפי טבלה','כן, הדילר','כן, שחקן אחר','רק בבונוס'],'']],{play:['vp']});
+L('vp1','אסטרטגיית החזקה',[],[['4 לרויאל או צבע מוכן?',['4 לרויאל','הצבע','שניהם','להחליף הכל'],'EV 18.5 מול 6.'],['זוג נמוך או 4 לרצף פתוח?',['זוג נמוך','4 לרצף','להחליף הכל','קלף גבוה'],''],['אין כלום, יש J ו-Q בצורות שונות. מה מחזיקים?',['J ו-Q','רק J','כלום','רק Q'],'2 קלפים גבוהים עדיפים על החלפה מלאה.'],['שלישייה — כמה מחליפים?',['2','0','1','3'],'']],{src:'vp1',play:['vp']});
+L('vpb','השוואת טבלאות ושונות',[`<h3>להשוות מכונות</h3><div class="scroll"><table class="t"><tr><th>טבלה</th><th>פול האוס / צבע</th><th>החזר</th></tr><tr><td>9/6</td><td>9 / 6</td><td class="n">99.54%</td></tr><tr><td>8/5</td><td>8 / 5</td><td class="n">97.30%</td></tr><tr><td>7/5</td><td>7 / 5</td><td class="n">96.15%</td></tr><tr><td>6/5</td><td>6 / 5</td><td class="n">95.00%</td></tr></table></div><p>נקודה אחת פחות בפול האוס עולה כ-1.1%. בודקים את הטבלה לפני שמתיישבים.</p>`,
+ `<h3>שונות בווידאו פוקר</h3><p>כ-2% מההחזר מגיעים מהרויאל, שיוצא בערך פעם ב-40,000 ידיים. בלי רויאל ההחזר בפועל כ-97.5% — לכן רוב השחקנים מפסידים יותר ממה שהטבלה מבטיחה.</p>`],
+ [['איזו טבלה הכי טובה?',['9/6','8/5','6/5','7/5'],''],['כמה מחזירה 8/5 במשחק מושלם?',['כ-97.3%','99.5%','100%','90%'],''],['כמה פעמים בערך יוצא רויאל?',['פעם ב-40,000 ידיים','פעם ב-500','פעם במיליון','פעם ב-5,000'],'']]);
+/* ---- באקרה ו-3 קלפים ---- */
+L('baca','באקרה: חוקים ותשלומים',[`<h3>שחקן מול בנקאי</h3><p>לא משחקים יד — מהמרים איזו יד תהיה קרובה יותר ל-9: שחקן, בנקאי או תיקו. אין החלטות אחרי ההימור.</p><h3>ערכים</h3><p>A = 1, 2–9 לפי המספר, 10 ותמונות = 0. סופרים רק את ספרת האחדות: 7+8 = 15 → 5.</p>`,
+ `<h3>תשלומים</h3><ul><li>שחקן: 1:1 (יתרון בית 1.24%)</li><li>בנקאי: 0.95:1 — עמלה 5% (1.06%)</li><li>טאי: 8:1 (14.4%)</li><li>זוג שחקן/בנקאי: 11:1 (10.4%)</li></ul>`],
+ [['K + 7 בבאקרה = ?',['7','17','8','0'],''],['8 + 6 = ?',['4','14','6','2'],''],['למה בנקאי משלם 0.95?',['כי הוא מנצח יותר פעמים','מסורת','משחק ראשון','אין סיבה'],''],['מה ההימור הגרוע ביותר?',['טאי','בנקאי','שחקן','כולם שווים'],'']],{play:['bac']});
+L('bacb','חוק הקלף השלישי',[`<h3>מתי לוקחים קלף</h3><ul><li>8 או 9 לאחד הצדדים ("נטורל") — עוצרים.</li><li>שחקן עם 0–5 לוקח; 6–7 עומד.</li><li>אם השחקן עמד, הבנקאי לוקח על 0–5. אם השחקן לקח, הבנקאי מחליט לפי טבלה קבועה. הכל אוטומטי.</li></ul>`,
+ `<h3>למה הבנקאי מנצח יותר</h3><p>הבנקאי פועל אחרי השחקן ורואה את הקלף השלישי שלו. זה מספיק כדי שינצח 45.9% מול 44.6% — ומכאן העמלה.</p><p>"הדרך" (רצף התוצאות) לא מנבאת דבר.</p>`],
+ [['לשחקן 6. הוא לוקח קלף?',['לא','כן','רק אם לבנקאי 7','תמיד'],''],['לבנקאי 8 בשני קלפים. מה קורה?',['נטורל — עוצרים','השחקן לוקח','הבנקאי לוקח','תיקו'],''],['מי מנצח יותר פעמים?',['בנקאי','שחקן','טאי','שווה'],''],['כדאי לעקוב אחרי "הדרך"?',['לא — היא לא מנבאת','כן, אחרי 3 בנקאי','רק בנעל חדשה','רק בטאי'],'']],{play:['bac']});
+L('tcpa','פוקר 3 קלפים: חוקים',[`<h3>מבנה המשחק</h3><p>שמים אנטה, מקבלים 3 קלפים ומחליטים: לשחק (הימור נוסף בגובה האנטה) או לקפל. הדילר צריך לפחות Q גבוה כדי להעפיל.</p><ul><li>הדילר לא מעפיל: האנטה משולם 1:1 וההימור השני חוזר.</li><li>מעפיל: היד הגבוהה מנצחת, שני ההימורים 1:1.</li><li>בונוס אנטה על רצף ומעלה, גם אם הפסדת.</li></ul>`,
+ `<h3>דירוג עם 3 קלפים</h3><p>רצף צבע > שלישייה > <b>רצף > צבע</b> > זוג > קלף גבוה. עם 3 קלפים רצף נדיר יותר מצבע.</p><h3>פייר פלוס</h3><p>הימור נפרד על היד שלך: זוג 1, צבע 4, רצף 6, שלישייה 30, רצף צבע 40.</p>`],
+ [['מה חזק יותר בפוקר 3 קלפים?',['רצף','צבע','זוג','תלוי'],''],['לדילר J גבוה ושיחקת. מה קורה לאנטה?',['משולם 1:1 וההימור השני חוזר','מפסיד','תיקו','4:1'],'הדילר לא העפיל.'],['כמה משלם זוג בפייר פלוס?',['1:1','4:1','6:1','30:1'],''],['פייר פלוס תלוי בדילר?',['לא','כן','רק אם מעפיל','רק בזוג'],'']],{play:['tcp']});
+L('tcpb','האסטרטגיה: Q-6-4',[`<h3>הכלל היחיד שצריך</h3><p>משחקים עם Q-6-4 ומעלה, ומקפלים מתחת. זו כל האסטרטגיה, ויתרון הבית יורד ל-3.37% מהאנטה.</p><ul><li>Q-6-4: לשחק. Q-6-3: לקפל.</li><li>כל זוג ומעלה: לשחק.</li><li>K או A גבוה: תמיד לשחק.</li></ul>`,
+ `<h3>למה דווקא שם</h3><p>מתחת ל-Q-6-4 הסיכוי לנצח דילר שמעפיל נמוך מדי, והפסד של אנטה אחד זול מהפסד של שניים. הסולבר בשולחן עובר על כל 18,424 הידיים של הדילר ומראה את זה.</p>`],
+ [['Q-7-2?',['לשחק','לקפל'],'מעל Q-6-4.'],['Q-5-4?',['לקפל','לשחק'],'מתחת ל-Q-6-4.'],['J-10-8?',['לקפל','לשחק'],'אין Q.'],['זוג 2?',['לשחק','לקפל'],'כל זוג משחקים.']],{gen:[['tcp',2]],play:['tcp']});
+const COURSES=[
+ {id:'base',t:'יסודות ההימורים',d:'תוחלת, הסתברות, שונות וניהול כסף',ic:'%',col:'#cf9f42',lv:[['b1','b2'],['b3','b4'],['b5','b6']],ex:[]},
+ {id:'bj',t:'בלאק ג׳ק',d:'מהחוקים ועד ספירת קלפים וסטיות',ic:'21',col:'#2c8a5a',lv:[['bj1','bja','bjb'],['bjc','bjd','bj4','bj6'],['bj3','bje','bj5','bjf']],ex:['bj']},
+ {id:'poker',t:'פוקר',d:'דירוג ידיים, סיכויי קופה, טווחים וטורנירים',ic:'♠',col:'#2f6cae',lv:[['pk1','pka','pkb'],['pk4','pk2','pk3','pkc'],['pk7','pkd','pk9','pk5','pk10','pk6']],ex:['poker']},
+ {id:'rl',t:'רולטה',d:'סוגי הימורים, יתרון הבית ומיתוסים',ic:'◎',col:'#b8262c',lv:[['rla'],['rl1','rlb'],['rlc']],ex:['rl']},
+ {id:'vp',t:'וידאו פוקר',d:'טבלת התשלומים והחזקה אופטימלית',ic:'J',col:'#6a3fa0',lv:[['vpa'],['vp1'],['vpb']],ex:['vp']},
+ {id:'table',t:'באקרה ופוקר 3 קלפים',d:'חוקים, תשלומים והאסטרטגיה הנכונה',ic:'9',col:'#a83e74',lv:[['baca','tcpa'],['bacb','tcpb']],ex:['bac','tcp']}];
+const CRS=id=>COURSES.find(c=>c.id===id);
+/* ---- question generators ---- */
+const GENS={bjq:()=>genBjQ(),odds:()=>genOddsQ(),hands:()=>genHandsQ(),pre:()=>genPreQ(),tcp:()=>genTcpQ(),
+ hilo:()=>{const c=rnd(52);const v=hiLo(c);return {q:`<div class="cards">${cardHTML(c)}</div><p>מה הערך של הקלף בשיטת Hi-Lo?</p>`,opts:[['1','+1'],['0','0'],['-1','−1']],a:String(v),ex:'2–6 = +1, 7–9 = 0, 10 עד A = −1.'};},
+ tc:()=>{const rc=rnd(25)-12;const decks=pick([1,1.5,2,3,4,5]);const tc=Math.trunc(rc/decks);const o=new Set([tc]);while(o.size<4)o.add(tc+pick([-3,-2,-1,1,2,3]));return {q:`<p>ספירה רצה <b class="mono">${rc>0?'+':''}${rc}</b>, נשארו <b class="mono">${decks}</b> חפיסות. מה הספירה האמיתית (מעוגלת כלפי אפס)?</p>`,opts:[...o].sort((a,b)=>a-b).map(v=>[String(v),(v>0?'+':'')+v]),a:String(tc),ex:`${rc} ÷ ${decks} = ${(rc/decks).toFixed(2)} → ${tc}.`};},
+ bjtotal:()=>{const d=newDeck();let cd;do{cd=d.splice(0,2+rnd(2));}while(bjTot(cd).t>21);const T=bjTot(cd);const lab=(s,t)=>(s?'רך ':'קשה ')+t;const right=lab(T.soft,T.t);const o=new Set([right]);
+   const hasA=cd.some(c=>bjVal(c)===1);if(T.soft)o.add(lab(false,T.t-10));if(hasA)o.add(lab(!T.soft,T.t));let g=0;while(o.size<4&&g++<50){const t=clamp(T.t+pick([-3,-2,-1,1,2]),4,21);o.add(lab(hasA&&Math.random()<.5,t));}
+   return {q:`<div class="cards">${cd.map(c=>cardHTML(c)).join('')}</div><p>מה הסכום של היד?</p>`,opts:shuffle([...o]).map(x=>[x,x]),a:right,ex:T.soft?`האס נספר כ-11 בלי לעבור 21 — ${right}.`:`${right}${cd.some(c=>bjVal(c)===1)?' (האס נספר כ-1)':''}.`};},
+ rank:()=>{const t=rnd(9);let h=null;const card=(r,s)=>(r-2)*4+s;
+   if(t===8){const hi=5+rnd(10),s=rnd(4);h=[0,1,2,3,4].map(k=>{let r=hi-k;if(r===1)r=14;return card(r,s);});}
+   else if(t===7){const r=2+rnd(13);let k;do{k=2+rnd(13);}while(k===r);h=[0,1,2,3].map(s=>card(r,s)).concat([card(k,rnd(4))]);}
+   else{for(let i=0;i<60000;i++){const d=newDeck().slice(0,5);if(catOf(evalHand(d,5))===t){h=d;break;}}if(!h)return GENS.hands();}
+   h.sort((a,b)=>rk(b)-rk(a));const o=new Set([t]);while(o.size<4)o.add(rnd(9));
+   return {q:`<div class="cards">${h.map(c=>cardHTML(c)).join('')}</div><p>איזו יד זו?</p>`,opts:shuffle([...o]).map(k=>[String(k),CATS[k]]),a:String(t),ex:handName(evalHand(h,5))+'.'};},
+ rlpay:()=>{const B=pick([['מספר בודד',35],['אדום',1],['תריסר',2],['עמודה',2],['זוגי',1],['שני מספרים (Split)',17],['פינה',8]]);const amt=pick([10,20,25,50]);const right=amt*(B[1]+1);
+   const o=new Set([right,amt*B[1],amt*(B[1]+2)]);while(o.size<4)o.add(right+pick([-1,1])*amt*(1+rnd(3)));
+   return {q:`<p>הימרת <b class="mono">${amt}</b> על <b>${B[0]}</b> וזכית. כמה תקבל בחזרה בסך הכל, כולל ההימור?</p>`,opts:shuffle([...o].filter(x=>x>0)).map(x=>[String(x),fmt(x)]),a:String(right),ex:`${B[0]} משלם ${B[1]}:1 — רווח ${fmt(amt*B[1])} + ההימור ${amt}.`};},
+ potodds:()=>{const pot=pick([60,100,150,200,300,400]);const bet=pick([.25,.33,.5,.75,1].map(f=>Math.round(pot*f/10)*10));const need=Math.round(bet/(pot+2*bet)*100);
+   const o=new Set([need]);while(o.size<4)o.add(clamp(need+pick([-12,-8,-5,5,8,12]),5,60));
+   return {q:`<p>בקופה <b class="mono">${pot}</b>, היריב הימר <b class="mono">${bet}</b>. כמה אקוויטי צריך כדי שקול יהיה רווחי?</p>`,opts:[...o].sort((a,b)=>a-b).map(v=>[String(v),v+'%']),a:String(need),ex:`${bet} ÷ (${pot} + ${bet} + ${bet}) ≈ ${need}%.`};}};
+/* ---- state ---- */
+function SCH(){if(!S.school)S.school={done:{},lt:{},rev:{},streak:0,last:'',lastC:''};const x=S.school;x.done=x.done||{};x.lt=x.lt||{};x.rev=x.rev||{};return x;}
+const lvOpen=(c,l)=>l===0||!!SCH().lt[c.id+':'+(l-1)];
+function lesOpen(c,id){const l=c.lv.findIndex(a=>a.includes(id));if(!lvOpen(c,l))return false;const i=c.lv[l].indexOf(id);return i===0||!!SCH().done[c.lv[l][i-1]];}
+const allLes=c=>c.lv.flat();
+const crsDone=c=>allLes(c).filter(id=>SCH().done[id]).length;
+const crsStars=c=>allLes(c).reduce((a,id)=>a+(SCH().done[id]||0),0);
+const examOpen=c=>!!SCH().lt[c.id+':'+(c.lv.length-1)];
+function nextStep(c){for(let l=0;l<c.lv.length;l++){if(!lvOpen(c,l))return null;for(const id of c.lv[l])if(!SCH().done[id])return {type:'les',id};if(!SCH().lt[c.id+':'+l])return {type:'test',l};}
+  const ex=c.ex.find(g=>!S.cert||!S.cert[g]);return ex?{type:'exam',g:ex}:null;}
+function todayStr(d=new Date()){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function schoolDay(){const x=SCH();const t=todayStr();if(x.last===t)return;const y=new Date();y.setDate(y.getDate()-1);x.streak=x.last===todayStr(y)?(x.streak||0)+1:1;x.last=t;save();if(x.streak>=7)unlock('school_streak7');if(x.streak>1)toast(`${FLAME} רצף של ${x.streak} ימי למידה!`,'good');}
+function streakNow(){const x=SCH();const y=new Date();y.setDate(y.getDate()-1);return (x.last===todayStr()||x.last===todayStr(y))?(x.streak||0):0;}
+function revCount(){return Object.keys(SCH().rev).length;}
+/* ---- slides & questions ---- */
+function slidesOf(L){const out=[];if(L.src){const l=LESSONS.find(x=>x.id===L.src);if(l)out.push(`<h3>${l.t}</h3>`+l.b+(l.chart?chartHTML(0):'')+(l.fn==='devs'?devTable():'')+(l.fn==='pfchart'?pfChart():'')+(l.fn==='pftable'?pfTable():'')+(l.sim?MART_HTML:''));}
+  (L.s||[]).forEach(x=>out.push(x));(L.s2||[]).forEach(x=>out.push(x==='@pfchart'?'<h3>טבלת פתיחה לפי פוזיציה</h3>'+pfChart():x));return out;}
+function statQ(L,i){const x=L.q[i];const m=mcq(`<p>${x[0]}</p>`,x[1],x[2]);m.qid=L.id+':'+i;return m;}
+function genQ(k){const g=GENS[k]();g.qid='g:'+k;return g;}
+function lesQs(L,n){const st=shuffle(L.q.map((x,i)=>i)).map(i=>statQ(L,i));const gens=[];(L.gen||[]).forEach(([k,c])=>{for(let j=0;j<c;j++)gens.push(genQ(k));});
+  const take=Math.max(0,n-gens.length);let all=st.slice(0,take).concat(gens);if(all.length<n)all=all.concat(st.slice(take,take+n-all.length));return shuffle(all).slice(0,n);}
+function levelQs(c,l,n){const pool=[];c.lv[l].forEach(id=>{const L=SL[id];L.q.forEach((x,i)=>pool.push(()=>statQ(L,i)));(L.gen||[]).forEach(([k])=>pool.push(()=>genQ(k)));});return shuffle(pool).slice(0,n).map(f=>f());}
+function qFromId(qid){if(qid.startsWith('g:'))return GENS[qid.slice(2)]?genQ(qid.slice(2)):null;const [id,i]=qid.split(':');const L=SL[id];return L&&L.q[+i]?statQ(L,+i):null;}
+/* ---- player ---- */
+let LS=null;
+function startLes(id){const L=SL[id];const c=COURSES.find(c=>allLes(c).includes(id));SCH().lastC=c.id;LS={mode:'lesson',L,c,slides:slidesOf(L),qs:lesQs(L,5),phase:'learn',i:0,qi:0,ans:null,ok:0};go('les');}
+function startTest(cid,l){const c=CRS(cid);LS={mode:'test',c,l,slides:[],qs:levelQs(c,l,8),phase:'quiz',i:0,qi:0,ans:null,ok:0};go('les');}
+function startReview(){const ids=shuffle(Object.keys(SCH().rev)).slice(0,8);const qs=ids.map(qFromId).filter(Boolean);if(!qs.length){toast('אין שאלות לחזרה');return;}LS={mode:'review',slides:[],qs,phase:'quiz',i:0,qi:0,ans:null,ok:0};go('les');}
+function lesAnswer(v){if(!LS||LS.ans!=null)return;const q=LS.qs[LS.qi];if(!q)return;LS.ans=v;const ok=v===q.a;const R=SCH().rev;
+  if(ok){LS.ok++;snd('right');if(R[q.qid]){R[q.qid].b=(R[q.qid].b||0)+1;if(R[q.qid].b>=2)delete R[q.qid];}}else{snd('wrong');vib(30);R[q.qid]={b:0};}
+  save();render();}
+function lesFinish(){const x=SCH();const n=LS.qs.length,ok=LS.ok;LS.phase='done';LS.xp=0;
+  if(LS.mode==='lesson'){const pass=ok>=Math.max(1,n-1);LS.pass=pass;LS.stars=pass?(ok===n?3:2):0;if(pass){const prev=x.done[LS.L.id]||0;if(LS.stars>prev){x.done[LS.L.id]=LS.stars;LS.xp=prev?10:20+10*LS.stars;}unlock('school1');if(crsDone(LS.c)===allLes(LS.c).length)unlock('school_course');schoolDay();}}
+  else if(LS.mode==='test'){const need=Math.ceil(n*.8);LS.pass=ok>=need;LS.need=need;if(LS.pass){const k=LS.c.id+':'+LS.l;if(!x.lt[k])LS.xp=60;x.lt[k]=1;LS.c.lv[LS.l].forEach(id=>{if(!x.done[id])x.done[id]=1;});schoolDay();if(crsDone(LS.c)===allLes(LS.c).length)unlock('school_course');}}
+  else{LS.pass=true;LS.xp=ok?15:0;schoolDay();}
+  save();if(LS.xp)addXP(LS.xp);if(LS.pass)snd(LS.stars===3||LS.mode==='test'?'bigwin':'win');render();}
+function starsHTML(n,max=3){let h='';for(let i=0;i<max;i++)h+=`<span class="${i<n?'st on':'st'}">★</span>`;return `<span class="stars" aria-label="${n} כוכבים">${h}</span>`;}
+function rLes(V){if(!LS){go('academy');return;}const tot=LS.slides.length+LS.qs.length;const pos=LS.phase==='learn'?LS.i:LS.phase==='quiz'?LS.slides.length+LS.qi+(LS.ans!=null?1:0):tot;
+  const title=LS.mode==='lesson'?LS.L.t:LS.mode==='test'?`מבחן שלב · ${LVL_NAMES[LS.l]}`:'חזרה על טעויות';
+  let h=`<div class="lestop"><button class="iconbtn" data-a="lesclose" aria-label="סגור">✕</button><div class="grow"><div class="lesttl">${esc(title)}</div><div class="segbar"><i style="width:${tot?pos/tot*100:0}%"></i></div></div></div>`;
+  if(LS.phase==='learn'){const last=LS.i===LS.slides.length-1;
+    h+=`<article class="panel lesson stack lslide">${LS.slides[LS.i]}</article>
+     <div class="row lesnav">${LS.i>0?'<button class="btn dark" data-a="lesprev">הקודם</button>':''}<span class="spacer"></span><button class="btn" data-a="lesnext">${last?'לשאלות ←':'הבא ←'}</button></div>
+     <p class="note" style="text-align:center">${LS.i+1} / ${LS.slides.length}</p>`;}
+  else if(LS.phase==='quiz'){const q=LS.qs[LS.qi];const cols=q.opts.length>3?2:q.opts.length;
+    h+=`<p class="eyebrow" style="margin-top:14px">שאלה ${LS.qi+1} מתוך ${LS.qs.length}</p><div class="qcard felt">${q.q}</div>
+     <div class="qopts" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${q.opts.map(([k,l])=>{const st=LS.ans==null?'':k===q.a?'right':k===LS.ans?'wrong':'';return `<button class="qopt ${st}" data-a="lesans" data-v="${esc(k)}" ${LS.ans!=null?'disabled':''}>${l}</button>`;}).join('')}</div>`;
+    if(LS.ans!=null){const ok=LS.ans===q.a;h+=`<div class="qfb ${ok?'ok':'no'}"><b>${ok?pick(['נכון!','מצוין!','בדיוק!','יפה מאוד!']):'לא הפעם.'}</b> ${q.ex||''}</div><button class="btn wide" style="margin-top:10px" data-a="lesq">${LS.qi+1<LS.qs.length?'המשך ←':'לתוצאה ←'}</button>`;}}
+  else{const n=LS.qs.length;
+    h+=`<div class="panel stack lesdone" style="margin-top:16px;text-align:center;align-items:center">
+     <p class="eyebrow">${LS.mode==='review'?'חזרה הושלמה':LS.pass?(LS.mode==='test'?'עברת את השלב!':'השיעור הושלם'):'כמעט…'}</p>
+     ${LS.mode==='lesson'&&LS.pass?starsHTML(LS.stars):''}<h1 style="font-size:52px">${LS.ok}/${n}</h1>
+     <p class="${LS.pass?'good':'muted'}">${LS.mode==='lesson'?(LS.pass?(LS.stars===3?'מושלם! כל התשובות נכונות.':'עברת. אפשר לחזור לשיעור כדי להגיע ל-3 כוכבים.'):`צריך לפחות ${Math.max(1,n-1)} נכונות. נסה שוב — השאלות מתחלפות.`):LS.mode==='test'?(LS.pass?`השלב הבא נפתח${LS.l+1<LS.c.lv.length?': '+LVL_NAMES[LS.l+1]:' — ומבחן הסיום מחכה'}.`:`צריך ${LS.need} נכונות כדי לעבור.`):'שאלות שעניתם נכון פעמיים יוצאות מהרשימה.'}</p>
+     ${LS.xp?`<span class="pill gold">+${LS.xp} XP</span>`:''}
+     <div class="stack" style="width:100%;margin-top:6px">${lesDoneBtns()}</div></div>`;}
+  V.innerHTML=h;}
+function lesDoneBtns(){let b='';const c=LS.c;
+  if(LS.mode==='lesson'){if(LS.pass){const nx=nextStep(c);if(nx&&nx.type==='les')b+=`<button class="btn" data-a="les" data-id="${nx.id}">לשיעור הבא: ${esc(SL[nx.id].t)}</button>`;else if(nx&&nx.type==='test')b+=`<button class="btn" data-a="ltest" data-c="${c.id}" data-l="${nx.l}">למבחן השלב</button>`;}
+    else b+=`<button class="btn" data-a="les" data-id="${LS.L.id}">נסה שוב</button>`;
+    if(LS.L.play)b+=`<button class="btn dark" data-a="lesplay" data-g="${LS.L.play[0]}" data-var="${LS.L.play[1]||''}" data-kind="${LS.L.play[2]||''}">תרגל בשולחן אמיתי</button>`;}
+  if(LS.mode==='test'&&!LS.pass)b+=`<button class="btn" data-a="ltest" data-c="${c.id}" data-l="${LS.l}">נסה שוב</button>`;
+  if(LS.mode==='test'&&LS.pass&&LS.l+1>=c.lv.length&&c.ex.length)b+=`<button class="btn" data-a="exam" data-g="${c.ex[0]}">למבחן הסיום</button>`;
+  if(LS.mode==='review'&&revCount())b+=`<button class="btn" data-a="review">עוד חזרה (${revCount()})</button>`;
+  b+=c?`<button class="btn ghost" data-a="course" data-c="${c.id}">חזרה לקורס</button>`:`<button class="btn ghost" data-a="go" data-v="academy">חזרה לבית הספר</button>`;return b;}
+/* ---- academy home & course map ---- */
+function rAcademy(V){const tl=COURSES.reduce((a,c)=>a+allLes(c).length,0),td=COURSES.reduce((a,c)=>a+crsDone(c),0);const st=streakNow();
+  const lc=CRS(SCH().lastC)||COURSES[0];let nx=null,nc=null;for(const c of [lc,...COURSES]){const s=nextStep(c);if(s){nx=s;nc=c;break;}}
+  let h=`<section class="hero" style="padding:20px"><p class="eyebrow">בית הספר של קזינו 77</p><h1 style="font-size:40px">אקדמיה</h1>
+   <div class="row" style="margin-top:10px;position:relative;z-index:1"><span class="pill gold">${FLAME} ${st?'רצף '+st+(st===1?' יום':' ימים'):'התחילו רצף היום'}</span><span class="pill">${td}/${tl} שיעורים</span><span class="pill">${Object.keys(S.cert||{}).length} תעודות</span></div>
+   <div class="segbar" style="margin-top:12px"><i style="width:${tl?td/tl*100:0}%"></i></div>
+   ${nx?`<button class="btn" style="margin-top:14px;position:relative;z-index:1" ${nx.type==='les'?`data-a="les" data-id="${nx.id}"`:nx.type==='test'?`data-a="ltest" data-c="${nc.id}" data-l="${nx.l}"`:`data-a="exam" data-g="${nx.g}"`}>${td?'המשך':'התחל'}: ${nx.type==='les'?esc(SL[nx.id].t):nx.type==='test'?'מבחן שלב '+LVL_NAMES[nx.l]+' · '+nc.t:'מבחן סיום · '+EXAM_G[nx.g]}</button>`:''}</section>`;
+  if(revCount())h+=`<button class="linkrow" style="margin-top:12px" data-a="review"><span class="ic" style="background:var(--bad);color:#fff">↻</span><span class="grow"><b>חזרה על טעויות</b><small>${revCount()} שאלות שטעית בהן — כל אחת יוצאת אחרי 2 תשובות נכונות</small></span></button>`;
+  h+=`<h3 style="margin:18px 0 8px">קורסים</h3><div class="crsgrid">${COURSES.map(c=>{const n=allLes(c).length,d=crsDone(c);const cert=c.ex.length&&c.ex.every(g=>S.cert&&S.cert[g]);let lv=0;while(lv<c.lv.length-1&&lvOpen(c,lv+1))lv++;
+    return `<button class="crs" data-a="course" data-c="${c.id}" style="--cc:${c.col}"><span class="crsic">${c.ic}</span><b>${c.t}</b><small>${c.d}</small>
+     <span class="row" style="gap:6px;margin-top:auto"><span class="pill">${cert?'★ תעודה':d===n?'הושלם':LVL_NAMES[lv]}</span><span class="pill">${d}/${n}</span></span><span class="segbar thin"><i style="width:${d/n*100}%"></i></span></button>`;}).join('')}</div>`;
+  h+=`<h3 style="margin:18px 0 8px">מעבדה</h3><div class="links" style="margin-top:0"><button class="linkrow" data-a="go" data-v="bjsim"><span class="ic">∿</span><span class="grow"><b>סימולטור אסטרטגיה — בלאק ג׳ק</b><small>תחושה מול אסטרטגיה מול ספירה, על עשרות אלפי ידיים</small></span></button>
+   ${DRILLS.map(d=>`<button class="linkrow" data-a="go" data-v="drill" data-id="${d.id}"><span class="ic">✓</span><span class="grow"><b>${d.t}</b><small>${d.d}</small></span></button>`).join('')}</div>`;
+  V.innerHTML=h;}
+function rCourse(V){const c=CRS(CUR.c);if(!c){go('academy');return;}const n=allLes(c).length,d=crsDone(c);
+  let h=`<div class="tbar"><button class="btn ghost sm" data-a="go" data-v="academy">בית הספר</button></div>
+   <section class="hero" style="padding:18px;margin-top:10px;--cc:${c.col}"><div class="row"><span class="crsic big">${c.ic}</span><div class="grow"><h2>${c.t}</h2><p class="muted">${c.d}</p></div></div>
+   <div class="segbar" style="margin-top:10px"><i style="width:${d/n*100}%"></i></div><small class="muted">${d}/${n} שיעורים · ${crsStars(c)}/${n*3} כוכבים</small></section>`;
+  c.lv.forEach((ids,l)=>{const open=lvOpen(c,l);const passed=!!SCH().lt[c.id+':'+l];
+    h+=`<div class="lvlhead ${open?'':'locked'}"><span>שלב ${l+1} · ${LVL_NAMES[l]}</span>${passed?'<span class="pill gold">עבר</span>':open?'':'<span class="pill">נעול</span>'}</div><div class="path">`;
+    ids.forEach((id,i)=>{const L=SL[id];const st=SCH().done[id]||0;const op=lesOpen(c,id);const cur=op&&!st;
+      h+=`<button class="node ${st?'done':''} ${cur?'cur':''}" ${op?`data-a="les" data-id="${id}"`:'disabled'}><span class="ndot">${st?'✓':op?(i+1):LOCK}</span><span class="grow"><b>${esc(L.t)}</b>${st?starsHTML(st):`<small>${slidesOf(L).length} שקפים · ${Math.min(5,L.q.length+(L.gen||[]).reduce((a,g)=>a+g[1],0))} שאלות</small>`}</span></button>`;});
+    h+=`<button class="node test ${passed?'done':''}" ${open?`data-a="ltest" data-c="${c.id}" data-l="${l}"`:'disabled'}><span class="ndot">${passed?'★':'?'}</span><span class="grow"><b>מבחן שלב ${LVL_NAMES[l]}</b><small>${passed?'עבר בהצלחה':'8 שאלות · 80% כדי לעבור'+(ids.every(id=>SCH().done[id])?'':' · אפשר לגשת כבר עכשיו כדי לדלג')}</small></span></button></div>`;});
+  if(c.ex.length){const eo=examOpen(c);h+=`<div class="lvlhead ${eo?'':'locked'}"><span>מבחן סיום ותעודה</span></div><div class="path">${c.ex.map(g=>{const has=S.cert&&S.cert[g];return `<button class="node cert ${has?'done':''}" ${eo?`data-a="exam" data-g="${g}"`:'disabled'}><span class="ndot">${has?'★':ICO.cap}</span><span class="grow"><b>מבחן סיום · ${EXAM_G[g]}</b><small>${has?'תעודה התקבלה ב-'+new Date(S.cert[g]).toLocaleDateString('he-IL'):eo?'90% ומעלה = תעודה ו-200 XP':'נפתח אחרי מבחן השלב האחרון'}</small></span></button>`;}).join('')}</div>`;}
+  V.innerHTML=h;}
+
+ACH.push(['school1','תלמיד','להשלים שיעור ראשון באקדמיה'],['school_course','בוגר קורס','להשלים את כל השיעורים בקורס'],['school_streak7','שבוע של למידה','רצף של 7 ימי למידה']);
+/* ================= FIREBASE ROOM (online play outside Claude) ================= */
+const MYPEER='p'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+const FBROOM={join:async name=>{const col=FB.db.collection('casino77_rooms').doc(name).collection('peers');const me=col.doc(MYPEER);let cur={},tm=null,last=0,un=null,hb=null;
+  const write=()=>me.set({p:JSON.stringify(cur),ts:Date.now(),uid:FB.user?FB.user.uid:''}).catch(()=>{});
+  const flush=()=>{tm=null;last=Date.now();write();};
+  await me.set({p:'{}',ts:Date.now(),uid:FB.user.uid});hb=setInterval(write,25000);
+  const gone=()=>{me.delete().catch(()=>{});};try{window.addEventListener('pagehide',gone);}catch(e){}
+  const api={name,
+    presence(patch){Object.entries(patch||{}).forEach(([k,v])=>{if(v===null)delete cur[k];else cur[k]=v;});if(!tm)tm=setTimeout(flush,Math.max(0,350-(Date.now()-last)));return Promise.resolve();},
+    onPeers(cb){let prev=new Map();un=col.onSnapshot(snap=>{const now=Date.now();const peers=[];snap.docs.forEach(d=>{const x=d.data()||{};if(d.id!==MYPEER&&now-(+x.ts||0)>90000)return;let pr={};try{pr=JSON.parse(x.p||'{}');}catch(e){}peers.push({peer:d.id,sameTab:d.id===MYPEER,isMe:d.id===MYPEER,presence:pr});});
+        const ids=new Set(peers.map(p=>p.peer));const left=[...prev.values()].filter(p=>!ids.has(p.peer));prev=new Map(peers.map(p=>[p.peer,p]));cb({peers,left,joined:[],updated:[]});},()=>{});return ()=>{un&&un();};},
+    async leave(){clearTimeout(tm);clearInterval(hb);try{un&&un();window.removeEventListener('pagehide',gone);}catch(e){}try{await me.delete();}catch(e){}}};
+  return api;}};
+/* ================= WEEKLY CHAMPIONSHIP ================= */
+function weekId(d=new Date()){const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-x.getDay());return x.getFullYear()+'-'+(x.getMonth()+1)+'-'+x.getDate();}
+function wkRoll(){const id=weekId();if(!S.wk||S.wk.id!==id){if(S.wk&&S.wk.hands)S.lw=Object.assign({},S.wk);S.wk={id,net:0,hands:0,dec:0,good:0};}}
+function wkAdd(net){if(S.practice)return;wkRoll();S.wk.net+=Math.round(net);S.wk.hands++;lbSoon();}
+function wkDec(g,ok){if(S.practice||g==='drill')return;wkRoll();S.wk.dec++;if(ok)S.wk.good++;}
+function daysLeftWeek(){const n=new Date();return 7-n.getDay();}
+/* ================= LEADERBOARD (Claude db or Firebase) ================= */
+const LB={init:false,kind:null,db:null,user:null,id:null,rows:[],names:{},err:'',msg:'',tab:'week',champ:null,unsub:null};
+async function lbInit(){if(LB.init)return;
+  if(inClaude()){LB.init=true;LB.kind='claude';try{LB.db=await window.claude.use('db');LB.user=await window.claude.use('user');LB.id=LB.user?await LB.user.id():null;}catch(e){LB.db=null;}
+    if(!LB.db){LB.err='none';if(CUR.v==='board')render();return;}
+    LB.unsub=LB.db.collection('board').onSnapshot(snap=>{LB.rows=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()}));lbChamp();lbNames();},e=>{LB.err=e&&e.code||'error';if(CUR.v==='board')render();});
+    lbPublish();return;}
+  if(!fbCfg()){LB.err='nofb';return;}if(!FB.on||!FB.user){LB.err='signin';return;}
+  LB.init=true;LB.kind='fb';LB.err='';LB.id=FB.user.uid;
+  LB.unsub=FB.db.collection('casino77_board').limit(300).onSnapshot(snap=>{LB.rows=snap.docs.map(d=>({id:d.id,...d.data()}));lbChamp();if(CUR.v==='board'||CUR.v==='chal')render();},()=>{LB.err='fberr';if(CUR.v==='board')render();});
+  lbPublish();}
+function lbReset(){try{LB.unsub&&LB.unsub();}catch(e){}Object.assign(LB,{init:false,kind:null,id:null,rows:[],err:'',unsub:null,champ:null});}
+function lbMine(){wkRoll();const st=Object.entries(S.stats).filter(([g])=>g!=='drill');
+  return {chips:Math.round(S.chips),lvl:lvl(),dec:st.reduce((a,[,x])=>a+x.dec,0),good:st.reduce((a,[,x])=>a+x.good,0),hands:st.reduce((a,[,x])=>a+x.hands,0),ach:Object.keys(S.ach||{}).length,
+   ch:Object.fromEntries(Object.entries(S.chals||{}).slice(-10).map(([k,v])=>[k,{net:v.net,acc:Math.round(v.acc*1000)/1000,g:v.g}])),wk:S.wk,lw:S.lw||null,t:Date.now()};}
+async function lbPublish(){if(!LB.init)return;const m=lbMine();
+  try{if(LB.kind==='fb'){m.name=(S.nick||'').trim()||((FB.user&&FB.user.displayName)||'').split(' ')[0]||'שחקן';await FB.db.collection('casino77_board').doc(LB.id).set(m);}
+    else{if(!LB.db||!LB.id){LB.msg=LB.db?'צריך להיות מחובר לחשבון כדי להופיע בטבלה.':'';if(CUR.v==='board')render();return;}await LB.db.doc('board/'+LB.id).set(m);}
+    LB.msg='השורה שלך עודכנה.';}
+  catch(e){LB.msg=LB.kind==='fb'?'לא הצלחתי לעדכן את השורה — בדוק את החיבור לאינטרנט.':'לא הצלחתי לעדכן את השורה שלך — צריך הרשאת Contributor לקישור (מתפריט Share).';}
+  if(CUR.v==='board')render();}
+let LBT=null;function lbSoon(){if(!LB.init)return;clearTimeout(LBT);LBT=setTimeout(lbPublish,30000);}
+async function lbNames(){if(LB.user){try{const ids=LB.rows.map(r=>r.id);const ps=ids.length?await LB.user.profiles(ids):{};ids.forEach(id=>{LB.names[id]=(ps[id]&&ps[id].name)||'';});}catch(e){}}if(CUR.v==='board'||CUR.v==='chal')render();}
+const lbName=r=>r.id===LB.id?'אני':(LB.names[r.id]||r.name||'שחקן');
+function lbChamp(){const prev=weekId(new Date(Date.now()-7*864e5));let best=null;
+  LB.rows.forEach(r=>{const w=(r.wk&&r.wk.id===prev)?r.wk:(r.lw&&r.lw.id===prev)?r.lw:null;if(w&&(+w.hands||0)>=20&&(!best||(+w.net||0)>best.net))best={id:r.id,net:+w.net||0,r};});LB.champ=best;
+  if(best&&best.id===LB.id){S.wkWon=S.wkWon||{};if(!S.wkWon[prev]){S.wkWon[prev]=1;S.chips+=5000;save();updTop();unlock('weekly_champ');celebrate(true);toast('ניצחת באליפות השבוע שעבר! +5,000 צ׳יפים','good');}}}
+function rBoard(V){if(!LB.init)lbInit();
+  let h=`<div class="tbar"><h2>טבלת מובילים</h2></div><div class="stack" style="margin-top:12px">`;
+  if(LB.err==='none')h+=`<div class="panel"><p class="muted">טבלת המובילים עובדת כשהמשחק פתוח בתוך Claude. שתפו את הקישור עם חברים (Share), וכל מי שנכנס מופיע כאן.</p></div>`;
+  else if(LB.err==='nofb')h+=`<div class="panel"><p class="muted">באתר הזה אין חיבור לשרת, אז אין טבלה משותפת.</p></div>`;
+  else if(LB.err==='signin')h+=`<div class="panel stack"><h3>מתחברים כדי להתחרות</h3><p class="muted">טבלת המובילים והאליפות השבועית משותפות לכל מי שמתחבר עם Google לאתר. ההתקדמות שלך גם תישמר בחשבון.</p><button class="btn" data-a="fbin">התחבר עם Google</button></div>`;
+  else if(LB.err==='fberr')h+=`<div class="panel"><p class="muted">לא הצלחתי לקרוא את הטבלה. ודאו שבחוקי Firestore יש גישה לאוסף casino77_board למשתמשים מחוברים.</p></div>`;
+  else if(!LB.init||(LB.kind==='claude'&&!LB.db))h+=`<p class="muted">מתחבר…</p>`;
+  else{const tabs=[['week','השבוע'],['chips','יתרה'],['acc','דיוק'],['lvl','רמה'],['ach','הישגים']];const cw=weekId();
+    if(LB.champ)h+=`<div class="champ"><span class="crown">★</span><div class="grow"><small>אלוף השבוע שעבר</small><b>${esc(lbName(LB.champ.r))}</b></div><span class="mono good">${sgn(LB.champ.net)}</span></div>`;
+    h+=`<div class="seg">${tabs.map(([k,l])=>`<button class="${LB.tab===k?'on':''}" data-a="lbtab" data-v="${k}">${l}</button>`).join('')}</div>`;
+    if(LB.tab==='week'){const rows=LB.rows.filter(r=>r.wk&&r.wk.id===cw&&(+r.wk.hands||0)>0).map(r=>({r,id:r.id,net:+r.wk.net||0,hands:+r.wk.hands||0,acc:(+r.wk.dec||0)>=10?(+r.wk.good||0)/r.wk.dec:-1})).sort((a,b)=>b.net-a.net);
+      h+=`<div class="panel stack"><div class="row"><b class="grow">אליפות השבוע</b><span class="pill">${daysLeftWeek()===1?'מסתיימת הלילה':'עוד '+daysLeftWeek()+' ימים'}</span></div><p class="note">רווח בצ׳יפים מכל המשחקים מיום ראשון. מינימום 20 ידיים כדי לזכות. האלוף מקבל 5,000 צ׳יפים ותג.</p>
+       <div class="scroll"><table class="t"><tr><th>#</th><th>שחקן</th><th>רווח</th><th>ידיים</th><th>דיוק</th></tr>${rows.length?rows.map((x,i)=>`<tr class="${x.id===LB.id?'best':''}"><td class="n">${i+1}</td><td>${esc(lbName(x.r))}${x.hands<20?' <small class="muted">(פחות מ-20)</small>':''}</td><td class="n ${x.net>=0?'good':'bad'}">${sgn(x.net)}</td><td class="n">${x.hands}</td><td class="n">${x.acc>=0?pct(x.acc,0):'—'}</td></tr>`).join(''):`<tr><td colspan="5" class="muted">עוד אף אחד לא שיחק השבוע. היד הבאה שלך פותחת את הטבלה.</td></tr>`}</table></div></div>`;}
+    else{const rows=LB.rows.map(r=>({r,id:r.id,chips:+r.chips||0,lvl:+r.lvl||1,dec:+r.dec||0,good:+r.good||0,ach:+r.ach||0})).map(x=>({...x,acc:x.dec>=30?x.good/x.dec:-1}));rows.sort((a,b)=>b[LB.tab]-a[LB.tab]);
+      h+=`<div class="panel scroll"><table class="t"><tr><th>#</th><th>שחקן</th><th>יתרה</th><th>רמה</th><th>דיוק</th><th>הישגים</th></tr>${rows.length?rows.map((x,i)=>`<tr class="${x.id===LB.id?'best':''}"><td class="n">${i+1}</td><td>${esc(lbName(x.r))}</td><td class="n">${fmt(x.chips)}</td><td class="n">${x.lvl}</td><td class="n">${x.acc>=0?pct(x.acc,0):'—'}</td><td class="n">${x.ach}</td></tr>`).join(''):`<tr><td colspan="6" class="muted">עוד אין שורות.</td></tr>`}</table></div>`;}
+    h+=`<p class="note">${esc(LB.msg)} דיוק נספר מ-30 החלטות ומעלה. מצב אימון לא נספר.</p><button class="btn dark" data-a="lbpub">עדכן את השורה שלי עכשיו</button>`;}
+  V.innerHTML=h+`</div>`;}
+/* ================= INSTALL AS APP ================= */
+let DEFER=null;try{window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFER=e;if(CUR.v==='home'||CUR.v==='profile')render();});window.addEventListener('appinstalled',()=>{DEFER=null;toast('קזינו 77 הותקן במסך הבית','good');});}catch(e){}
+const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;}catch(e){return false;}};
+const isIOS=()=>{try{return /iPad|iPhone|iPod/.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}catch(e){return false;}};
+const secureHost=()=>{try{return location.protocol==='https:'||location.hostname==='localhost';}catch(e){return false;}};
+const canInstall=()=>!inClaude()&&!isStandalone()&&secureHost();
+function installBody(){return DEFER?`<button class="btn sm" data-a="pwainstall">התקן עכשיו</button>`:isIOS()?`<small class="muted">בספארי: כפתור השיתוף <b>⎙</b> ← <b>הוסף למסך הבית</b>.</small>`:`<small class="muted">בתפריט הדפדפן (⋮) ← <b>התקן אפליקציה</b> / <b>הוסף למסך הבית</b>.</small>`;}
+function installHomeHTML(){if(!canInstall()||S.pwaHide)return '';return `<div class="panel row" style="margin-top:14px;gap:12px"><span class="crsic" style="--cc:#2c8a5a;flex:none">77</span><div class="grow stack" style="gap:4px"><b>התקן את קזינו 77 בטלפון</b><small class="muted">אייקון במסך הבית, מסך מלא, ועובד גם בלי אינטרנט.</small>${installBody()}</div><button class="iconbtn" data-a="pwahide" aria-label="הסתר">✕</button></div>`;}
+function installProfHTML(){if(!canInstall())return '';return `<div class="stack" style="padding:10px 0;border-bottom:1px solid var(--line)"><b>התקנה כאפליקציה</b>${installBody()}</div>`;}
+function swRegister(){try{if(!inClaude()&&'serviceWorker' in navigator&&secureHost())navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}}
+/* ================= GUIDED FIRST HANDS ================= */
+const TUTS={bj:[['bet','<b>ברוכים הבאים לבלאק ג׳ק!</b> המטרה: להגיע קרוב יותר ל-21 מהדילר בלי לעבור. בחרו סכום עם הצ׳יפים ולחצו "חלק".'],
+   ['play','למעלה הקלף הגלוי של הדילר, ולמטה היד שלך והסכום שלה. <b>הכפתור עם המסגרת הירוקה</b> הוא המהלך שהסולבר ממליץ.'],
+   ['play','מתחת לשולחן הסולבר מראה כמה כל מהלך שווה בממוצע וכמה הדילר צפוי להישרף. אפשר לכבות אותו בכפתור "עזרה" למעלה.'],
+   ['done','הסיבוב הסתיים — התוצאה מופיעה ליד היד שלך. לחצו "סיבוב חדש" כדי להמשיך. בהצלחה!']],
+ pk:[['pre','<b>ברוכים הבאים לפוקר!</b> אלה הקלפים שלך — רק אתה רואה אותם. עכשיו סבב ההימורים: פולד, צ׳ק/קול או הימור.'],
+   ['pre','הסולבר למטה מראה את הסיכוי שלך לנצח ואת המהלך המומלץ — הכפתור הירוק. "אקוויטי נדרש" אומר כמה צריך לנצח כדי שקול ישתלם.'],
+   ['flop','באמצע השולחן הקלפים המשותפים. כל שחקן בונה את 5 הקלפים הכי טובים מתוך 7.'],
+   ['special','זה שלב בחירת הקלפים: געו בקלפים ואשרו. "מה הסולבר ממליץ?" מסמן את הבחירה הטובה ביותר.'],
+   ['done','סוף היד! בפרופיל ← "היסטוריית ידיים" יש ניתוח של כל החלטה שלך. בהצלחה!']],
+ rl:[['start','<b>רולטה:</b> בחרו צ׳יפ, געו במספר או באזור בלוח (אפשר כמה הימורים), ולחצו "סובב".'],['after','הסולבר מתחת ללוח מראה סיכוי ותוחלת לכל צירוף. כל ההימורים ברולטה אירופאית מפסידים 2.7% בממוצע — אין צירוף מנצח.']],
+ vp:[['start','<b>וידאו פוקר:</b> לחצו "חלק" כדי לקבל 5 קלפים.'],['hold','געו בקלפים שרוצים לשמור ולחצו "החלף". "החזקה מומלצת" מסמנת את הבחירה עם התוחלת הגבוהה ביותר.'],['done','התשלום לפי הטבלה למעלה. שחקו תמיד 5 מטבעות — הרויאל משלם אז 4,000. בהצלחה!']],
+ tcp:[['bet','<b>פוקר 3 קלפים:</b> שימו אנטה (ואם רוצים גם פייר פלוס) ולחצו "חלק".'],['decide','עכשיו מחליטים: לשחק (עוד הימור בגובה האנטה) או לקפל. הכלל: לשחק עם Q-6-4 ומעלה.'],['done','הדילר צריך Q גבוה כדי להעפיל — אם לא, האנטה שלך משולם. בהצלחה!']],
+ bac:[['bet','<b>באקרה:</b> מהמרים על שחקן, בנקאי או טאי ולוחצים "חלק". אין החלטות אחרי החלוקה — בנקאי הוא ההימור הכי טוב.'],['done','היד הקרובה ל-9 מנצחת. הלוח למטה מראה את תוצאות הנעל, אבל הן לא מנבאות את החלוקה הבאה.']]};
+const TUT={seen:{},open:null,forced:null};
+const RR={bj:()=>bjRender(),pk:()=>pkRender(),rl:()=>rlRender(),vp:()=>vpRender(),tcp:()=>tcpRender(),bac:()=>bacRender()};
+const GAME_OF={bj:'bj',pk:'pk',rl:'rl',vp:'vp',tcp:'tcp',bac:'bac'};
+function tutState(g){if(NET)return null;
+  if(g==='bj'){const s=BJ.st;if(!s||BJ.chal||s.seats.filter(p=>p.t!=='bot').length>1)return null;if(s.phase==='bet')return 'bet';if(s.phase==='play'&&s.seats[s.ts]&&s.seats[s.ts].t==='me')return 'play';if(s.phase==='done')return 'done';return null;}
+  if(g==='pk'){const s=PK.st;if(!s||PK.needRebuy||(s.tour&&s.tour.over)||s.seats.filter(p=>p.t!=='bot').length>1)return null;const me=s.seats.findIndex(p=>p.t==='me');if(me<0)return null;if(s.street==='done')return 'done';
+    if(s.turn===me){if(s.street==='disc'||s.street==='draw')return 'special';return s.board.length?'flop':'pre';}return null;}
+  if(g==='rl'){if(RL.spinning)return null;return RL.hist.length?'after':'start';}
+  if(g==='vp'){if(VP.chal)return null;return VP.phase==='hold'?'hold':VP.res?'done':'start';}
+  if(g==='tcp')return TCP.phase;if(g==='bac')return BAC.phase==='deal'?null:BAC.res?'done':'bet';return null;}
+function tutCheck(g){try{if(S.tutOff||TUT.open)return;S.tut=S.tut||{};if(S.tut[g])return;const st=tutState(g);if(!st)return;const T=TUTS[g];const seen=TUT.seen[g]||(TUT.seen[g]=new Set());
+  const idx=T.findIndex((x,i)=>x[0]===st&&!seen.has(i));if(idx<0)return;seen.add(idx);
+  if(!S.solver&&!TUT.forced&&(g==='bj'||g==='pk'||g==='vp')){TUT.forced={g,prev:false};S.solver=true;setTimeout(()=>RR[g](),0);}
+  TUT.open={g,idx};const el=$('#tip');if(!el)return;el.innerHTML=`<div class="row" style="gap:8px;align-items:flex-start"><span class="tipdot">${idx+1}/${T.length}</span><p class="grow" style="margin:0;line-height:1.6">${T[idx][1]}</p></div><div class="row" style="margin-top:10px"><button class="btn ghost sm" data-a="tutskip">דלג על המדריך</button><span class="spacer"></span><button class="btn sm" data-a="tutok">${idx===T.length-1?'סיום':'הבנתי'}</button></div>`;el.hidden=false;}catch(e){}}
+function tutEnd(g,all){const el=$('#tip');if(el)el.hidden=true;TUT.open=null;S.tut=S.tut||{};if(all)S.tutOff=1;else S.tut[g]=1;
+  if(TUT.forced){S.solver=TUT.forced.prev;TUT.forced=null;}save();if(RR[g])RR[g]();}
+function tutHide(){const el=$('#tip');if(el&&!el.hidden){el.hidden=true;}TUT.open=null;if(TUT.forced){S.solver=TUT.forced.prev;TUT.forced=null;save();}}
+bjRender=(f=>function(V){f(V);tutCheck('bj');})(bjRender);
+pkRender=(f=>function(V){f(V);tutCheck('pk');})(pkRender);
+rlRender=(f=>function(V){f(V);tutCheck('rl');})(rlRender);
+vpRender=(f=>function(V){f(V);tutCheck('vp');})(vpRender);
+tcpRender=(f=>function(V){f(V);tutCheck('tcp');})(tcpRender);
+bacRender=(f=>function(V){f(V);tutCheck('bac');})(bacRender);
+
+ACH.push(['weekly_champ','אלוף השבוע','לנצח באליפות השבועית']);
 /* ================= events ================= */
 const ACT={
   home:()=>{if(CUR.v==='pk'&&PK.st){pkLeave();return;}if(CUR.v==='bj'&&BJ.st){bjLeave();return;}if(VP.chal){if(!VP.chal.done){S.solver=VP.chal.prev.solver;S.coach=VP.chal.prev.coach;save();}VP.chal=null;go('chal');sessEnd();return;}const wasG=['rl','vp','tcp','bac'].includes(CUR.v);go('home');if(wasG)sessEnd();},
@@ -2039,6 +2477,18 @@ const ACT={
   bonus:()=>{const now=Date.now();if(now-S.bonusAt<3600e3&&bal()>=200){toast('הבונוס הבא זמין בעוד '+Math.ceil((3600e3-(now-S.bonusAt))/60000)+' דקות');return;}S.bonusAt=now;addBal(5000);toast('קיבלת 5,000 צ׳יפים','good');render();},
   setup:d=>openSetup(d.g,d.var,d.kind),
   quick:quickPlay,
+  pwainstall:()=>{if(!DEFER)return;DEFER.prompt();DEFER.userChoice.finally(()=>{DEFER=null;render();});},
+  pwahide:()=>{S.pwaHide=1;save();render();},
+  tutok:()=>{const o=TUT.open;if(!o)return;const last=o.idx===TUTS[o.g].length-1;if(last){tutEnd(o.g,false);return;}const el=$('#tip');if(el)el.hidden=true;TUT.open=null;tutCheck(o.g);},
+  tutskip:()=>{const o=TUT.open;if(o)tutEnd(o.g,true);},
+  tutreset:()=>{S.tut={};S.tutOff=0;TUT.seen={};save();toast('המדריכים יופיעו שוב בכל משחק','good');},
+  les:d=>startLes(d.id),ltest:d=>startTest(d.c,+d.l),review:startReview,course:d=>go('course',{c:d.c}),
+  lesclose:()=>{const c=LS&&LS.c;LS=null;c?go('course',{c:c.id}):go('academy');},
+  lesprev:()=>{if(LS.i>0)LS.i--;render();window.scrollTo(0,0);},
+  lesnext:()=>{if(LS.i<LS.slides.length-1)LS.i++;else{LS.phase='quiz';LS.qi=0;LS.ans=null;}render();window.scrollTo(0,0);},
+  lesans:d=>lesAnswer(d.v),
+  lesq:()=>{LS.qi++;LS.ans=null;if(LS.qi>=LS.qs.length)lesFinish();else render();window.scrollTo(0,0);},
+  lesplay:d=>{openSetup(d.g,d.var||undefined,d.kind||undefined);SETUP.help=2;render();},
   exportgo:()=>{const url=HOME_URL+'#import='+exportCode();if(location.href.split('#')[0]===HOME_URL){toast('אתה כבר באתר הזה');return;}const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();},
   exportcopy:()=>{const c=exportCode();try{navigator.clipboard.writeText(c).then(()=>toast('הקוד הועתק — הדבק אותו באתר השני, בפרופיל ← העברת התקדמות','good'),()=>{const t=$('#importcode');if(t){t.value=c;t.select();}toast('סמן והעתק את הקוד מהתיבה');});}catch(e){const t=$('#importcode');if(t){t.value=c;t.select();}}},
   importpaste:()=>{const v=($('#importcode')||{}).value||'';try{askImport(parseCode(v));}catch(e){toast('הקוד לא תקין — ודא שהעתקת את כולו','bad');}},
@@ -2111,6 +2561,8 @@ render();
 if(!checkImportHash()&&!S.onb)showOnb(0);
 cloudInit();
 fbInit();
+swRegister();
+if(inClaude())setTimeout(lbInit,2500);
 </script>
 
 </body></html>
