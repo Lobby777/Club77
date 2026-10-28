@@ -1328,6 +1328,7 @@ function openSettings(){modal(`<h3>הגדרות</h3>
   <div class="toggle"><span><b>צלילים</b></span><input type="checkbox" id="setSound" ${S.sound?'checked':''}></div>
   ${fbSettingsHTML()}
   <div class="stack" style="padding:10px 0;border-bottom:1px solid var(--line)"><b>שמירה בענן</b><small class="muted">${cloudLine()}</small>${CLOUD.ref?'<button class="btn dark sm" data-a="cloudnow">שמור עכשיו</button>':''}</div>
+  ${transferHTML()}
   <div class="row" style="margin-top:14px"><button class="btn ghost" data-a="onbagain">הצג שוב את הסיור</button><button class="btn grow" data-a="closemodal">סגור</button></div>`);
   $('#setSound').onchange=e=>{S.sound=e.target.checked;save();updTop();};
   $('#setSolver').onchange=e=>{S.solver=e.target.checked;save();render();};
@@ -1871,10 +1872,33 @@ function rBjSim(V){let h=`<div class="tbar"><button class="btn ghost sm" data-a=
 const CLOUD={ref:null,ready:false,timer:null,status:'',last:0,pending:null};
 async function cloudInit(){try{if(!(window.claude&&typeof window.claude.use==='function'))return;const db=await window.claude.use('db');const u=await window.claude.use('user');const id=u?await u.id():null;if(!db||!id)return;
   CLOUD.ref=db.doc('data/users/'+id+'/save');const snap=await CLOUD.ref.get();
-  if(snap.exists){const d=snap.data()||{};const t=+d.t||0;if(t>(S.savedAt||0)+3000){const fresh=!Object.keys(S.stats||{}).length&&!(S.xp>0);
-      if(fresh){cloudApply(d);}else{CLOUD.pending=d;let bal0=0;try{bal0=JSON.parse(d.s).chips;}catch(e){}
-        modal(`<h3>נמצאה שמירה בענן</h3><p class="muted" style="margin-top:8px">שמירה מ-${new Date(t).toLocaleString('he-IL')} עם יתרה של ${fmt(bal0)}. היא חדשה יותר מהשמירה במכשיר הזה (יתרה ${fmt(S.chips)}).</p><div class="row" style="margin-top:14px"><button class="btn grow" data-a="cloudload">טען מהענן</button><button class="btn dark grow" data-a="cloudkeep">השאר את המכשיר הזה</button></div>`);}}}
+  if(snap.exists)syncDecide(snap.data()||{},'Claude');
   CLOUD.ready=true;CLOUD.status='ok';if(!CLOUD.pending)cloudQueue();}catch(e){CLOUD.status='fail';}}
+const meaningful=X=>!!X&&((X.xp||0)>0||Object.values(X.stats||{}).some(v=>v&&v.hands>0));
+const progOf=X=>{const st=Object.values(X.stats||{});return {chips:X.chips||0,lvl:Math.floor(Math.sqrt((X.xp||0)/25))+1,hands:st.reduce((a,v)=>a+(v.hands||0),0)};};
+function syncDecide(d,src){let C=null;try{C=JSON.parse(d.s);}catch(e){return;}
+  if(!meaningful(C))return;
+  if(!meaningful(S)){cloudApply(d);return;}
+  if(JSON.stringify(progOf(C))===JSON.stringify(progOf(S)))return;
+  CLOUD.pending=d;const a=progOf(C),b=progOf(S);
+  modal(`<h3>יש שתי שמירות שונות</h3><p class="muted" style="margin-top:8px">בחר איזו להמשיך. השנייה תוחלף.</p>
+   <div class="kv" style="margin-top:10px"><div><small>בחשבון ${src}</small><b>${fmt(a.chips)}</b><small>רמה ${a.lvl} · ${fmt(a.hands)} ידיים</small></div><div><small>במכשיר הזה</small><b>${fmt(b.chips)}</b><small>רמה ${b.lvl} · ${fmt(b.hands)} ידיים</small></div></div>
+   <div class="row" style="margin-top:14px"><button class="btn grow" data-a="cloudload">המשך מהחשבון</button><button class="btn dark grow" data-a="cloudkeep">המשך מהמכשיר</button></div>`);}
+const HOME_URL='https://lobby777.github.io/Club77/';
+function b64e(str){const by=new TextEncoder().encode(str);let bin='';for(let i=0;i<by.length;i+=8192)bin+=String.fromCharCode.apply(null,by.subarray(i,i+8192));return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function b64d(t){t=String(t).trim().replace(/-/g,'+').replace(/_/g,'/');while(t.length%4)t+='=';const bin=atob(t);const by=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)by[i]=bin.charCodeAt(i);return new TextDecoder().decode(by);}
+function exportCode(){const X=JSON.parse(JSON.stringify(S));delete X.fbcfg;X.hist=(X.hist||[]).slice(0,12);X.bk=(X.bk||[]).filter((p,i,a)=>a.length<=120||i%Math.ceil(a.length/120)===0||i===a.length-1);return 'c77.'+b64e(JSON.stringify(X));}
+function parseCode(code){code=String(code||'').trim().replace(/^.*#import=/,'');if(code.startsWith('c77.'))code=code.slice(4);const X=JSON.parse(b64d(code));if(!X||typeof X!=='object'||X.chips==null)throw new Error('bad');return X;}
+let IMPORT=null;
+function askImport(X){IMPORT=X;const a=progOf(X),b=progOf(S);
+  modal(`<h3>להעביר את ההתקדמות לכאן?</h3><div class="kv" style="margin-top:10px"><div><small>ההתקדמות שמגיעה</small><b>${fmt(a.chips)}</b><small>רמה ${a.lvl} · ${fmt(a.hands)} ידיים</small></div><div><small>מה שיש כאן עכשיו</small><b>${fmt(b.chips)}</b><small>רמה ${b.lvl} · ${fmt(b.hands)} ידיים</small></div></div>
+   <p class="note" style="margin-top:8px">ההתקדמות שכאן תוחלף.${FB.user?' היא תישמר גם בחשבון Google שלך.':''}</p><div class="row" style="margin-top:12px"><button class="btn grow" data-a="importyes">העבר</button><button class="btn dark grow" data-a="importno">ביטול</button></div>`);}
+function doImport(){const X=IMPORT;IMPORT=null;if(!X)return;const keep={fbcfg:S.fbcfg};S=Object.assign(JSON.parse(JSON.stringify(DEF)),X,keep,{onb:1});CLOUD.pending=null;save();if(FB.user&&FB.db){FB.ready=true;fbPush();}if(CLOUD.ref){CLOUD.ready=true;cloudPush();}
+  closeModal();BAL_SHOWN=null;render();toast('ההתקדמות הועברה בהצלחה','good');celebrate(false);}
+function transferHTML(){return `<div class="stack" style="padding:10px 0;border-bottom:1px solid var(--line)"><b>העברת התקדמות</b><small class="muted">להעביר את היתרה, הרמה וההיסטוריה לאתר אחר או למכשיר אחר.</small>
+  <div class="row"><button class="btn sm" data-a="exportgo">פתח באתר ${esc(HOME_URL.replace('https://','').replace(/\/$/,''))}</button><button class="btn dark sm" data-a="exportcopy">העתק קוד</button></div>
+  <textarea class="txt" id="importcode" rows="2" style="direction:ltr;font:11px var(--f-mono)" placeholder="יש לך קוד העברה? הדבק אותו כאן"></textarea><button class="btn dark sm" data-a="importpaste">טען מקוד</button></div>`;}
+function checkImportHash(){try{const h=location.hash||'';if(!h.startsWith('#import='))return false;const X=parseCode(h);try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}askImport(X);return true;}catch(e){toast('קוד ההעברה פגום','bad');return false;}}
 function cloudApply(d){try{const v=JSON.parse(d.s);S=Object.assign(JSON.parse(JSON.stringify(DEF)),v);S.savedAt=+d.t;try{localStorage.setItem(SKEY,JSON.stringify(S));}catch(e){}CLOUD.pending=null;render();toast('ההתקדמות נטענה מהענן','good');}catch(e){toast('לא הצלחתי לקרוא את השמירה מהענן','bad');}}
 function cloudQueue(){if(CLOUD.pending)return;if(FB.user&&FB.ready){clearTimeout(FB.t);FB.t=setTimeout(fbPush,4000);}if(!CLOUD.ready)return;clearTimeout(CLOUD.timer);CLOUD.timer=setTimeout(cloudPush,4000);}
 /* ================= FIREBASE (Google sign-in when hosted outside Claude) ================= */
@@ -1891,8 +1915,7 @@ async function fbInit(){const cfg=fbCfg();if(!cfg||inClaude()||FB.loading||FB.on
 async function fbSignIn(){if(!FB.on){toast('Firebase לא מוגדר עדיין','bad');return;}const pr=new firebase.auth.GoogleAuthProvider();
   pr.setCustomParameters({prompt:'select_account'});try{await FB.auth.signInWithPopup(pr);}catch(e){const c=e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;if(c==='auth/popup-blocked')toast('הדפדפן חסם את חלון ההתחברות. אפשרו חלונות קופצים לאתר ונסו שוב.','bad');else if(c==='auth/unauthorized-domain')toast('הדומיין לא מאושר ב-Firebase: הוסיפו את orisella10-a11y.github.io ב-Authorized domains','bad');else toast('ההתחברות נכשלה: '+esc(c||e.message||''),'bad');}}
 async function fbLoad(){try{const ref=FB.db.collection('casino77').doc(FB.user.uid);const snap=await ref.get();
-    if(snap.exists){const d=snap.data()||{};const t=+d.t||0;if(t>(S.savedAt||0)+3000){const fresh=!Object.keys(S.stats||{}).length&&!(S.xp>0);
-      if(fresh)cloudApply(d);else{CLOUD.pending=d;let b0=0;try{b0=JSON.parse(d.s).chips;}catch(e){}modal(`<h3>נמצאה שמירה בחשבון Google</h3><p class="muted" style="margin-top:8px">שמירה מ-${new Date(t).toLocaleString('he-IL')} עם יתרה של ${fmt(b0)}. היתרה במכשיר הזה: ${fmt(S.chips)}.</p><div class="row" style="margin-top:14px"><button class="btn grow" data-a="cloudload">טען מהחשבון</button><button class="btn dark grow" data-a="cloudkeep">השאר את המכשיר הזה</button></div>`);}}}
+    if(snap.exists)syncDecide(snap.data()||{},'Google');
     FB.ready=true;if(!CLOUD.pending)fbPush();toast('מחובר כ'+esc(FB.user.displayName||'משתמש Google'),'good');}catch(e){FB.err='לא הצלחתי לקרוא את השמירה — בדקו את חוקי Firestore.';}}
 async function fbPush(){if(!FB.user||!FB.db)return;try{await FB.db.collection('casino77').doc(FB.user.uid).set({s:JSON.stringify(S),t:S.savedAt||Date.now(),name:FB.user.displayName||''});FB.last=Date.now();FB.err='';}catch(e){FB.err='השמירה בחשבון נכשלה — בדקו את חוקי Firestore.';}}
 function fbSettingsHTML(){if(inClaude())return '';
@@ -2001,7 +2024,7 @@ function rProfile(V){const st=Object.entries(S.stats).filter(([g])=>g!=='drill'&
    <label class="toggle"><span>משחק מהיר<br><small class="muted">חלוקה, בוטים וגלגל מהירים יותר</small></span><input type="checkbox" id="pfast" ${S.fast?'checked':''}></label>
    <label class="toggle"><span>צלילים</span><input type="checkbox" id="psnd" ${S.sound?'checked':''}></label>
    <label class="toggle" style="border:0"><span>רטט<br><small class="muted">בטלפונים שתומכים</small></span><input type="checkbox" id="phap" ${S.haptic!==false?'checked':''}></label></div>
-  <div class="panel stack"><b>חשבון ושמירה</b>${fbSettingsHTML()}<small class="muted">${cloudLine()}</small></div>
+  <div class="panel stack"><b>חשבון ושמירה</b>${fbSettingsHTML()}<small class="muted">${cloudLine()}</small>${transferHTML()}</div>
   <button class="btn ghost" data-a="settings">הגדרות נוספות</button></div>`;
   const ni=$('#pnick');if(ni&&ni.addEventListener)ni.addEventListener('change',()=>{S.nick=ni.value.trim().slice(0,14);save();render();});
   const bind=(id,k,inv)=>{const el=$('#'+id);if(el)el.onchange=e=>{S[k]=e.target.checked;save();updTop();render();};};bind('pfour','fourc');bind('pfast','fast');bind('psnd','sound');
@@ -2015,12 +2038,16 @@ const ACT={
   resetp:()=>{S.pchips=10000;save();updTop();openSettings();},
   bonus:()=>{const now=Date.now();if(now-S.bonusAt<3600e3&&bal()>=200){toast('הבונוס הבא זמין בעוד '+Math.ceil((3600e3-(now-S.bonusAt))/60000)+' דקות');return;}S.bonusAt=now;addBal(5000);toast('קיבלת 5,000 צ׳יפים','good');render();},
   setup:d=>openSetup(d.g,d.var,d.kind),
-  quick:quickPlay,avc:d=>{S.avc=d.v;save();render();},fbin:fbSignIn,fbout:()=>{FB.auth&&FB.auth.signOut();closeModal();toast('התנתקת');},
+  quick:quickPlay,
+  exportgo:()=>{const url=HOME_URL+'#import='+exportCode();if(location.href.split('#')[0]===HOME_URL){toast('אתה כבר באתר הזה');return;}const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();},
+  exportcopy:()=>{const c=exportCode();try{navigator.clipboard.writeText(c).then(()=>toast('הקוד הועתק — הדבק אותו באתר השני, בפרופיל ← העברת התקדמות','good'),()=>{const t=$('#importcode');if(t){t.value=c;t.select();}toast('סמן והעתק את הקוד מהתיבה');});}catch(e){const t=$('#importcode');if(t){t.value=c;t.select();}}},
+  importpaste:()=>{const v=($('#importcode')||{}).value||'';try{askImport(parseCode(v));}catch(e){toast('הקוד לא תקין — ודא שהעתקת את כולו','bad');}},
+  importyes:doImport,importno:()=>{IMPORT=null;closeModal();},avc:d=>{S.avc=d.v;save();render();},fbin:fbSignIn,fbout:()=>{FB.auth&&FB.auth.signOut();closeModal();toast('התנתקת');},
   fbsave:()=>{const v=($('#fbcfg')||{}).value||'';let o;try{const t=v.trim().replace(/^[^{]*/,'').replace(/[^}]*$/,'');o=JSON.parse(t.replace(/([{,]\s*)([A-Za-z_]+)\s*:/g,'$1"$2":').replace(/'/g,'"'));}catch(e){toast('ה-config לא תקין — הדביקו את האובייקט מ-Firebase Console','bad');return;}
     if(!o.apiKey||!o.authDomain){toast('חסרים apiKey או authDomain','bad');return;}S.fbcfg=JSON.stringify(o);save();closeModal();fbInit().then(()=>toast('Firebase הופעל — אפשר להתחבר','good'));},hud:d=>openHud(+d.i),simrun:simStart,
   chalnew:d=>startChal(newChalCode(d.g)),chaljoin:()=>startChal(($('#chalcode')||{}).value),
   copyshare:d=>{const t=chalShareTxt(d.code);try{navigator.clipboard.writeText(t).then(()=>toast('ההודעה הועתקה','good'),()=>toast(t));}catch(e){toast(t);}},
-  cloudload:()=>{closeModal();cloudApply(CLOUD.pending);CLOUD.ready=true;},cloudkeep:()=>{closeModal();CLOUD.pending=null;CLOUD.ready=true;cloudPush();toast('השמירה מהמכשיר הזה עלתה לענן');},cloudnow:()=>{cloudPush().then(()=>openSettings());},
+  cloudload:()=>{closeModal();cloudApply(CLOUD.pending);CLOUD.ready=!!CLOUD.ref;},cloudkeep:()=>{closeModal();CLOUD.pending=null;CLOUD.ready=!!CLOUD.ref;if(CLOUD.ref)cloudPush();if(FB.user)fbPush();toast('השמירה מהמכשיר הזה עלתה לענן');},cloudnow:()=>{cloudPush().then(()=>openSettings());},
   onbnext:d=>showOnb(+d.i),onbskip:()=>{S.onb=1;save();closeModal();},onbagain:()=>{closeModal();showOnb(0);},
   chatopen:()=>{NET.chatOpen=true;NET.unread=0;chatRender();},chatclose:()=>{NET.chatOpen=false;chatRender();},chatq:d=>netSay(d.v),
   sound:()=>{S.sound=!S.sound;save();updTop();if(S.sound)snd('chip');},
@@ -2081,7 +2108,7 @@ const ACT={
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.disabled)return;const f=ACT[b.dataset.a];if(f){e.preventDefault();f(b.dataset,b);}});
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button][data-a]')){e.preventDefault();e.target.click();}});
 render();
-if(!S.onb)showOnb(0);
+if(!checkImportHash()&&!S.onb)showOnb(0);
 cloudInit();
 fbInit();
 </script>
