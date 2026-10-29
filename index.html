@@ -591,7 +591,8 @@ const BJA={hit:'קלף',stand:'עמוד',double:'דאבל',split:'פיצול',su
 /* ================= navigation ================= */
 let CUR={v:'home'};
 function stopTimers(){clearTimeout(PK.timer);clearTimeout(BJ.timer);if(typeof DR!=='undefined'&&DR.timer){clearTimeout(DR.timer);DR.timer=null;}if(typeof BAC!=='undefined'&&BAC.phase==='deal'){clearTimeout(BAC.timer);bacSettle();}}
-function go(v,p={}){if(v!=='pk'&&v!=='bj')stopTimers();CUR={v,...p};render();window.scrollTo(0,0);}
+function track(name,params){try{if(FB.an)FB.an.logEvent(name,params||{});}catch(e){}}
+function go(v,p={}){if(v!=='pk'&&v!=='bj')stopTimers();if(v!==CUR.v)track('page_view',{page_title:v});CUR={v,...p};render();window.scrollTo(0,0);}
 function render(){const V=$('#view');
   const map={admin:rAdmin,les:rLes,course:rCourse,profile:rProfile,chal:rChal,bjsim:rBjSim,board:rBoard,exam:rExam,home:rHome,setup:rSetup,pk:pkRender,bj:bjRender,rl:rlRender,vp:vpRender,tcp:tcpRender,bac:bacRender,academy:rAcademy,lesson:rLesson,drill:rDrill,stats:rStats,online:rOnline,ach:rAch,hist:rHist,histd:rHistD};
   if(!['pk','bj','rl','vp','tcp','bac'].includes(CUR.v))tutHide();
@@ -674,7 +675,7 @@ function rSetup(V){const c=SETUP;const title={bj:'בלאק ג׳ק',rl:'רולט�
 const BOT_POOL=[['יוסי','rock'],['מאיה','maniac'],['דודו','fish'],['רונית','pro'],['שמעון','pro'],['ליאור','maniac'],['אבי','rock'],['נועה','fish'],['גלית','pro'],['ערן','rock']];
 const STY={rock:{l:'סלע',loose:-.06,aggr:.35,bluff:.03},maniac:{l:'אגרסיבי',loose:.08,aggr:.95,bluff:.22},fish:{l:'קולר',loose:.1,aggr:.15,bluff:.03,sticky:1},pro:{l:'מקצוען',loose:0,aggr:.6,bluff:.09},count:{l:'סופר קלפים'},wild:{l:'מהמר'},basic:{l:'לפי הספר'}};
 function botsFor(n,taken=[]){const pool=shuffle(BOT_POOL.filter(b=>!taken.includes(b[0])));return pool.slice(0,n);}
-function startGame(){const c=SETUP;sessStart(c.g==='poker'?(c.kind==='cash'?c.variant:'tour'):c.g);S.solver=c.help>=1;S.coach=c.help===2;S.last=JSON.parse(JSON.stringify(c));save();
+function startGame(){const c=SETUP;track('game_start',{game:c.g==='poker'?(c.kind==='cash'?c.variant:c.kind):c.g,mode:c.mode||'solo',help:c.help||0});sessStart(c.g==='poker'?(c.kind==='cash'?c.variant:'tour'):c.g);S.solver=c.help>=1;S.coach=c.help===2;S.last=JSON.parse(JSON.stringify(c));save();
   if(c.g==='poker'&&c.kind==='mtt'){if(bal()<c.buy){toast('אין מספיק צ׳יפים לדמי הכניסה','bad');return;}const N=c.mttN;let k=0;const stys=['rock','maniac','fish','pro','pro','rock'];
     const bot=()=>({n:mttBotName(k),t:'bot',sty:stys[k++%stys.length],c:1500});
     const mine=[{n:meName(),t:'me',c:1500}];for(let i=0;i<8;i++)mine.push(bot());
@@ -1406,6 +1407,7 @@ function openSettings(){modal(`<h3>הגדרות</h3>
   ${S.practice?`<button class="btn dark sm" data-a="resetp" style="margin-top:10px">אפס יתרת אימון ל-10,000</button>`:''}
   <div class="toggle"><span><b>צלילים</b></span><input type="checkbox" id="setSound" ${S.sound?'checked':''}></div>
   ${fbSettingsHTML()}
+  ${inClaude()?'':'<small class="muted" style="display:block;padding-top:8px">האתר סופר כניסות ושימוש במשחקים באופן אנונימי (Google Analytics) כדי לשפר את המשחק.</small>'}
   <div class="stack" style="padding:10px 0;border-bottom:1px solid var(--line)"><b>שמירה בענן</b><small class="muted">${cloudLine()}</small>${CLOUD.ref?'<button class="btn dark sm" data-a="cloudnow">שמור עכשיו</button>':''}</div>
   ${transferHTML()}
   <div class="row" style="margin-top:14px"><button class="btn ghost" data-a="onbagain">הצג שוב את הסיור</button><button class="btn grow" data-a="closemodal">סגור</button></div>`);
@@ -1433,11 +1435,11 @@ function rOnline(V){
     <label class="lbl">בוטים נוספים</label>${seg('netbots',[0,1,2,3].map(n=>[n,n]),NET.bots)}</div><button class="btn" data-a="netstart" ${Object.keys(NET.guests).length?'':'disabled'}>התחל ${g==='bj'?'בלאק ג׳ק':VAR_NAME[g]}</button>${Object.keys(NET.guests).length?'':'<p class="hint">ממתינים שלפחות חבר אחד יצטרף…</p>'}`;}
   else{h+=`<div class="panel stack"><p class="lbl">חדר</p><div class="code">${esc(NET.code)}</div>${NET.host?`<p style="text-align:center">מחובר! ${esc(NET.host.presence.nick||'המארח')} יתחיל את המשחק בקרוב.</p>`:`<p class="muted" style="text-align:center">מחפש את המארח… ודא שהקוד נכון.</p>`}</div>`;}
   h+=`</div>`;V.innerHTML=h;const ni=$('#nick');if(ni)ni.addEventListener('input',()=>{S.nick=ni.value.trim();save();});}
-async function netCreate(){const R=await roomApi();if(!R)return;const code=Math.random().toString(36).slice(2,6);
+async function netCreate(){const R=await roomApi();if(!R)return;track('online_room',{role:'host'});const code=Math.random().toString(36).slice(2,6);
   try{const r=await R.join('c77-'+code);NET={role:'host',code,r,game:SETUP.netg||'holdem',phase:'lobby',guests:{},bots:1,last:{}};
     await r.presence({role:'host',nick:S.nick||'מארח',game:NET.game,phase:'lobby'});NET.unsub=r.onPeers(netPeers);chatRender();render();}
   catch(e){toast('לא הצלחתי לפתוח חדר: '+esc(e.code||e.message||''),'bad');}}
-async function netJoin(){const code=($('#joincode')?.value||'').trim().toLowerCase();if(!/^[a-z0-9]{4}$/.test(code)){toast('הקוד צריך להיות 4 תווים','bad');return;}const R=await roomApi();if(!R)return;
+async function netJoin(){track('online_room',{role:'guest'});const code=($('#joincode')?.value||'').trim().toLowerCase();if(!/^[a-z0-9]{4}$/.test(code)){toast('הקוד צריך להיות 4 תווים','bad');return;}const R=await roomApi();if(!R)return;
   try{const r=await R.join('c77-'+code);NET={role:'guest',code,r,seq:Date.now(),myPeer:null,host:null,mySeat:-1};await r.presence({role:'guest',nick:S.nick||'אורח'});NET.unsub=r.onPeers(netPeers);chatRender();render();}
   catch(e){toast('לא הצלחתי להצטרף: '+esc(e.code||e.message||''),'bad');}}
 function netPeers(ch){if(!NET)return;const peers=ch.peers||[];netChatScan(peers);
@@ -1964,7 +1966,7 @@ function checkImportHash(){try{const h=location.hash||'';if(!h.startsWith('#impo
 function cloudApply(d){try{const v=JSON.parse(d.s);S=Object.assign(JSON.parse(JSON.stringify(DEF)),v);S.savedAt=+d.t;try{localStorage.setItem(SKEY,JSON.stringify(S));}catch(e){}CLOUD.pending=null;render();toast('ההתקדמות נטענה מהענן','good');}catch(e){toast('לא הצלחתי לקרוא את השמירה מהענן','bad');}}
 function cloudQueue(){if(CLOUD.pending)return;if(FB.user&&FB.ready){clearTimeout(FB.t);FB.t=setTimeout(fbPush,4000);}if(!CLOUD.ready)return;clearTimeout(CLOUD.timer);CLOUD.timer=setTimeout(cloudPush,4000);}
 /* ================= FIREBASE (Google sign-in when hosted outside Claude) ================= */
-const FIREBASE_CONFIG={apiKey:"AIzaSyAU4Y1qo7xu8hI5tSEo7d0d6HovmuaKUIs",authDomain:"lobby77-93cb5.firebaseapp.com",projectId:"lobby77-93cb5",storageBucket:"lobby77-93cb5.firebasestorage.app",messagingSenderId:"1078612304057",appId:"1:1078612304057:web:14698b63019b483927fb68"}; /* אפשר להדביק כאן את ה-firebaseConfig מ-Firebase Console, או דרך ההגדרות במשחק */
+const FIREBASE_CONFIG={apiKey:"AIzaSyAU4Y1qo7xu8hI5tSEo7d0d6HovmuaKUIs",authDomain:"lobby77-93cb5.firebaseapp.com",projectId:"lobby77-93cb5",storageBucket:"lobby77-93cb5.firebasestorage.app",messagingSenderId:"1078612304057",appId:"1:1078612304057:web:14698b63019b483927fb68",measurementId:"G-79G7C0G22S"}; /* אפשר להדביק כאן את ה-firebaseConfig מ-Firebase Console, או דרך ההגדרות במשחק */
 const FB={on:false,user:null,db:null,auth:null,loading:false,ready:false,err:'',t:null,last:0};
 const inClaude=()=>!!(window.claude&&typeof window.claude.use==='function');
 function loadScript(src){return new Promise((res,rej)=>{const el=document.createElement('script');el.src=src;el.onload=res;el.onerror=rej;document.head.appendChild(el);});}
@@ -1972,7 +1974,8 @@ function fbCfg(){if(FIREBASE_CONFIG)return FIREBASE_CONFIG;try{return S.fbcfg?JS
 async function fbInit(){const cfg=fbCfg();if(!cfg||inClaude()||FB.loading||FB.on)return;FB.loading=true;
   try{const V='10.12.2';for(const m of ['app','auth','firestore'])await loadScript(`https://www.gstatic.com/firebasejs/${V}/firebase-${m}-compat.js`);
     firebase.initializeApp(cfg);FB.auth=firebase.auth();FB.db=firebase.firestore();FB.on=true;
-    FB.auth.onAuthStateChanged(u=>{FB.user=u;FB.ready=false;admReset();if(u)admInit();if(LB.kind==='fb'||LB.err)lbReset();if(u){fbLoad();setTimeout(lbInit,1500);}if(['board','chal','online'].includes(CUR.v))render();if(CUR.v==='home')render();});}
+    if(cfg.measurementId){loadScript(`https://www.gstatic.com/firebasejs/${V}/firebase-analytics-compat.js`).then(()=>{try{FB.an=firebase.analytics();track('page_view',{page_title:CUR.v});}catch(e){}}).catch(()=>{});}
+    FB.auth.onAuthStateChanged(u=>{if(u&&!FB.user)track('login',{method:'google'});FB.user=u;FB.ready=false;admReset();if(u)admInit();if(LB.kind==='fb'||LB.err)lbReset();if(u){fbLoad();setTimeout(lbInit,1500);}if(['board','chal','online'].includes(CUR.v))render();if(CUR.v==='home')render();});}
   catch(e){FB.err='לא הצלחתי לטעון את Firebase — בדקו את ה-config ואת החיבור.';}FB.loading=false;if(CUR.v==='home')render();}
 async function fbSignIn(){if(!FB.on){toast('Firebase לא מוגדר עדיין','bad');return;}const pr=new firebase.auth.GoogleAuthProvider();
   pr.setCustomParameters({prompt:'select_account'});try{await FB.auth.signInWithPopup(pr);}catch(e){const c=e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request')return;if(c==='auth/popup-blocked')toast('הדפדפן חסם את חלון ההתחברות. אפשרו חלונות קופצים לאתר ונסו שוב.','bad');else if(c==='auth/unauthorized-domain')toast('הדומיין לא מאושר ב-Firebase: הוסיפו את orisella10-a11y.github.io ב-Authorized domains','bad');else toast('ההתחברות נכשלה: '+esc(c||e.message||''),'bad');}}
@@ -2300,7 +2303,7 @@ function lesAnswer(v){if(!LS||LS.ans!=null)return;const q=LS.qs[LS.qi];if(!q)ret
   if(ok){LS.ok++;snd('right');if(R[q.qid]){R[q.qid].b=(R[q.qid].b||0)+1;if(R[q.qid].b>=2)delete R[q.qid];}}else{snd('wrong');vib(30);R[q.qid]={b:0};}
   save();render();}
 function lesFinish(){const x=SCH();const n=LS.qs.length,ok=LS.ok;LS.phase='done';LS.xp=0;
-  if(LS.mode==='lesson'){const pass=ok>=Math.max(1,n-1);LS.pass=pass;LS.stars=pass?(ok===n?3:2):0;if(pass){const prev=x.done[LS.L.id]||0;if(LS.stars>prev){x.done[LS.L.id]=LS.stars;LS.xp=prev?10:20+10*LS.stars;}unlock('school1');if(crsDone(LS.c)===allLes(LS.c).length)unlock('school_course');schoolDay();}}
+  if(LS.mode==='lesson'){const pass=ok>=Math.max(1,n-1);LS.pass=pass;LS.stars=pass?(ok===n?3:2):0;if(pass){const prev=x.done[LS.L.id]||0;if(LS.stars>prev){x.done[LS.L.id]=LS.stars;LS.xp=prev?10:20+10*LS.stars;}unlock('school1');track('lesson_complete',{lesson:LS.L.id,stars:LS.stars});if(crsDone(LS.c)===allLes(LS.c).length)unlock('school_course');schoolDay();}}
   else if(LS.mode==='test'){const need=Math.ceil(n*.8);LS.pass=ok>=need;LS.need=need;if(LS.pass){const k=LS.c.id+':'+LS.l;if(!x.lt[k])LS.xp=60;x.lt[k]=1;LS.c.lv[LS.l].forEach(id=>{if(!x.done[id])x.done[id]=1;});schoolDay();if(crsDone(LS.c)===allLes(LS.c).length)unlock('school_course');}}
   else{LS.pass=true;LS.xp=ok?15:0;schoolDay();}
   save();if(LS.xp)addXP(LS.xp);if(LS.pass)snd(LS.stars===3||LS.mode==='test'?'bigwin':'win');render();}
@@ -2423,7 +2426,7 @@ function rBoard(V){if(!LB.init)lbInit();
     h+=`<p class="note">${esc(LB.msg)} דיוק נספר מ-30 החלטות ומעלה. מצב אימון לא נספר.</p><button class="btn dark" data-a="lbpub">עדכן את השורה שלי עכשיו</button>`;}
   V.innerHTML=h+`</div>`;}
 /* ================= INSTALL AS APP ================= */
-let DEFER=null;try{window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFER=e;if(CUR.v==='home'||CUR.v==='profile')render();});window.addEventListener('appinstalled',()=>{DEFER=null;toast('קזינו 77 הותקן במסך הבית','good');});}catch(e){}
+let DEFER=null;try{window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFER=e;if(CUR.v==='home'||CUR.v==='profile')render();});window.addEventListener('appinstalled',()=>{track('app_installed');DEFER=null;toast('קזינו 77 הותקן במסך הבית','good');});}catch(e){}
 const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;}catch(e){return false;}};
 const isIOS=()=>{try{return /iPad|iPhone|iPod/.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}catch(e){return false;}};
 const secureHost=()=>{try{return location.protocol==='https:'||location.hostname==='localhost';}catch(e){return false;}};
@@ -2485,6 +2488,9 @@ function rAdmin(V){if(!ADM.admin){V.innerHTML=`<div class="panel" style="margin-
   let h=`<div class="tbar"><button class="btn ghost sm" data-a="go" data-v="profile">חזרה</button><h2>לוח ניהול</h2><span class="pill gold">מנהל</span></div><div class="stack" style="margin-top:12px">
   <div class="panel stack"><b>הודעה לכל השחקנים</b><small class="muted">מופיעה בראש עמוד הבית אצל כל מי שנכנס לאתר.</small><textarea class="txt" id="admmsg" rows="2" maxlength="200" placeholder="למשל: טורניר ביום חמישי ב-21:00!">${esc(c.msg||'')}</textarea>
    <div class="row"><button class="btn sm" data-a="admmsg">פרסם</button>${c.msg?'<button class="btn dark sm" data-a="admmsgclear">הסר הודעה</button>':''}</div></div>
+  ${(()=>{const now=Date.now(),rs=LB.rows||[];const d1=rs.filter(r=>now-(+r.t||0)<864e5).length,d7=rs.filter(r=>now-(+r.t||0)<7*864e5).length,wk=rs.filter(r=>r.wk&&r.wk.id===weekId()&&(+r.wk.hands||0)>0).length;
+    return `<div class="panel stack"><b>סיכום שחקנים</b><div class="kv"><div><small>שחקנים בטבלה</small><b>${rs.length}</b></div><div><small>פעילים ב-24 שעות</small><b>${d1}</b></div><div><small>פעילים ב-7 ימים</small><b>${d7}</b></div></div>
+    <small class="muted">${wk} שיחקו השבוע. נספרים רק שחקנים שמחוברים עם Google. לכל הכניסות (גם בלי התחברות): Firebase ← Analytics ← Dashboard.</small></div>`;})()}
   <div class="panel row"><span class="grow"><b>חדרי אונליין</b><br><small class="muted">${c.onlineOff?'סגורים — אף אחד לא יכול לפתוח או להצטרף':'פתוחים'}</small></span><button class="btn ${c.onlineOff?'':'dark'} sm" data-a="admonline">${c.onlineOff?'פתח':'סגור'}</button></div>
   <div class="panel stack"><div class="row"><b class="grow">שחקנים (${rows.length})</b>${ADM.confirmReset?'<button class="btn fold sm" data-a="admresetyes">כן, למחוק את כל הטבלה</button><button class="btn ghost sm" data-a="admresetno">ביטול</button>':'<button class="btn dark sm" data-a="admreset">אפס טבלה</button>'}</div>
    ${rows.length?rows.map(r=>`<div class="admrow"><div class="grow"><b>${esc(r.name||'שחקן')}</b>${ban.has(r.id)?' <span class="pill" style="color:var(--bad)">חסום</span>':''}<br><small class="muted mono">${fmt(+r.chips||0)} · רמה ${+r.lvl||1} · ${fmt(+r.hands||0)} ידיים${r.wk&&r.wk.id===weekId()?' · השבוע '+sgn(+r.wk.net||0):''}</small></div>
